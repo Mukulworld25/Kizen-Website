@@ -66,7 +66,14 @@ export default function Contact() {
               <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Find Us</div>
               <h2 className="font-serif text-3xl font-medium">SCO 193-195, Sector 34-A, Chandigarh</h2>
             </div>
-            <a href="#" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-1 w-fit">Get Directions <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+            <a
+              href="https://maps.google.com/?q=SCO+193-195,+Sector+34-A,+Chandigarh,+160034"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-1 w-fit"
+            >
+              Get Directions <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
           </div>
           <div className="rounded-2xl overflow-hidden border border-ink/10 h-[420px]">
             <iframe

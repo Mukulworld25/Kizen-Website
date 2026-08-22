@@ -47,7 +47,7 @@ export default function Courses() {
             <i className="fa-solid fa-arrow-right text-ink/25 text-xs"></i>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-paper border border-ink/10 text-sm font-medium">M.Com / MBA</div>
             <i className="fa-solid fa-arrow-right text-ink/25 text-xs"></i>
-            <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy text-paper text-sm font-semibold border-2 border-gold/40"><i className="fa-solid fa-earth-americas text-gold"></i> ACCA</div>
+            <Link to="/acca" className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy text-paper text-sm font-semibold border-2 border-gold/40 hover:bg-ink transition"><i className="fa-solid fa-earth-americas text-gold"></i> ACCA</Link>
           </div>
         </div>
       </section>
@@ -71,7 +71,7 @@ export default function Courses() {
                 </div>
                 <div className="font-serif text-2xl font-semibold mb-3">{c.title}</div>
                 <p className="text-sm text-ink/60 leading-relaxed mb-6">{c.desc}</p>
-                <a href="#" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-0.5">View details <i className="fa-solid fa-arrow-right text-xs"></i></a>
+                <a href="#enquiry" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-0.5 hover:gap-3 transition-all">Enquire for batch details <i className="fa-solid fa-arrow-right text-xs"></i></a>
               </div>
             ))}
           </div>
@@ -97,7 +97,7 @@ export default function Courses() {
                 </div>
                 <div className="font-serif text-2xl font-semibold mb-3">{c.title}</div>
                 <p className="text-sm text-ink/60 leading-relaxed mb-6">{c.desc}</p>
-                <a href="#" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-0.5">View details <i className="fa-solid fa-arrow-right text-xs"></i></a>
+                <a href="#enquiry" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-0.5 hover:gap-3 transition-all">Enquire for batch details <i className="fa-solid fa-arrow-right text-xs"></i></a>
               </div>
             ))}
           </div>
@@ -123,7 +123,7 @@ export default function Courses() {
                 </div>
                 <div className="font-serif text-2xl font-semibold mb-3">{c.title}</div>
                 <p className="text-sm text-ink/60 leading-relaxed mb-6">{c.desc}</p>
-                <a href="#" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-0.5">View details <i className="fa-solid fa-arrow-right text-xs"></i></a>
+                <a href="#enquiry" className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-0.5 hover:gap-3 transition-all">Enquire for batch details <i className="fa-solid fa-arrow-right text-xs"></i></a>
               </div>
             ))}
           </div>
@@ -185,7 +185,7 @@ export default function Courses() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 shrink-0">
               <a href="tel:+917696963377" className="inline-flex items-center justify-center gap-2 border border-ink/20 text-ink font-semibold text-sm px-6 py-3.5 rounded-full hover:border-ink transition"><i className="fa-solid fa-phone text-gold"></i> +91 76969 63377</a>
-              <a href="#" className="inline-flex items-center justify-center gap-2 bg-navy text-paper font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-ink transition">Book Free Counselling</a>
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-navy text-paper font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-ink transition">Book Free Counselling</Link>
             </div>
           </div>
         </div>

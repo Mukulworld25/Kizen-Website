@@ -39,6 +39,43 @@ export default function Acca() {
 
   return (
     <>
+      {/* ============ HERO ============ */}
+      <section id="acca-hero" className="bg-navy text-paper py-20 lg:py-24 relative overflow-hidden">
+        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gold/5"></div>
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative">
+          <div className="flex items-center gap-3 text-xs font-semibold text-paper/50 mb-8">
+            <Link to="/" className="hover:text-paper">Home</Link>
+            <i className="fa-solid fa-chevron-right text-[8px]"></i>
+            <Link to="/courses" className="hover:text-paper">Courses</Link>
+            <i className="fa-solid fa-chevron-right text-[8px]"></i>
+            <span className="text-gold">ACCA</span>
+          </div>
+          <div className="grid lg:grid-cols-12 gap-12 items-end">
+            <div className="lg:col-span-7">
+              <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Step 05 of the Kizen Pathway · Global</div>
+              <h1 className="font-serif text-4xl lg:text-6xl font-medium leading-[1.05] tracking-tight mb-6">
+                ACCA. The qualification<br />that ends in <span className="italic text-gold">any country.</span>
+              </h1>
+              <p className="text-paper/70 text-[15px] lg:text-base leading-relaxed max-w-xl">Association of Chartered Certified Accountants — recognised in 180+ countries. At Kizen, it's the natural next step after B.Com, BBA, M.Com or MBA, taught by faculty who've built the entire commerce pathway around it.</p>
+            </div>
+            <div className="lg:col-span-5 grid grid-cols-3 gap-4 text-center border-t lg:border-t-0 lg:border-l border-paper/15 pt-8 lg:pt-0 lg:pl-10">
+              <div>
+                <div className="font-serif text-3xl font-bold text-gold">95%+</div>
+                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Pass Rate</div>
+              </div>
+              <div>
+                <div className="font-serif text-3xl font-bold text-gold">13</div>
+                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Papers</div>
+              </div>
+              <div>
+                <div className="font-serif text-3xl font-bold text-gold">180+</div>
+                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Countries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ============ WHERE ACCA SITS ON THE PATHWAY — paper ============ */}
       <section id="pathway-context" className="bg-paper py-16 lg:py-20 border-b border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
@@ -163,39 +200,3 @@ export default function Acca() {
     </>
   )
 }
-{/* ============ HERO ============ */}
-      <section id="acca-hero" className="bg-navy text-paper py-20 lg:py-24 relative overflow-hidden">
-        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gold/5"></div>
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative">
-          <div className="flex items-center gap-3 text-xs font-semibold text-paper/50 mb-8">
-            <Link to="/" className="hover:text-paper">Home</Link>
-            <i className="fa-solid fa-chevron-right text-[8px]"></i>
-            <Link to="/courses" className="hover:text-paper">Courses</Link>
-            <i className="fa-solid fa-chevron-right text-[8px]"></i>
-            <span className="text-gold">ACCA</span>
-          </div>
-          <div className="grid lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-7">
-              <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Step 05 of the Kizen Pathway · Global</div>
-              <h1 className="font-serif text-4xl lg:text-6xl font-medium leading-[1.05] tracking-tight mb-6">
-                ACCA. The qualification<br />that ends in <span className="italic text-gold">any country.</span>
-              </h1>
-              <p className="text-paper/70 text-[15px] lg:text-base leading-relaxed max-w-xl">Association of Chartered Certified Accountants — recognised in 180+ countries. At Kizen, it's the natural next step after B.Com, BBA, M.Com or MBA, taught by faculty who've built the entire commerce pathway around it.</p>
-            </div>
-            <div className="lg:col-span-5 grid grid-cols-3 gap-4 text-center border-t lg:border-t-0 lg:border-l border-paper/15 pt-8 lg:pt-0 lg:pl-10">
-              <div>
-                <div className="font-serif text-3xl font-bold text-gold">95%+</div>
-                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Pass Rate</div>
-              </div>
-              <div>
-                <div className="font-serif text-3xl font-bold text-gold">13</div>
-                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Papers</div>
-              </div>
-              <div>
-                <div className="font-serif text-3xl font-bold text-gold">180+</div>
-                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Countries</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
