@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* Kizen brand tokens — sampled from official logo */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --color-ivory: #f7f3ea;
+  --color-paper: #fbf9f4;
+  --color-ink: #1b1a17;
+  --color-navy: #18334e;
+  --color-gold: #c89b3c;
+}
+
+body {
+  background-color: #fbf9f4;
+}
+
+/* Small custom utilities used by the exports (kept verbatim) */
+.stagger > * {
+  position: relative;
+}
+.path-line {
+  stroke-dasharray: 6 8;
+}
+.num-tag {
+  font-variant-numeric: tabular-nums;
+}
