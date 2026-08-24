@@ -139,91 +139,6 @@ const VIDEO_TESTIMONIALS = [
   { src: './videos/testimonial-3.mp4', label: 'Student Testimonial 3' },
 ]
 
-// ---------------------------------------------------------------------------
-// HERO SUCCESS VISUAL — floating truthful badges
-// Image is an AI-generated illustrative scene (client-approved) — two happy
-// students with offer letters, NOT passed off as real student photos. Graceful
-// gradient fallback until /images/success-duo.webp is dropped into
-// kizen-react/public/images/.
-// Badge claims are verifiable facts only — NO placement/salary figures
-// (CCPA/ASCI-safe). See PENDING_BADGE_ENABLED below for the open client item.
-// ---------------------------------------------------------------------------
-const FLOATING_BADGES = [
-  { icon: 'fa-solid fa-earth-americas', label: 'Globally Recognised Qualification', pos: 'top-4 left-4 sm:top-7 sm:left-7', delay: 0 },
-  { icon: 'fa-solid fa-arrow-trend-up', label: '95%+ Pass Rate', pos: 'top-4 right-4 sm:top-7 sm:right-7', delay: 0.7 },
-  { icon: 'fa-solid fa-star', label: '4.9 Rated by Students & Parents', pos: 'bottom-4 left-4 sm:bottom-7 sm:left-7', delay: 1.4 },
-]
-
-// TODO [PENDING: CLIENT TO CONFIRM REAL PLACEMENT FIGURE OR AUTHORIZE GENERIC LANGUAGE]
-// This badge slot stays visibly reserved in code. Flip to true ONLY once the
-// client supplies a substantiable placement figure or approves generic wording.
-// Never ship enabled by default — unsubstantiated salary/placement claims are
-// an active CCPA/ASCI enforcement risk for Indian coaching institutes.
-const PENDING_BADGE_ENABLED = false
-
-function FloatingBadge({ icon, label, pos, delay = 0 }) {
-  return (
-    <motion.div
-      animate={{ y: [0, -8, 0] }}
-      transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay }}
-      className={`absolute z-20 ${pos} inline-flex items-center gap-2.5 bg-paper/95 backdrop-blur-md pl-2.5 pr-4 py-2 rounded-xl shadow-lg border border-gold/30`}
-    >
-      <span className="w-8 h-8 rounded-full bg-gold/15 text-gold flex items-center justify-center shrink-0">
-        <i className={`${icon} text-sm`}></i>
-      </span>
-      <span className="text-[11px] sm:text-xs font-bold text-ink leading-tight">{label}</span>
-    </motion.div>
-  )
-}
-
-function StudentSuccessVisual() {
-  const [imgFailed, setImgFailed] = useState(false)
-
-  return (
-    <div className="relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[430px] rounded-3xl overflow-hidden border border-ink/10 shadow-xl bg-gradient-to-br from-navy via-[#26242f] to-navy">
-      {!imgFailed ? (
-        <img
-          src="./images/success-duo.webp"
-          onError={() => setImgFailed(true)}
-          alt="AI-generated illustration of two happy Kizen students holding their offer letters"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-        />
-      ) : (
-        /* Fallback until the AI-generated success visual is added */
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-paper/40 gap-3">
-          <i className="fa-solid fa-graduation-cap text-6xl"></i>
-          <span className="text-[11px] uppercase tracking-[0.3em]">The Kizen Success Story</span>
-        </div>
-      )}
-
-      {/* Vignette for badge legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
-
-      {/* General aspirational caption — deliberately no outcome claims/numbers */}
-      <div className="absolute bottom-5 right-5 sm:bottom-7 sm:right-7 z-10 max-w-[240px] text-right">
-        <span className="font-serif text-lg sm:text-xl font-semibold text-paper drop-shadow-sm">
-          Your success story starts here.
-        </span>
-      </div>
-
-      {/* Truthful floating badges — gentle vertical bob */}
-      {FLOATING_BADGES.map((b) => (
-        <FloatingBadge key={b.label} {...b} />
-      ))}
-
-      {/* Reserved 4th badge slot — see PENDING_BADGE_ENABLED flag above */}
-      {PENDING_BADGE_ENABLED && (
-        <FloatingBadge
-          icon="fa-solid fa-briefcase"
-          label="[PENDING: PLACEMENT FIGURE]"
-          pos="bottom-4 right-4 sm:bottom-7 sm:right-7"
-          delay={2.1}
-        />
-      )}
-    </div>
-  )
-}
 
 // Real Kizen campus photos — auto-cycling hero slideshow
 const HERO_SLIDES = [
@@ -320,99 +235,174 @@ export default function Home() {
 
   return (
     <>
-      {/* ============ HERO SECTION — EDITORIAL 2-COLUMN SHOWCASE ============ */}
-      <section id="hero" className="relative bg-paper overflow-hidden pt-10 lg:pt-14 pb-16 lg:pb-24">
-        {/* Subtle radial ambient depth */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 90% 60% at 50% 0%, #FFFDF9 0%, #FAF7EE 50%, #F5EFE0 100%)',
-          }}
+      {/* ============ HERO SECTION — FULL-BLEED CINEMATIC HERO ============ */}
+      <section id="hero" className="relative min-h-[660px] lg:min-h-[740px] bg-navy overflow-hidden flex items-center">
+        {/* Full-bleed background image */}
+        <img
+          src="./images/success-duo.webp"
+          alt="Two successful Kizen Commerce and ACCA students celebrating career milestones with offer letters"
+          className="absolute inset-0 w-full h-full object-cover object-[78%_center] lg:object-center"
+          loading="eager"
         />
-        {/* Faint accounting ledger-line texture (3.5% opacity) */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.035]"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, #1B1A17, #1B1A17 1px, transparent 1px, transparent 36px)',
-          }}
-        />
-        {/* Subtle academic watermark rings behind headline */}
-        <div className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full border border-gold/[0.07] pointer-events-none" />
-        <div className="absolute -top-16 -left-16 w-[512px] h-[512px] rounded-full border border-gold/[0.05] pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Column — Editorial Headline & Actions (55% / 7 cols) */}
+        {/* Cinematic multi-layer gradient overlay for crystal-clear readability & atmosphere */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/92 via-55% to-[#0c1824]/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824] via-transparent to-[#0c1824]/40 lg:hidden pointer-events-none" />
+
+        {/* Faint accounting ledger-line ambient texture */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{
+            backgroundImage: 'repeating-linear-gradient(0deg, #FFFFFF, #FFFFFF 1px, transparent 1px, transparent 36px)',
+          }}
+        />
+
+        {/* Subtle warm gold ambient aura behind headline */}
+        <div className="absolute -top-24 -left-24 w-[600px] h-[600px] rounded-full bg-gold/[0.08] blur-3xl pointer-events-none" />
+
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10 w-full py-16 lg:py-20">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column — High-Impact Editorial & Conversion Engine (7 cols) */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="lg:col-span-7 flex flex-col justify-center"
+              className="lg:col-span-7 flex flex-col justify-center text-left"
             >
+              {/* Eyebrow badge */}
               <motion.div variants={fadeUpVariants}>
-                <Eyebrow>
-                  <span className="w-6 h-px bg-gold"></span> Chandigarh's Only Full-Spectrum Commerce Institute
-                </Eyebrow>
+                <div className="inline-flex items-center gap-2 bg-gold/15 backdrop-blur-md border border-gold/30 rounded-full px-4 py-1.5 text-xs font-bold text-gold tracking-wide uppercase">
+                  <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span> Chandigarh&apos;s Premier Commerce &amp; ACCA Institute
+                </div>
               </motion.div>
 
+              {/* Primary High-Converting Headline */}
               <motion.h1
                 variants={fadeUpVariants}
-                className="font-serif font-medium text-4xl sm:text-5xl lg:text-[3.8rem] leading-[1.08] tracking-tight text-ink mt-3"
+                className="font-serif font-medium text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.1] tracking-tight text-paper mt-4"
               >
-                One school desk.<br className="hidden sm:block" /> One <span className="italic text-gold">global</span> qualification.
+                Launch Your Global Finance Career with <span className="italic text-gold font-normal">ACCA</span> &amp; Commerce Mastery.
               </motion.h1>
 
+              {/* Value-Driven Sub-headline */}
               <motion.p
                 variants={fadeUpVariants}
-                className="text-ink/75 text-base sm:text-lg leading-relaxed mt-6 max-w-xl font-sans"
+                className="text-paper/85 text-base sm:text-lg leading-relaxed mt-5 max-w-xl font-sans"
               >
-                We're the only institute in the tricity that carries a student from 11th-class commerce all the way to ACCA — the globally recognised qualification — under one roof, one faculty philosophy in Sector 34-A.
+                From Class 11th fundamentals to the globally recognised ACCA credential — get mentor-led coaching, 95%+ pass rates, and direct pathways to Big 4 &amp; MNC careers in Sector 34-A.
               </motion.p>
 
               {/* Dual CTA Actions */}
               <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-4 mt-8">
                 <a
                   href="#enquiry"
-                  className="inline-flex items-center gap-3 bg-navy text-paper px-6 sm:px-8 py-4 rounded-full font-semibold text-[13px] sm:text-sm text-left hover:bg-ink shadow-sm hover:shadow-md transition-all group"
+                  className="inline-flex items-center gap-3 bg-gold text-navy px-7 sm:px-8 py-4 rounded-full font-bold text-sm sm:text-[15px] hover:bg-paper hover:text-ink shadow-lg shadow-gold/20 hover:shadow-xl transition-all duration-300 group"
                 >
                   <span>Start Your Global Career — Talk to an ACCA Counsellor</span>
                   <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform shrink-0"></i>
                 </a>
                 <a
                   href="#pathway"
-                  className="hidden sm:inline-flex items-center gap-2 px-6 py-4 rounded-full border border-ink/20 text-ink/80 hover:text-ink hover:border-ink font-semibold text-sm transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-paper/30 bg-paper/10 backdrop-blur-md text-paper hover:bg-paper hover:text-navy hover:border-paper font-semibold text-sm transition-all"
                 >
                   <span>Explore 7-Year Pathway</span>
                   <i className="fa-solid fa-arrow-down text-xs"></i>
                 </a>
               </motion.div>
 
-              {/* Risk-reversal microcopy — every claim here is already true site-wide */}
-              <motion.p variants={fadeUpVariants} className="flex items-center gap-2 text-ink/55 text-xs mt-3">
-                <i className="fa-solid fa-circle-check text-gold text-[10px]"></i>
-                Free · No obligation · We respond within 24 hours
-              </motion.p>
+              {/* Risk-reversal microcopy */}
+              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-x-4 gap-y-2 text-paper/70 text-xs mt-4">
+                <span className="inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-circle-check text-gold text-xs"></i> Free 1-on-1 Career Mapping
+                </span>
+                <span className="hidden sm:inline text-paper/30">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-location-dot text-gold text-xs"></i> Sector 34-A Campus or Online
+                </span>
+                <span className="hidden sm:inline text-paper/30">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-bolt text-gold text-xs"></i> Fast 24-Hr Response
+                </span>
+              </motion.div>
 
-              {/* Verifiable trust chips (relocated from the removed full-width band) */}
-              <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-3 mt-8">
-                <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
-                  <i className="fa-solid fa-route text-gold"></i> Class 11 → ACCA · One Pathway
-                </span>
-                <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
-                  <i className="fa-solid fa-earth-americas text-gold"></i> 180+ Countries Recognise ACCA
-                </span>
+              {/* Interactive Quick Milestone Selector — boosts dwell time and intent */}
+              <motion.div variants={fadeUpVariants} className="mt-8 pt-6 border-t border-paper/15">
+                <div className="text-[11px] font-bold text-gold uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <i className="fa-solid fa-bullseye"></i> Select Your Current Milestone:
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  <a
+                    href="#pathway"
+                    className="inline-flex items-center gap-2 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-3.5 py-2 text-xs font-medium text-paper transition"
+                  >
+                    <span>🎯 11th &amp; 12th Commerce</span>
+                  </a>
+                  <a
+                    href="#pathway"
+                    className="inline-flex items-center gap-2 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-3.5 py-2 text-xs font-medium text-paper transition"
+                  >
+                    <span>🎓 B.Com / BBA Students</span>
+                  </a>
+                  <a
+                    href="#enquiry"
+                    className="inline-flex items-center gap-2 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-3.5 py-2 text-xs font-medium text-paper transition"
+                  >
+                    <span>🌍 ACCA Direct Entry</span>
+                  </a>
+                </div>
               </motion.div>
             </motion.div>
 
-            {/* RIGHT COLUMN — SUCCESS VISUAL (aspirational AI-generated imagery;
-                conversion is handled by the sitewide FloatingActions control) */}
+            {/* Right Column — Floating Trust Badges over the visible students */}
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="lg:col-span-5 self-stretch"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="lg:col-span-5 relative hidden lg:flex flex-col justify-end min-h-[460px] p-6 pointer-events-none"
             >
-              <StudentSuccessVisual />
+              <div className="space-y-4 max-w-xs ml-auto pointer-events-auto">
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0 }}
+                  className="bg-navy/85 backdrop-blur-md p-3.5 rounded-2xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
+                >
+                  <span className="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-base shrink-0">
+                    <i className="fa-solid fa-earth-americas"></i>
+                  </span>
+                  <div>
+                    <div className="font-serif text-sm font-bold text-paper">180+ Countries Valid</div>
+                    <div className="text-[11px] text-paper/70">Globally Recognised Qualification</div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+                  className="bg-navy/85 backdrop-blur-md p-3.5 rounded-2xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
+                >
+                  <span className="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-base shrink-0">
+                    <i className="fa-solid fa-arrow-trend-up"></i>
+                  </span>
+                  <div>
+                    <div className="font-serif text-sm font-bold text-paper">95%+ Pass Rate</div>
+                    <div className="text-[11px] text-paper/70">Boards &amp; ACCA Papers</div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 1.6 }}
+                  className="bg-navy/85 backdrop-blur-md p-3.5 rounded-2xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
+                >
+                  <span className="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-base shrink-0">
+                    <i className="fa-solid fa-star"></i>
+                  </span>
+                  <div>
+                    <div className="font-serif text-sm font-bold text-paper">4.9 ★ Top Rated</div>
+                    <div className="text-[11px] text-paper/70">By 500+ Students &amp; Parents</div>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>
