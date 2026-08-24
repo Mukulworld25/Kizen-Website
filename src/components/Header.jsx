@@ -39,7 +39,7 @@ export default function Header() {
           <a href="tel:+917696963377" className="flex items-center gap-2 text-sm font-semibold text-ink/80">
             <i className="fa-solid fa-phone text-gold"></i> +91 76969 63377
           </a>
-          <a href={ctaHref} className="bg-navy text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-ink transition">Book a Seat</a>
+          <a href={ctaHref} className="bg-navy text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-ink transition whitespace-nowrap">Talk to an ACCA Counsellor</a>
         </div>
 
         <button className="lg:hidden text-xl" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -70,7 +70,7 @@ export default function Header() {
               className="block w-full bg-navy text-paper text-center text-sm font-semibold px-5 py-3 rounded-full hover:bg-ink transition"
               onClick={close}
             >
-              Book a Seat
+              Talk to an ACCA Counsellor
             </a>
           </div>
         </div>

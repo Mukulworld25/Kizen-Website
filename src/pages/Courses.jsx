@@ -277,7 +277,7 @@ export default function Courses() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 shrink-0">
               <a href="tel:+917696963377" className="inline-flex items-center justify-center gap-2 border border-ink/20 text-ink font-semibold text-sm px-6 py-3.5 rounded-full hover:border-ink transition"><i className="fa-solid fa-phone text-gold"></i> +91 76969 63377</a>
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-navy text-paper font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-ink transition">Book Free Counselling</Link>
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-navy text-paper font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-ink transition">Talk to an ACCA Counsellor</Link>
             </div>
           </div>
         </div>

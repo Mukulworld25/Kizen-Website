@@ -373,10 +373,10 @@ export default function Home() {
               <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-4 mt-8">
                 <a
                   href="#enquiry"
-                  className="inline-flex items-center gap-3 bg-navy text-paper px-8 py-4 rounded-full font-semibold text-sm hover:bg-ink shadow-sm hover:shadow-md transition-all group"
+                  className="inline-flex items-center gap-3 bg-navy text-paper px-6 sm:px-8 py-4 rounded-full font-semibold text-[13px] sm:text-sm text-left hover:bg-ink shadow-sm hover:shadow-md transition-all group"
                 >
-                  <span>Book a Free Counselling Session</span>
-                  <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                  <span>Start Your Global Career — Talk to an ACCA Counsellor</span>
+                  <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform shrink-0"></i>
                 </a>
                 <a
                   href="#pathway"
@@ -386,6 +386,12 @@ export default function Home() {
                   <i className="fa-solid fa-arrow-down text-xs"></i>
                 </a>
               </motion.div>
+
+              {/* Risk-reversal microcopy — every claim here is already true site-wide */}
+              <motion.p variants={fadeUpVariants} className="flex items-center gap-2 text-ink/55 text-xs mt-3">
+                <i className="fa-solid fa-circle-check text-gold text-[10px]"></i>
+                Free · No obligation · We respond within 24 hours
+              </motion.p>
 
               {/* Verifiable trust chips (relocated from the removed full-width band) */}
               <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-3 mt-8">
@@ -824,7 +830,7 @@ export default function Home() {
               href="#enquiry"
               className="inline-flex items-center justify-center gap-2 bg-navy text-paper font-semibold text-sm px-7 py-4 rounded-full hover:bg-ink transition shadow-sm"
             >
-              Book Free Counselling
+              Talk to an ACCA Counsellor
             </a>
           </motion.div>
         </motion.div>

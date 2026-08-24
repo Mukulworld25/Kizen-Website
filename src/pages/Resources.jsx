@@ -200,7 +200,7 @@ export default function Resources() {
               Explore Programmes
             </Link>
             <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-gold text-navy font-semibold text-sm px-6 py-3.5 rounded-full hover:bg-paper transition">
-              Book Free Counselling
+              Talk to an ACCA Counsellor
             </Link>
           </div>
         </div>

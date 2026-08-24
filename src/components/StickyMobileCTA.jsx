@@ -28,9 +28,9 @@ export default function StickyMobileCTA() {
       </a>
       <a
         href={ctaHref}
-        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-gold text-navy text-[13px] font-semibold py-3 rounded-full hover:bg-paper transition"
+        className="flex-[1.9] inline-flex items-center justify-center gap-1.5 bg-gold text-navy text-[11px] leading-tight text-center font-semibold px-2 py-3 rounded-full hover:bg-paper transition"
       >
-        Book a Seat
+        Talk to an ACCA Counsellor
       </a>
     </div>
   )

@@ -109,7 +109,7 @@ function ActionPanel({ mode, onClose }) {
 
         {mode === 'book' ? (
           <>
-            <div className="font-serif text-2xl font-semibold mb-1">Book a Seat</div>
+            <div className="font-serif text-xl sm:text-2xl font-semibold mb-1 pr-8">Talk to an ACCA Counsellor</div>
             <div className="text-paper/60 text-xs mb-6">Our academic counsellors respond within 24 hours.</div>
             <EnquiryForm variant="home" />
           </>
