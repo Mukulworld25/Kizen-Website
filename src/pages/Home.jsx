@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import Eyebrow from '../components/Eyebrow.jsx'
 import EnquiryForm from '../components/EnquiryForm.jsx'
+import { setPageMeta } from '../utils/seo.js'
 
 // Animation variants
 const fadeUpVariants = {
@@ -138,6 +139,84 @@ const VIDEO_TESTIMONIALS = [
   { src: './videos/testimonial-3.mp4', label: 'Student Testimonial 3' },
 ]
 
+// ---------------------------------------------------------------------------
+// HERO SUCCESS VISUAL — floating truthful badges
+// Image is an AI-generated illustrative graphic (client-approved) — NOT passed
+// off as a real student photo. Graceful gradient fallback until
+// /images/student-success.webp is dropped into kizen-react/public/images/.
+// Badge claims are verifiable facts only — NO placement/salary figures
+// (CCPA/ASCI-safe). See PENDING_BADGE_ENABLED below for the open client item.
+// ---------------------------------------------------------------------------
+const FLOATING_BADGES = [
+  { icon: 'fa-solid fa-earth-americas', label: 'Globally Recognised Qualification', pos: 'top-4 left-4 sm:top-7 sm:left-7', delay: 0 },
+  { icon: 'fa-solid fa-arrow-trend-up', label: '95%+ Pass Rate', pos: 'top-4 right-4 sm:top-7 sm:right-7', delay: 0.7 },
+  { icon: 'fa-solid fa-star', label: '4.9 Rated by Students & Parents', pos: 'bottom-4 left-4 sm:bottom-7 sm:left-7', delay: 1.4 },
+]
+
+// TODO [PENDING: CLIENT TO CONFIRM REAL PLACEMENT FIGURE OR AUTHORIZE GENERIC LANGUAGE]
+// This badge slot stays visibly reserved in code. Flip to true ONLY once the
+// client supplies a substantiable placement figure or approves generic wording.
+// Never ship enabled by default — unsubstantiated salary/placement claims are
+// an active CCPA/ASCI enforcement risk for Indian coaching institutes.
+const PENDING_BADGE_ENABLED = false
+
+function FloatingBadge({ icon, label, pos, delay = 0 }) {
+  return (
+    <motion.div
+      animate={{ y: [0, -8, 0] }}
+      transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay }}
+      className={`absolute z-20 ${pos} inline-flex items-center gap-2.5 bg-paper/95 backdrop-blur-md pl-2.5 pr-4 py-2 rounded-xl shadow-lg border border-gold/30`}
+    >
+      <span className="w-8 h-8 rounded-full bg-gold/15 text-gold flex items-center justify-center shrink-0">
+        <i className={`${icon} text-sm`}></i>
+      </span>
+      <span className="text-[11px] sm:text-xs font-bold text-ink leading-tight">{label}</span>
+    </motion.div>
+  )
+}
+
+function StudentSuccessVisual() {
+  const [imgFailed, setImgFailed] = useState(false)
+
+  return (
+    <div className="relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[430px] rounded-3xl overflow-hidden border border-ink/10 shadow-xl bg-gradient-to-br from-navy via-[#26242f] to-navy">
+      {!imgFailed ? (
+        <img
+          src="./images/student-success.webp"
+          onError={() => setImgFailed(true)}
+          alt="Illustration of a happy student celebrating an admission offer letter"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+      ) : (
+        /* Fallback until the AI-generated success visual is added */
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-paper/40 gap-3">
+          <i className="fa-solid fa-graduation-cap text-6xl"></i>
+          <span className="text-[11px] uppercase tracking-[0.3em]">The Kizen Success Story</span>
+        </div>
+      )}
+
+      {/* Vignette for badge legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+
+      {/* Truthful floating badges — gentle vertical bob */}
+      {FLOATING_BADGES.map((b) => (
+        <FloatingBadge key={b.label} {...b} />
+      ))}
+
+      {/* Reserved 4th badge slot — see PENDING_BADGE_ENABLED flag above */}
+      {PENDING_BADGE_ENABLED && (
+        <FloatingBadge
+          icon="fa-solid fa-briefcase"
+          label="[PENDING: PLACEMENT FIGURE]"
+          pos="bottom-4 right-4 sm:bottom-7 sm:right-7"
+          delay={2.1}
+        />
+      )}
+    </div>
+  )
+}
+
 // Real Kizen campus photos — auto-cycling hero slideshow
 const HERO_SLIDES = [
   './images/slide-1.webp',
@@ -225,7 +304,10 @@ export default function Home() {
   const [activeStep, setActiveStep] = useState(null)
 
   useEffect(() => {
-    document.title = 'Kizen Education — Chandigarh\'s Only Full-Spectrum Commerce Institute'
+    setPageMeta({
+      title: 'Kizen Education — Commerce Coaching & ACCA in Chandigarh',
+      description: "Kizen Education, Sector 34-A Chandigarh — one continuous commerce pathway from Class 11 to ACCA under one roof. Small batches, 95%+ pass rate, 4.9-rated by students and parents. Call or WhatsApp to book free counselling.",
+    })
   }, [])
 
   return (
@@ -290,54 +372,96 @@ export default function Home() {
                 </a>
                 <a
                   href="#pathway"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-ink/20 text-ink/80 hover:text-ink hover:border-ink font-semibold text-sm transition-all"
+                  className="hidden sm:inline-flex items-center gap-2 px-6 py-4 rounded-full border border-ink/20 text-ink/80 hover:text-ink hover:border-ink font-semibold text-sm transition-all"
                 >
                   <span>Explore 7-Year Pathway</span>
                   <i className="fa-solid fa-arrow-down text-xs"></i>
                 </a>
               </motion.div>
 
-              {/* Quick inline stats strip under CTAs */}
-              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-8 mt-10 pt-8 border-t border-ink/10">
-                <div className="flex items-center gap-3">
-                  <div className="font-serif text-2xl lg:text-3xl font-bold text-ink flex items-center gap-1.5">
-                    <span>4.9</span>
-                    <i className="fa-solid fa-star text-gold text-base"></i>
-                  </div>
-                  <div className="text-xs text-ink/60 leading-tight">
-                    Rated from 34<br />Google Reviews
-                  </div>
-                </div>
-                <div className="h-8 w-px bg-ink/10 hidden sm:block"></div>
-                <div className="flex items-center gap-3">
-                  <div className="font-serif text-2xl lg:text-3xl font-bold text-ink">
-                    95%+
-                  </div>
-                  <div className="text-xs text-ink/60 leading-tight">
-                    Pass rate across<br />board & ACCA
-                  </div>
-                </div>
-                <div className="h-8 w-px bg-ink/10 hidden sm:block"></div>
-                <div className="flex items-center gap-3">
-                  <div className="font-serif text-2xl lg:text-3xl font-bold text-ink">
-                    180+
-                  </div>
-                  <div className="text-xs text-ink/60 leading-tight">
-                    Countries recognise<br />ACCA outcome
-                  </div>
-                </div>
-              </motion.div>
+              {/* Trust stats moved into the hero visual caption chips below —
+                  keeps the mobile path to the enquiry form as short as possible. */}
             </motion.div>
 
-            {/* Right Column — Full-Bleed Feeling Campus Showcase (45% / 5 cols) */}
+            {/* RIGHT COLUMN — HERO ENQUIRY FORM (Mukul: form must be in hero,
+                directly visible at top on mobile without heavy scrolling) */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 self-stretch flex items-stretch"
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="lg:col-span-5"
             >
-              <HeroShowcase />
+              <div
+                id="enquiry"
+                className="bg-navy text-paper rounded-3xl p-6 sm:p-8 shadow-xl border border-navy scroll-mt-24"
+              >
+                <div className="flex items-center justify-between gap-4 mb-5">
+                  <div>
+                    <div className="font-serif text-2xl font-semibold">Request a Call Back</div>
+                    <div className="text-paper/60 text-xs mt-1">Our academic counsellors respond within 24 hours.</div>
+                  </div>
+                  <span className="w-11 h-11 rounded-full bg-gold/15 text-gold flex items-center justify-center shrink-0">
+                    <i className="fa-solid fa-phone"></i>
+                  </span>
+                </div>
+                <EnquiryForm variant="home" />
+                <p className="text-paper/50 text-[11px] mt-4 flex items-center gap-2">
+                  <i className="fa-brands fa-whatsapp text-[#25D366]"></i> Submitting also opens a WhatsApp chat with your details pre-filled.
+                </p>
+              </div>
             </motion.div>
+
+            {/* FULL-WIDTH — STUDENT SUCCESS VISUAL + TRUTHFUL FLOATING BADGES */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="lg:col-span-12 mt-2 lg:mt-6"
+            >
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div className="lg:col-span-7">
+                  <StudentSuccessVisual />
+                </div>
+                <div className="lg:col-span-5 flex flex-col items-start">
+                  <Eyebrow><span className="w-6 h-px bg-gold"></span> The Kizen Outcome</Eyebrow>
+                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium leading-tight text-ink mt-3">
+                    From this desk to <span className="italic text-gold">any country.</span>
+                  </h2>
+                  <p className="text-ink/65 text-[15px] leading-relaxed mt-4 max-w-md">
+                    Every Kizen student follows one continuous route — Class 11 commerce fundamentals through globally recognised ACCA papers — guided by the same faculty throughout.
+                  </p>
+                  {/* Verifiable trust chips (moved from old hero stats strip) */}
+                  <div className="flex flex-wrap gap-3 mt-6">
+                    <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
+                      <i className="fa-solid fa-route text-gold"></i> Class 11 → ACCA · One Pathway
+                    </span>
+                    <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
+                      <i className="fa-solid fa-earth-americas text-gold"></i> 180+ Countries Recognise ACCA
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ CAMPUS SLIDESHOW — moved below the conversion-critical hero ============ */}
+      <section id="campus" className="bg-ivory py-16 lg:py-20 border-b border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <Eyebrow>Inside Kizen</Eyebrow>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight text-ink mt-2">
+                Walk our Sector 34-A campus.
+              </h2>
+            </div>
+            <p className="text-ink/60 text-sm max-w-sm leading-relaxed">
+              Modern commerce classrooms and a dedicated study environment in the heart of Chandigarh.
+            </p>
+          </div>
+          <div className="max-w-5xl mx-auto">
+            <HeroShowcase />
           </div>
         </div>
       </section>
@@ -664,7 +788,7 @@ export default function Home() {
       </section>
 
       {/* ============ DEDICATED ENQUIRY & COUNSELLING SECTION ============ */}
-      <section id="enquiry" className="bg-ivory py-20 lg:py-28 border-b border-ink/10">
+      <section id="counselling" className="bg-ivory py-20 lg:py-28 border-b border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="bg-navy rounded-3xl p-8 sm:p-12 lg:p-16 text-paper shadow-2xl grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6">

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Eyebrow from '../components/Eyebrow.jsx'
 import EnquiryForm from '../components/EnquiryForm.jsx'
+import { setPageMeta } from '../utils/seo.js'
 
 const FAQ = [
   { q: 'Can my child start ACCA directly after 12th?', a: 'Yes — 12th pass with English and Mathematics/Statistics is sufficient to begin, though many students choose to complete B.Com or BBA first.' },
@@ -10,7 +11,10 @@ const FAQ = [
 
 export default function Contact() {
   useEffect(() => {
-    document.title = 'Contact — Kizen Education'
+    setPageMeta({
+      title: 'Contact Kizen Education — Sector 34-A, Chandigarh',
+      description: 'Visit Kizen Education at SCO 193-195, Sector 34-A, Chandigarh. Call +91 76969 63377 or send an enquiry — our academic counsellors respond within 24 hours.',
+    })
   }, [])
 
   return (

@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Eyebrow from '../components/Eyebrow.jsx'
 import EnquiryForm from '../components/EnquiryForm.jsx'
+import BrochureGate from '../components/BrochureGate.jsx'
+import { setPageMeta } from '../utils/seo.js'
 
 const PAPERS = [
   { level: 'Level 01', title: 'Applied Knowledge', accent: false, items: ['Business & Technology', 'Management Accounting', 'Financial Accounting'] },
@@ -29,18 +31,18 @@ const INCLUDED = [
   'Career guidance for global placement opportunities',
 ]
 
-/* TODO: Replace [ACCA_FEE_PLACEHOLDER] below with actual fee/price when available */
-const FEE_NOTE = '[ACCA_FEE_PLACEHOLDER] — Fee structure varies by batch and payment plan. Contact the institute for current pricing.'
-
 export default function Acca() {
   useEffect(() => {
-    document.title = 'ACCA Course — Kizen Education'
+    setPageMeta({
+      title: 'ACCA Coaching in Chandigarh | Kizen Education — Sector 34-A',
+      description: "ACCA coaching at Kizen Education, Chandigarh. Three levels, thirteen papers, full mock exam cycles and mentorship — a qualification recognised in 180+ countries. Request the info pack.",
+    })
   }, [])
 
   return (
     <>
-      {/* ============ HERO ============ */}
-      <section id="acca-hero" className="bg-navy text-paper py-20 lg:py-24 relative overflow-hidden">
+      {/* ============ HERO — headline + ACCA form + stats (form visible at top on mobile) ============ */}
+      <section id="acca-hero" className="bg-navy text-paper py-12 sm:py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gold/5"></div>
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative">
           <div className="flex items-center gap-3 text-xs font-semibold text-paper/50 mb-8">
@@ -50,15 +52,33 @@ export default function Acca() {
             <i className="fa-solid fa-chevron-right text-[8px]"></i>
             <span className="text-gold">ACCA</span>
           </div>
-          <div className="grid lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-7">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* Left — headline (mobile order 1) */}
+            <div className="lg:col-span-5">
               <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Step 05 of the Kizen Pathway · Global</div>
-              <h1 className="font-serif text-4xl lg:text-6xl font-medium leading-[1.05] tracking-tight mb-6">
-                ACCA. The qualification<br />that ends in <span className="italic text-gold">any country.</span>
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.08] tracking-tight mb-5">
+                ACCA. The qualification that ends in <span className="italic text-gold">any country.</span>
               </h1>
               <p className="text-paper/70 text-[15px] lg:text-base leading-relaxed max-w-xl">Association of Chartered Certified Accountants — recognised in 180+ countries. At Kizen, it's the natural next step after B.Com, BBA, M.Com or MBA, taught by faculty who've built the entire commerce pathway around it.</p>
             </div>
-            <div className="lg:col-span-5 grid grid-cols-3 gap-4 text-center border-t lg:border-t-0 lg:border-l border-paper/15 pt-8 lg:pt-0 lg:pl-10">
+
+            {/* Middle — ACCA enquiry form (mobile order 2, directly after headline) */}
+            <div className="lg:col-span-4">
+              <div
+                id="enquiry"
+                className="bg-paper/5 border border-paper/15 rounded-2xl p-6 backdrop-blur-sm scroll-mt-24"
+              >
+                <div className="font-serif text-xl font-semibold mb-1">Request the ACCA Info Pack</div>
+                <div className="text-paper/60 text-xs mb-5">Syllabus breakdown + batch details.</div>
+                <EnquiryForm variant="acca" />
+                <p className="text-paper/50 text-[11px] mt-4 flex items-center gap-2">
+                  <i className="fa-brands fa-whatsapp text-[#25D366]"></i> Submitting also opens a WhatsApp chat with your details pre-filled.
+                </p>
+              </div>
+            </div>
+
+            {/* Right — verifiable stats (mobile order 3) */}
+            <div className="lg:col-span-3 grid grid-cols-3 lg:grid-cols-1 gap-4 text-center lg:text-left border-t lg:border-t-0 lg:border-l border-paper/15 pt-6 lg:pt-0 lg:pl-8">
               <div>
                 <div className="font-serif text-3xl font-bold text-gold">95%+</div>
                 <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Pass Rate</div>
@@ -174,20 +194,21 @@ export default function Acca() {
                 <li key={item} className="flex gap-3"><i className="fa-solid fa-circle-check text-gold mt-0.5"></i> {item}</li>
               ))}
             </ul>
-            {/* TODO: Replace [ACCA_FEE_PLACEHOLDER] with actual fee data */}
-            <p className="mt-6 pt-6 border-t border-paper/15 text-xs text-paper/60">{FEE_NOTE}</p>
+            {/* Fee gate — lead capture before brochure; WhatsApp fallback until
+                a real PDF lands in /public/brochures/. No fabricated numbers. */}
+            <BrochureGate />
           </div>
         </div>
       </section>
 
       {/* ============ ENQUIRY CTA — paper ============ */}
-      <section id="enquiry" className="bg-paper py-20 lg:py-24 border-t border-ink/10">
+      <section id="counselling" className="bg-paper py-20 lg:py-24 border-t border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="bg-navy rounded-3xl p-10 lg:p-16 grid lg:grid-cols-2 gap-10 items-center relative overflow-hidden">
             <div className="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-gold/5"></div>
             <div className="relative">
               <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Start Your ACCA Journey</div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-medium text-paper leading-tight mb-4">Talk to an ACCA counsellor this week.</h2>
+              <h2 className="font-serif text-3xl lg:text-4xl font-medium text-paper leading-tight mb-4">Start Your Path to a Globally Recognised Qualification</h2>
               <p className="text-paper/70 text-[15px] leading-relaxed max-w-md">Get a syllabus breakdown, batch timings, and a fee structure customised to your background.</p>
               <div className="flex items-center gap-2 mt-6 text-paper/80 text-sm">
                 <i className="fa-solid fa-location-dot text-gold"></i> SCO 193-195, Sector 34-A, Chandigarh

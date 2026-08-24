@@ -5,6 +5,7 @@ import StickyMobileCTA from './components/StickyMobileCTA.jsx'
 import Home from './pages/Home.jsx'
 import Acca from './pages/Acca.jsx'
 import Courses from './pages/Courses.jsx'
+import Resources from './pages/Resources.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/acca" element={<Acca />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Home />} />

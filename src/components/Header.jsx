@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { label: 'Home', to: '/' },
   { label: 'Courses', to: '/courses' },
   { label: 'ACCA', to: '/acca' },
+  { label: 'Resources', to: '/resources' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ]

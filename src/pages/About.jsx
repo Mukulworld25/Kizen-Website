@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Eyebrow from '../components/Eyebrow.jsx'
+import { setPageMeta } from '../utils/seo.js'
 
 const STATS = [
   { value: '95%+', label: 'Pass rate maintained across every programme we teach', accent: false },
@@ -19,7 +20,10 @@ const VALUES_DATA = [
 
 export default function About() {
   useEffect(() => {
-    document.title = 'About — Kizen Education'
+    setPageMeta({
+      title: 'About Kizen Education — Chandigarh Commerce Institute',
+      description: "How Kizen Education carries Chandigarh students from Class 11 commerce fundamentals to globally recognised ACCA qualifications — small batches, continuous mentorship, one campus.",
+    })
   }, [])
 
   return (

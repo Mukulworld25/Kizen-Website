@@ -10,6 +10,9 @@ const LIGHT_INPUT =
   'w-full bg-ivory border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink focus:outline-none focus:border-navy'
 const LABEL = 'text-xs font-semibold text-ink/60 uppercase tracking-wide mb-2 block'
 
+// Real institute WhatsApp number (verified across the codebase)
+const WHATSAPP_NUMBER = '917696963377'
+
 export default function EnquiryForm({ variant = 'home' }) {
   const isContact = variant === 'contact'
   const [submitted, setSubmitted] = useState(false)
@@ -24,9 +27,28 @@ export default function EnquiryForm({ variant = 'home' }) {
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
+  // WhatsApp-native enquiry: opens a chat with the real institute number and
+  // prefills name + chosen programme so counsellors get instant context.
+  // Called synchronously inside the submit handler so popup blockers don't eat it.
+  const openWhatsAppEnquiry = () => {
+    const interest =
+      variant === 'acca'
+        ? 'the ACCA programme'
+        : isContact
+          ? `${form.programme}`
+          : form.programme.replace(/^Interested in /, '')
+    const msg = `Hi Kizen Education! I'm ${form.name || 'a prospective student'}. I'm interested in ${interest}.${form.phone ? ` You can reach me at ${form.phone}.` : ''}`
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,
+      '_blank',
+      'noopener,noreferrer'
+    )
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(`[EnquiryForm:${variant}] Submitted payload:`, form)
+    openWhatsAppEnquiry()
     setSubmitted(true)
   }
 
