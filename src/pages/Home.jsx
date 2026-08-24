@@ -237,16 +237,16 @@ export default function Home() {
     <>
       {/* ============ HERO SECTION — FULL-BLEED CINEMATIC HERO ============ */}
       <section id="hero" className="relative min-h-[660px] lg:min-h-[740px] bg-navy overflow-hidden flex items-center">
-        {/* Full-bleed background image */}
+        {/* Full-bleed background image with subjects positioned on the right */}
         <img
           src="./images/success-duo.webp"
           alt="Two successful Kizen Commerce and ACCA students celebrating career milestones with offer letters"
-          className="absolute inset-0 w-full h-full object-cover object-[78%_center] lg:object-center"
+          className="absolute inset-0 w-full h-full object-cover object-right sm:object-[82%_center] lg:object-right"
           loading="eager"
         />
 
-        {/* Cinematic multi-layer gradient overlay for crystal-clear readability & atmosphere */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/92 via-55% to-[#0c1824]/30 pointer-events-none" />
+        {/* Cinematic multi-layer gradient overlay — dark on left for text, clear on right for students */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/90 via-50% to-[#0c1824]/20 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824] via-transparent to-[#0c1824]/40 lg:hidden pointer-events-none" />
 
         {/* Faint accounting ledger-line ambient texture */}
@@ -353,53 +353,50 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column — Floating Trust Badges over the visible students */}
+            {/* Right Column — Floating Trust Badges & Powered by Kizen Tag */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 relative hidden lg:flex flex-col justify-end min-h-[460px] p-6 pointer-events-none"
+              className="lg:col-span-5 relative hidden lg:flex flex-col justify-between min-h-[500px] p-6 pointer-events-none"
             >
-              <div className="space-y-4 max-w-xs ml-auto pointer-events-auto">
+              {/* Top Right: Powered by Kizen badge */}
+              <div className="ml-auto pointer-events-auto">
+                <div className="inline-flex items-center gap-2 bg-navy/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-gold/35 shadow-lg text-paper">
+                  <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                  <span className="text-[11px] font-semibold text-gold tracking-wide">
+                    Career Pathway Powered by Kizen
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom Right: Compact Floating Trust Chips positioned so faces stay 100% visible */}
+              <div className="space-y-3 max-w-[280px] ml-auto pointer-events-auto">
                 <motion.div
-                  animate={{ y: [0, -6, 0] }}
+                  animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0 }}
-                  className="bg-navy/85 backdrop-blur-md p-3.5 rounded-2xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
+                  className="bg-navy/85 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
                 >
-                  <span className="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-base shrink-0">
+                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
                     <i className="fa-solid fa-earth-americas"></i>
                   </span>
                   <div>
-                    <div className="font-serif text-sm font-bold text-paper">180+ Countries Valid</div>
-                    <div className="text-[11px] text-paper/70">Globally Recognised Qualification</div>
+                    <div className="font-serif text-xs font-bold text-paper">180+ Countries Valid</div>
+                    <div className="text-[10px] text-paper/70">ACCA Global Credential</div>
                   </div>
                 </motion.div>
 
                 <motion.div
-                  animate={{ y: [0, -6, 0] }}
+                  animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                  className="bg-navy/85 backdrop-blur-md p-3.5 rounded-2xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
+                  className="bg-navy/85 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
                 >
-                  <span className="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-base shrink-0">
+                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
                     <i className="fa-solid fa-arrow-trend-up"></i>
                   </span>
                   <div>
-                    <div className="font-serif text-sm font-bold text-paper">95%+ Pass Rate</div>
-                    <div className="text-[11px] text-paper/70">Boards &amp; ACCA Papers</div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 1.6 }}
-                  className="bg-navy/85 backdrop-blur-md p-3.5 rounded-2xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
-                >
-                  <span className="w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center text-base shrink-0">
-                    <i className="fa-solid fa-star"></i>
-                  </span>
-                  <div>
-                    <div className="font-serif text-sm font-bold text-paper">4.9 ★ Top Rated</div>
-                    <div className="text-[11px] text-paper/70">By 500+ Students &amp; Parents</div>
+                    <div className="font-serif text-xs font-bold text-paper">95%+ Pass Rate</div>
+                    <div className="text-[10px] text-paper/70">Boards &amp; ACCA Papers</div>
                   </div>
                 </motion.div>
               </div>
