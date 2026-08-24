@@ -235,8 +235,8 @@ export default function Home() {
 
   return (
     <>
-      {/* ============ HERO SECTION — FULL-BLEED CINEMATIC HERO ============ */}
-      <section id="hero" className="relative min-h-[660px] lg:min-h-[740px] bg-navy overflow-hidden flex items-center">
+      {/* ============ HERO SECTION — FULL-BLEED 1-SCREEN CINEMATIC HERO ============ */}
+      <section id="hero" className="relative min-h-[calc(100svh-5rem)] lg:h-[calc(100vh-5rem)] lg:min-h-[580px] lg:max-h-[720px] bg-navy overflow-hidden flex items-center">
         {/* Full-bleed background image with subjects positioned on the right */}
         <img
           src="./images/success-duo.webp"
@@ -246,22 +246,22 @@ export default function Home() {
         />
 
         {/* Cinematic multi-layer gradient overlay — dark on left for text, clear on right for students */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/90 via-50% to-[#0c1824]/20 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824] via-transparent to-[#0c1824]/40 lg:hidden pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c1824] via-[#0c1824]/90 via-50% to-[#0c1824]/15 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c1824] via-[#0c1824]/60 to-transparent lg:hidden pointer-events-none" />
 
         {/* Faint accounting ledger-line ambient texture */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
           style={{
             backgroundImage: 'repeating-linear-gradient(0deg, #FFFFFF, #FFFFFF 1px, transparent 1px, transparent 36px)',
           }}
         />
 
         {/* Subtle warm gold ambient aura behind headline */}
-        <div className="absolute -top-24 -left-24 w-[600px] h-[600px] rounded-full bg-gold/[0.08] blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full bg-gold/[0.07] blur-3xl pointer-events-none" />
 
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10 w-full py-16 lg:py-20">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-6 lg:px-12 relative z-10 w-full py-6 sm:py-8 lg:py-0">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
             {/* Left Column — High-Impact Editorial & Conversion Engine (7 cols) */}
             <motion.div
               initial="hidden"
@@ -269,17 +269,17 @@ export default function Home() {
               variants={staggerContainer}
               className="lg:col-span-7 flex flex-col justify-center text-left"
             >
-              {/* Eyebrow badge */}
+              {/* Eyebrow badge with integrated Powered by Kizen */}
               <motion.div variants={fadeUpVariants}>
-                <div className="inline-flex items-center gap-2 bg-gold/15 backdrop-blur-md border border-gold/30 rounded-full px-4 py-1.5 text-xs font-bold text-gold tracking-wide uppercase">
-                  <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span> Chandigarh&apos;s Premier Commerce &amp; ACCA Institute
+                <div className="inline-flex items-center gap-2 bg-gold/15 backdrop-blur-md border border-gold/30 rounded-full px-3.5 py-1 text-[11px] font-bold text-gold tracking-wide uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span> Chandigarh&apos;s Premier Commerce &amp; ACCA Institute · Powered by Kizen
                 </div>
               </motion.div>
 
-              {/* Primary High-Converting Headline */}
+              {/* Primary High-Converting Headline — balanced height */}
               <motion.h1
                 variants={fadeUpVariants}
-                className="font-serif font-medium text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.1] tracking-tight text-paper mt-4"
+                className="font-serif font-medium text-2xl sm:text-4xl lg:text-[2.6rem] xl:text-[3rem] leading-[1.12] tracking-tight text-paper mt-3"
               >
                 Launch Your Global Finance Career with <span className="italic text-gold font-normal">ACCA</span> &amp; Commerce Mastery.
               </motion.h1>
@@ -287,65 +287,69 @@ export default function Home() {
               {/* Value-Driven Sub-headline */}
               <motion.p
                 variants={fadeUpVariants}
-                className="text-paper/85 text-base sm:text-lg leading-relaxed mt-5 max-w-xl font-sans"
+                className="text-paper/85 text-xs sm:text-sm lg:text-[15px] leading-relaxed mt-2.5 max-w-xl font-sans"
               >
                 From Class 11th fundamentals to the globally recognised ACCA credential — get mentor-led coaching, 95%+ pass rates, and direct pathways to Big 4 &amp; MNC careers in Sector 34-A.
               </motion.p>
 
               {/* Dual CTA Actions */}
-              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-4 mt-8">
+              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-3 mt-4 sm:mt-5">
                 <a
                   href="#enquiry"
-                  className="inline-flex items-center gap-3 bg-gold text-navy px-7 sm:px-8 py-4 rounded-full font-bold text-sm sm:text-[15px] hover:bg-paper hover:text-ink shadow-lg shadow-gold/20 hover:shadow-xl transition-all duration-300 group"
+                  className="inline-flex items-center gap-2.5 bg-gold text-navy px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold text-xs sm:text-sm hover:bg-paper hover:text-ink shadow-lg shadow-gold/20 hover:shadow-xl transition-all duration-300 group"
                 >
                   <span>Start Your Global Career — Talk to an ACCA Counsellor</span>
                   <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform shrink-0"></i>
                 </a>
                 <a
                   href="#pathway"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-paper/30 bg-paper/10 backdrop-blur-md text-paper hover:bg-paper hover:text-navy hover:border-paper font-semibold text-sm transition-all"
+                  className="hidden sm:inline-flex items-center gap-2 px-5 py-3 sm:py-3.5 rounded-full border border-paper/30 bg-paper/10 backdrop-blur-md text-paper hover:bg-paper hover:text-navy hover:border-paper font-semibold text-xs sm:text-sm transition-all"
                 >
                   <span>Explore 7-Year Pathway</span>
                   <i className="fa-solid fa-arrow-down text-xs"></i>
                 </a>
               </motion.div>
 
-              {/* Risk-reversal microcopy */}
-              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-x-4 gap-y-2 text-paper/70 text-xs mt-4">
+              {/* Risk-reversal & Trust microcopy */}
+              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-paper/70 text-[11px] sm:text-xs mt-2.5">
                 <span className="inline-flex items-center gap-1.5">
-                  <i className="fa-solid fa-circle-check text-gold text-xs"></i> Free 1-on-1 Career Mapping
+                  <i className="fa-solid fa-circle-check text-gold text-[10px]"></i> Free 1-on-1 Career Mapping
+                </span>
+                <span className="text-paper/30">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-location-dot text-gold text-[10px]"></i> Sector 34-A Campus
                 </span>
                 <span className="hidden sm:inline text-paper/30">·</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <i className="fa-solid fa-location-dot text-gold text-xs"></i> Sector 34-A Campus or Online
+                <span className="hidden sm:inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-earth-americas text-gold text-[10px]"></i> 180+ Countries Valid
                 </span>
                 <span className="hidden sm:inline text-paper/30">·</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <i className="fa-solid fa-bolt text-gold text-xs"></i> Fast 24-Hr Response
+                <span className="hidden sm:inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-arrow-trend-up text-gold text-[10px]"></i> 95%+ Pass Rate
                 </span>
               </motion.div>
 
-              {/* Interactive Quick Milestone Selector — boosts dwell time and intent */}
-              <motion.div variants={fadeUpVariants} className="mt-8 pt-6 border-t border-paper/15">
-                <div className="text-[11px] font-bold text-gold uppercase tracking-widest mb-3 flex items-center gap-2">
-                  <i className="fa-solid fa-bullseye"></i> Select Your Current Milestone:
+              {/* Interactive Quick Milestone Selector — compact */}
+              <motion.div variants={fadeUpVariants} className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-paper/15">
+                <div className="text-[10px] sm:text-[11px] font-bold text-gold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <i className="fa-solid fa-bullseye text-[10px]"></i> Select Your Current Milestone:
                 </div>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-2">
                   <a
                     href="#pathway"
-                    className="inline-flex items-center gap-2 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-3.5 py-2 text-xs font-medium text-paper transition"
+                    className="inline-flex items-center gap-1.5 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-lg px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-paper transition"
                   >
                     <span>🎯 11th &amp; 12th Commerce</span>
                   </a>
                   <a
                     href="#pathway"
-                    className="inline-flex items-center gap-2 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-3.5 py-2 text-xs font-medium text-paper transition"
+                    className="inline-flex items-center gap-1.5 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-lg px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-paper transition"
                   >
                     <span>🎓 B.Com / BBA Students</span>
                   </a>
                   <a
                     href="#enquiry"
-                    className="inline-flex items-center gap-2 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-3.5 py-2 text-xs font-medium text-paper transition"
+                    className="inline-flex items-center gap-1.5 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-paper transition"
                   >
                     <span>🌍 ACCA Direct Entry</span>
                   </a>
@@ -353,54 +357,8 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column — Floating Trust Badges & Powered by Kizen Tag */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-5 relative hidden lg:flex flex-col justify-between min-h-[500px] p-6 pointer-events-none"
-            >
-              {/* Top Right: Powered by Kizen badge */}
-              <div className="ml-auto pointer-events-auto">
-                <div className="inline-flex items-center gap-2 bg-navy/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-gold/35 shadow-lg text-paper">
-                  <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
-                  <span className="text-[11px] font-semibold text-gold tracking-wide">
-                    Career Pathway Powered by Kizen
-                  </span>
-                </div>
-              </div>
-
-              {/* Bottom Right: Compact Floating Trust Chips positioned so faces stay 100% visible */}
-              <div className="space-y-3 max-w-[280px] ml-auto pointer-events-auto">
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0 }}
-                  className="bg-navy/85 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
-                >
-                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
-                    <i className="fa-solid fa-earth-americas"></i>
-                  </span>
-                  <div>
-                    <div className="font-serif text-xs font-bold text-paper">180+ Countries Valid</div>
-                    <div className="text-[10px] text-paper/70">ACCA Global Credential</div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                  className="bg-navy/85 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-gold/30 shadow-xl flex items-center gap-3 text-paper"
-                >
-                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
-                    <i className="fa-solid fa-arrow-trend-up"></i>
-                  </span>
-                  <div>
-                    <div className="font-serif text-xs font-bold text-paper">95%+ Pass Rate</div>
-                    <div className="text-[10px] text-paper/70">Boards &amp; ACCA Papers</div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+            {/* Right Column — Clean, unobstructed view of both smiling students */}
+            <div className="lg:col-span-5 hidden lg:block" />
           </div>
         </div>
       </section>
