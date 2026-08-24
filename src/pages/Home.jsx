@@ -310,8 +310,8 @@ export default function Home() {
                 </a>
               </motion.div>
 
-              {/* Risk-reversal & Trust microcopy */}
-              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-paper/70 text-[11px] sm:text-xs mt-2.5">
+              {/* Risk-reversal microcopy */}
+              <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-paper/70 text-[11px] sm:text-xs mt-3">
                 <span className="inline-flex items-center gap-1.5">
                   <i className="fa-solid fa-circle-check text-gold text-[10px]"></i> Free 1-on-1 Career Mapping
                 </span>
@@ -319,46 +319,52 @@ export default function Home() {
                 <span className="inline-flex items-center gap-1.5">
                   <i className="fa-solid fa-location-dot text-gold text-[10px]"></i> Sector 34-A Campus
                 </span>
-                <span className="hidden sm:inline text-paper/30">·</span>
-                <span className="hidden sm:inline-flex items-center gap-1.5">
-                  <i className="fa-solid fa-earth-americas text-gold text-[10px]"></i> 180+ Countries Valid
+                <span className="text-paper/30">·</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <i className="fa-solid fa-bolt text-gold text-[10px]"></i> Fast 24-Hr Response
                 </span>
-                <span className="hidden sm:inline text-paper/30">·</span>
-                <span className="hidden sm:inline-flex items-center gap-1.5">
-                  <i className="fa-solid fa-arrow-trend-up text-gold text-[10px]"></i> 95%+ Pass Rate
-                </span>
-              </motion.div>
-
-              {/* Interactive Quick Milestone Selector — compact */}
-              <motion.div variants={fadeUpVariants} className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-paper/15">
-                <div className="text-[10px] sm:text-[11px] font-bold text-gold uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <i className="fa-solid fa-bullseye text-[10px]"></i> Select Your Current Milestone:
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <a
-                    href="#pathway"
-                    className="inline-flex items-center gap-1.5 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-lg px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-paper transition"
-                  >
-                    <span>🎯 11th &amp; 12th Commerce</span>
-                  </a>
-                  <a
-                    href="#pathway"
-                    className="inline-flex items-center gap-1.5 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-lg px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-paper transition"
-                  >
-                    <span>🎓 B.Com / BBA Students</span>
-                  </a>
-                  <a
-                    href="#enquiry"
-                    className="inline-flex items-center gap-1.5 bg-paper/10 hover:bg-gold/20 border border-paper/20 hover:border-gold/50 rounded-xl px-2.5 py-1.5 text-[11px] sm:text-xs font-medium text-paper transition"
-                  >
-                    <span>🌍 ACCA Direct Entry</span>
-                  </a>
-                </div>
               </motion.div>
             </motion.div>
 
-            {/* Right Column — Clean, unobstructed view of both smiling students */}
-            <div className="lg:col-span-5 hidden lg:block" />
+            {/* Right Column — Key Highlights & Rating Badges placed at the bottom-right down section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="lg:col-span-5 flex flex-col justify-end items-start lg:items-end mt-4 lg:mt-0"
+            >
+              <div className="flex flex-wrap lg:flex-nowrap items-center gap-3 bg-navy/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-gold/30 shadow-2xl">
+                <div className="flex items-center gap-2 pr-3 border-r border-paper/15">
+                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
+                    <i className="fa-solid fa-star"></i>
+                  </span>
+                  <div>
+                    <div className="font-serif text-xs font-bold text-paper">4.9 ★ Rating</div>
+                    <div className="text-[10px] text-paper/70">500+ Students &amp; Parents</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 pr-3 border-r border-paper/15">
+                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
+                    <i className="fa-solid fa-arrow-trend-up"></i>
+                  </span>
+                  <div>
+                    <div className="font-serif text-xs font-bold text-paper">95%+ Pass Rate</div>
+                    <div className="text-[10px] text-paper/70">Boards &amp; ACCA Papers</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
+                    <i className="fa-solid fa-earth-americas"></i>
+                  </span>
+                  <div>
+                    <div className="font-serif text-xs font-bold text-paper">180+ Countries</div>
+                    <div className="text-[10px] text-paper/70">Globally Valid</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
