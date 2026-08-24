@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Eyebrow from '../components/Eyebrow.jsx'
-import EnquiryForm from '../components/EnquiryForm.jsx'
 import { setPageMeta } from '../utils/seo.js'
 
 const SCHOOL = [
@@ -95,8 +94,7 @@ export default function Courses() {
 
   return (
     <>
-      {/* ============ HERO — headline + enquiry form (Mukul: form in 1st section,
-          directly visible on mobile without scrolling) ============ */}
+      {/* ============ HERO — headline (conversion handled by sitewide FloatingActions) ============ */}
       <section id="courses-hero" className="bg-paper pt-12 pb-14 lg:pt-16 lg:pb-20 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -106,34 +104,8 @@ export default function Courses() {
         />
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
           <Eyebrow>All Programmes</Eyebrow>
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            <div className="lg:col-span-7">
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.4rem] font-medium leading-[1.08] tracking-tight">Six programmes.<br />One continuous pathway.</h1>
-              <p className="text-ink/60 text-base leading-relaxed mt-5 max-w-xl">Every course at Kizen is a step on the same ladder — from a student's first commerce class to a globally recognised professional qualification. Choose your entry point below.</p>
-            </div>
-
-            {/* HERO FORM CARD */}
-            <div className="lg:col-span-5">
-              <div
-                id="enquiry"
-                className="bg-navy text-paper rounded-3xl p-6 sm:p-7 shadow-xl border border-navy scroll-mt-24"
-              >
-                <div className="flex items-center justify-between gap-4 mb-5">
-                  <div>
-                    <div className="font-serif text-xl font-semibold">Get Batch Details</div>
-                    <div className="text-paper/60 text-xs mt-1">Counsellors respond within 24 hours.</div>
-                  </div>
-                  <span className="w-10 h-10 rounded-full bg-gold/15 text-gold flex items-center justify-center shrink-0">
-                    <i className="fa-solid fa-graduation-cap"></i>
-                  </span>
-                </div>
-                <EnquiryForm variant="home" />
-                <p className="text-paper/50 text-[11px] mt-4 flex items-center gap-2">
-                  <i className="fa-brands fa-whatsapp text-[#25D366]"></i> Submitting also opens a WhatsApp chat with your details pre-filled.
-                </p>
-              </div>
-            </div>
-          </div>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.4rem] font-medium leading-[1.08] tracking-tight">Six programmes.<br />One continuous pathway.</h1>
+          <p className="text-ink/60 text-base leading-relaxed mt-5 max-w-2xl">Every course at Kizen is a step on the same ladder — from a student's first commerce class to a globally recognised professional qualification. Choose your entry point below.</p>
         </div>
       </section>
 

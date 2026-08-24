@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import StickyMobileCTA from './components/StickyMobileCTA.jsx'
+import FloatingActions from './components/FloatingActions.jsx'
 import Home from './pages/Home.jsx'
 import Acca from './pages/Acca.jsx'
 import Courses from './pages/Courses.jsx'
@@ -33,6 +34,7 @@ export default function App() {
         </main>
         <FooterShell />
         <StickyMobileCTA />
+        <FloatingActions />
       </div>
     </BrowserRouter>
   )

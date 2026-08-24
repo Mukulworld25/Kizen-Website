@@ -141,9 +141,10 @@ const VIDEO_TESTIMONIALS = [
 
 // ---------------------------------------------------------------------------
 // HERO SUCCESS VISUAL — floating truthful badges
-// Image is an AI-generated illustrative graphic (client-approved) — NOT passed
-// off as a real student photo. Graceful gradient fallback until
-// /images/student-success.webp is dropped into kizen-react/public/images/.
+// Image is an AI-generated illustrative scene (client-approved) — two happy
+// students with offer letters, NOT passed off as real student photos. Graceful
+// gradient fallback until /images/success-duo.webp is dropped into
+// kizen-react/public/images/.
 // Badge claims are verifiable facts only — NO placement/salary figures
 // (CCPA/ASCI-safe). See PENDING_BADGE_ENABLED below for the open client item.
 // ---------------------------------------------------------------------------
@@ -182,9 +183,9 @@ function StudentSuccessVisual() {
     <div className="relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-[430px] rounded-3xl overflow-hidden border border-ink/10 shadow-xl bg-gradient-to-br from-navy via-[#26242f] to-navy">
       {!imgFailed ? (
         <img
-          src="./images/student-success.webp"
+          src="./images/success-duo.webp"
           onError={() => setImgFailed(true)}
-          alt="Illustration of a happy student celebrating an admission offer letter"
+          alt="AI-generated illustration of two happy Kizen students holding their offer letters"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
         />
@@ -198,6 +199,13 @@ function StudentSuccessVisual() {
 
       {/* Vignette for badge legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+
+      {/* General aspirational caption — deliberately no outcome claims/numbers */}
+      <div className="absolute bottom-5 right-5 sm:bottom-7 sm:right-7 z-10 max-w-[240px] text-right">
+        <span className="font-serif text-lg sm:text-xl font-semibold text-paper drop-shadow-sm">
+          Your success story starts here.
+        </span>
+      </div>
 
       {/* Truthful floating badges — gentle vertical bob */}
       {FLOATING_BADGES.map((b) => (
@@ -379,68 +387,26 @@ export default function Home() {
                 </a>
               </motion.div>
 
-              {/* Trust stats moved into the hero visual caption chips below —
-                  keeps the mobile path to the enquiry form as short as possible. */}
+              {/* Verifiable trust chips (relocated from the removed full-width band) */}
+              <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-3 mt-8">
+                <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
+                  <i className="fa-solid fa-route text-gold"></i> Class 11 → ACCA · One Pathway
+                </span>
+                <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
+                  <i className="fa-solid fa-earth-americas text-gold"></i> 180+ Countries Recognise ACCA
+                </span>
+              </motion.div>
             </motion.div>
 
-            {/* RIGHT COLUMN — HERO ENQUIRY FORM (Mukul: form must be in hero,
-                directly visible at top on mobile without heavy scrolling) */}
+            {/* RIGHT COLUMN — SUCCESS VISUAL (aspirational AI-generated imagery;
+                conversion is handled by the sitewide FloatingActions control) */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="lg:col-span-5"
+              className="lg:col-span-5 self-stretch"
             >
-              <div
-                id="enquiry"
-                className="bg-navy text-paper rounded-3xl p-6 sm:p-8 shadow-xl border border-navy scroll-mt-24"
-              >
-                <div className="flex items-center justify-between gap-4 mb-5">
-                  <div>
-                    <div className="font-serif text-2xl font-semibold">Request a Call Back</div>
-                    <div className="text-paper/60 text-xs mt-1">Our academic counsellors respond within 24 hours.</div>
-                  </div>
-                  <span className="w-11 h-11 rounded-full bg-gold/15 text-gold flex items-center justify-center shrink-0">
-                    <i className="fa-solid fa-phone"></i>
-                  </span>
-                </div>
-                <EnquiryForm variant="home" />
-                <p className="text-paper/50 text-[11px] mt-4 flex items-center gap-2">
-                  <i className="fa-brands fa-whatsapp text-[#25D366]"></i> Submitting also opens a WhatsApp chat with your details pre-filled.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* FULL-WIDTH — STUDENT SUCCESS VISUAL + TRUTHFUL FLOATING BADGES */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:col-span-12 mt-2 lg:mt-6"
-            >
-              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div className="lg:col-span-7">
-                  <StudentSuccessVisual />
-                </div>
-                <div className="lg:col-span-5 flex flex-col items-start">
-                  <Eyebrow><span className="w-6 h-px bg-gold"></span> The Kizen Outcome</Eyebrow>
-                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium leading-tight text-ink mt-3">
-                    From this desk to <span className="italic text-gold">any country.</span>
-                  </h2>
-                  <p className="text-ink/65 text-[15px] leading-relaxed mt-4 max-w-md">
-                    Every Kizen student follows one continuous route — Class 11 commerce fundamentals through globally recognised ACCA papers — guided by the same faculty throughout.
-                  </p>
-                  {/* Verifiable trust chips (moved from old hero stats strip) */}
-                  <div className="flex flex-wrap gap-3 mt-6">
-                    <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
-                      <i className="fa-solid fa-route text-gold"></i> Class 11 → ACCA · One Pathway
-                    </span>
-                    <span className="inline-flex items-center gap-2 bg-paper border border-ink/10 rounded-full px-4 py-2 text-xs font-semibold text-ink shadow-sm">
-                      <i className="fa-solid fa-earth-americas text-gold"></i> 180+ Countries Recognise ACCA
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <StudentSuccessVisual />
             </motion.div>
           </div>
         </div>

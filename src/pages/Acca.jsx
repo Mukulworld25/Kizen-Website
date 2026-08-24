@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Eyebrow from '../components/Eyebrow.jsx'
-import EnquiryForm from '../components/EnquiryForm.jsx'
 import BrochureGate from '../components/BrochureGate.jsx'
 import { setPageMeta } from '../utils/seo.js'
 
@@ -53,8 +52,8 @@ export default function Acca() {
             <span className="text-gold">ACCA</span>
           </div>
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Left — headline (mobile order 1) */}
-            <div className="lg:col-span-5">
+            {/* Left — headline */}
+            <div className="lg:col-span-8">
               <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Step 05 of the Kizen Pathway · Global</div>
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium leading-[1.08] tracking-tight mb-5">
                 ACCA. The qualification that ends in <span className="italic text-gold">any country.</span>
@@ -62,23 +61,8 @@ export default function Acca() {
               <p className="text-paper/70 text-[15px] lg:text-base leading-relaxed max-w-xl">Association of Chartered Certified Accountants — recognised in 180+ countries. At Kizen, it's the natural next step after B.Com, BBA, M.Com or MBA, taught by faculty who've built the entire commerce pathway around it.</p>
             </div>
 
-            {/* Middle — ACCA enquiry form (mobile order 2, directly after headline) */}
-            <div className="lg:col-span-4">
-              <div
-                id="enquiry"
-                className="bg-paper/5 border border-paper/15 rounded-2xl p-6 backdrop-blur-sm scroll-mt-24"
-              >
-                <div className="font-serif text-xl font-semibold mb-1">Request the ACCA Info Pack</div>
-                <div className="text-paper/60 text-xs mb-5">Syllabus breakdown + batch details.</div>
-                <EnquiryForm variant="acca" />
-                <p className="text-paper/50 text-[11px] mt-4 flex items-center gap-2">
-                  <i className="fa-brands fa-whatsapp text-[#25D366]"></i> Submitting also opens a WhatsApp chat with your details pre-filled.
-                </p>
-              </div>
-            </div>
-
-            {/* Right — verifiable stats (mobile order 3) */}
-            <div className="lg:col-span-3 grid grid-cols-3 lg:grid-cols-1 gap-4 text-center lg:text-left border-t lg:border-t-0 lg:border-l border-paper/15 pt-6 lg:pt-0 lg:pl-8">
+            {/* Right — verifiable stats */}
+            <div className="lg:col-span-4 grid grid-cols-3 lg:grid-cols-1 gap-4 text-center lg:text-left border-t lg:border-t-0 lg:border-l border-paper/15 pt-6 lg:pt-0 lg:pl-8">
               <div>
                 <div className="font-serif text-3xl font-bold text-gold">95%+</div>
                 <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Pass Rate</div>
