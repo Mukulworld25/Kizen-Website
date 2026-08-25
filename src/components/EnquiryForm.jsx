@@ -9,7 +9,12 @@ const NAVY_INPUT =
   'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
 const LIGHT_INPUT =
   'w-full bg-ivory border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink focus:outline-none focus:border-navy'
+// High-contrast input for courses variant (light background)
+const COURSES_INPUT =
+  'w-full bg-white border border-ink/30 rounded-lg px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20'
 const LABEL = 'text-xs font-semibold text-ink/60 uppercase tracking-wide mb-2 block'
+// Label for navy-card forms (home, acca, courses)
+const NAVY_LABEL = 'text-[11px] font-bold text-ink uppercase tracking-wider block mb-1.5'
 
 // Real institute WhatsApp number (verified across the codebase)
 const WHATSAPP_NUMBER = '917696963377'
@@ -295,9 +300,9 @@ export default function EnquiryForm({ variant = 'home' }) {
   // courses variant
   if (variant === 'courses') {
     return (
-      <form className="relative bg-paper/5 border border-paper/15 rounded-2xl p-6 sm:p-7 space-y-4 shadow-xl" onSubmit={handleSubmit}>
+      <form className="relative bg-white border border-ink/20 rounded-2xl p-6 sm:p-7 space-y-4 shadow-lg" onSubmit={handleSubmit}>
         <div>
-          <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Full Name *</label>
+          <label className={NAVY_LABEL}>Full Name *</label>
           <input
             type="text"
             name="name"
@@ -305,11 +310,11 @@ export default function EnquiryForm({ variant = 'home' }) {
             value={form.name}
             onChange={update}
             placeholder="Your full name"
-            className={NAVY_INPUT}
+            className={COURSES_INPUT}
           />
         </div>
         <div>
-          <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Phone Number *</label>
+          <label className={NAVY_LABEL}>Phone Number *</label>
           <input
             type="tel"
             name="phone"
@@ -317,12 +322,12 @@ export default function EnquiryForm({ variant = 'home' }) {
             value={form.phone}
             onChange={update}
             placeholder="+91 XXXXX XXXXX"
-            className={NAVY_INPUT}
+            className={COURSES_INPUT}
           />
         </div>
         <div>
-          <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Programme of Interest *</label>
-          <select name="programme" value={form.programme} onChange={update} className={`${NAVY_INPUT} text-paper`}>
+          <label className={NAVY_LABEL}>Programme of Interest *</label>
+          <select name="programme" value={form.programme} onChange={update} className={`${COURSES_INPUT} text-ink`}>
             <option className="text-ink">11th Commerce</option>
             <option className="text-ink">12th Commerce</option>
             <option className="text-ink">B.Com</option>
@@ -334,7 +339,7 @@ export default function EnquiryForm({ variant = 'home' }) {
         </div>
         <button
           type="submit"
-          className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-paper transition shadow-sm font-sans"
+          className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-gold/90 transition shadow-sm font-sans"
         >
           Request Course Info & Counselling
         </button>

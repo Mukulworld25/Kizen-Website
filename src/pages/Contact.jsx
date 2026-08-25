@@ -24,6 +24,46 @@ export default function Contact() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <Eyebrow>Get in Touch</Eyebrow>
           <h1 className="font-serif text-4xl lg:text-5xl font-medium leading-[1.08] tracking-tight max-w-3xl">Let's map out the next step on your pathway.</h1>
+          <p className="text-ink/60 text-[15px] leading-relaxed mt-6 max-w-2xl">Whether you're exploring Class 11 options, planning ACCA papers, or somewhere in between, our academic counsellors respond within 24 hours with a personalised pathway — batch timings, fee structure, and the right entry point for your background. No obligation, just clarity.</p>
+        </div>
+      </section>
+
+      {/* ============ WHAT HAPPENS NEXT — ivory ============ */}
+      <section id="what-next" className="bg-ivory py-12 lg:py-16 border-t border-ink/10 border-b border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 grid md:grid-cols-3 gap-8">
+          <div className="text-center p-4">
+            <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center mx-auto mb-3"><i className="fa-solid fa-clock text-gold"></i></div>
+            <div className="font-serif text-lg font-semibold mb-1">24-Hour Response</div>
+            <p className="text-sm text-ink/60">Every enquiry gets a personal reply from our counselling team within one business day.</p>
+          </div>
+          <div className="text-center p-4">
+            <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center mx-auto mb-3"><i className="fa-solid fa-user-tie text-gold"></i></div>
+            <div className="font-serif text-lg font-semibold mb-1">Free Pathway Planning</div>
+            <p className="text-sm text-ink/60">Your counselling session covers programme fit, batch timings, fee structure, and exemptions — at no cost.</p>
+          </div>
+          <div className="text-center p-4">
+            <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center mx-auto mb-3"><i className="fa-solid fa-handshake text-gold"></i></div>
+            <div className="font-serif text-lg font-semibold mb-1">No Pressure</div>
+            <p className="text-sm text-ink/60">We're here to inform, not sell. The decision timeline is entirely yours.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ QUICK ANSWERS BEFORE YOU ENQUIRE — paper ============ */}
+      <section id="faq-quick" className="bg-paper py-12 lg:py-16 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-10">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-3">Common Questions</div>
+            <h2 className="font-serif text-2xl lg:text-3xl font-medium leading-tight">Quick answers before you reach out</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {FAQ.map((item) => (
+              <div key={item.q} className="bg-ivory rounded-xl border border-ink/10 p-5 hover:border-gold/40 transition">
+                <div className="font-semibold text-sm text-ink mb-2">{item.q}</div>
+                <p className="text-sm text-ink/60 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

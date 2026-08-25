@@ -16,7 +16,9 @@ export default function Header() {
   const ctaHref = pathname === '/contact' ? '#form' : '#enquiry'
 
   const navClass = ({ isActive }) =>
-    isActive ? 'text-ink border-b-2 border-gold pb-1' : 'text-ink/70 hover:text-ink transition'
+    isActive
+      ? 'relative text-ink font-semibold after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-6 after:h-0.5 after:bg-gold after:rounded-full transition-all'
+      : 'text-ink/70 hover:text-ink transition relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-gold after:rounded-full hover:after:w-6 transition-all duration-200'
 
   const close = () => setOpen(false)
 
@@ -27,7 +29,7 @@ export default function Header() {
           <img src="./kizen-logo.jpg" alt="Kizen Education" className="h-16 lg:h-20 w-auto object-contain object-left" />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-10 text-[15px] font-medium">
+        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-medium">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.to} to={item.to} className={navClass} end={item.to === '/'}>
               {item.label}
@@ -55,7 +57,7 @@ export default function Header() {
               to={item.to}
               className={({ isActive }) =>
                 isActive
-                  ? 'block text-ink border-b-2 border-gold pb-1 w-fit font-medium'
+                  ? 'block text-ink font-semibold border-b-2 border-gold pb-1 w-fit'
                   : 'block text-ink/70 hover:text-ink font-medium'
               }
               end={item.to === '/'}

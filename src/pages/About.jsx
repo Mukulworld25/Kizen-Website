@@ -15,6 +15,22 @@ const VALUES_DATA = [
   { num: '03', title: 'Small batches, real mentorship', body: 'Every stage keeps class sizes small enough for faculty to know each student by name and progress.' },
 ]
 
+// Pathway stages referenced across the site
+const PATHWAY_STAGES = [
+  { num: '01', stage: 'Class 11', title: 'Foundation', icon: 'fa-solid fa-book', desc: 'Accounts, Economics & Business Studies — board-ready fundamentals.' },
+  { num: '02', stage: 'Class 12', title: 'Board Mastery', icon: 'fa-solid fa-graduation-cap', desc: 'Exam-focused mastery with early ACCA/CA problem-solving exposure.' },
+  { num: '03', stage: 'B.Com / BBA', title: 'Undergraduate', icon: 'fa-solid fa-building-columns', desc: 'University curriculum paired with applied accounting & finance practice.' },
+  { num: '04', stage: 'M.Com / MBA', title: 'Postgraduate', icon: 'fa-solid fa-chart-line', desc: 'Advanced specialisation for leadership and corporate finance roles.' },
+  { num: '05', stage: 'ACCA', title: 'Global Exit', icon: 'fa-solid fa-earth-americas', desc: 'Globally recognised professional qualification — 13 papers, 180+ countries.', accent: true },
+]
+
+const HOW_WE_TEACH = [
+  { icon: 'fa-solid fa-lightbulb', title: 'Concept-driven, not rote', body: 'Every topic is taught from first principles so students can solve unfamiliar problems, not just memorise patterns.' },
+  { icon: 'fa-solid fa-users-rectangle', title: 'Small batches by design', body: 'Capped class sizes mean faculty track individual paper-wise progress and intervene early when a student struggles.' },
+  { icon: 'fa-solid fa-route', title: 'Seamless stage transitions', body: 'Faculty who teach Class 11 also teach ACCA — the same academic relationship continues, eliminating re-learning gaps.' },
+  { icon: 'fa-solid fa-file-circle-check', title: 'Mock exams every cycle', body: 'Timed, full-length practice mapped to actual board/university/ACCA exam sessions with detailed feedback.' },
+]
+
 /* TODO: Faculty section removed — awaiting real faculty names, photos, and credentials */
 /* TODO: Replace with real verified review text before going live */
 
@@ -46,6 +62,7 @@ export default function About() {
             <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Our Story</div>
             <h2 className="font-serif text-3xl font-medium leading-tight mb-6">One address, one philosophy, seven years of a student's education.</h2>
             <p className="text-ink/60 text-[15px] leading-relaxed mb-4">Kizen was founded on the belief that switching institutes between school, college and professional qualification breaks continuity — and students pay the price in re-learning fundamentals every time.</p>
+            <p className="text-ink/60 text-[15px] leading-relaxed mb-4">The pattern was familiar: a student joins one centre for Class 11, another for B.Com, a third for ACCA. Each transition means new faculty, new methods, and months spent re-establishing trust. Kizen eliminated that fracture by building every stage under one roof — from the first commerce class to the final ACCA paper.</p>
             <p className="text-ink/60 text-[15px] leading-relaxed">Today, from SCO 193-195, Sector 34-A, we run all six stages of the commerce pathway — 11th and 12th Commerce, B.Com, BBA, M.Com, MBA, and ACCA — with faculty who move with the student, not away from them.</p>
           </div>
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
@@ -66,7 +83,60 @@ export default function About() {
         </div>
       </section>
 
-      {/* ============ MISSION/VALUES — paper ============ */}
+      {/* ============ THE PATHWAY — paper ============ */}
+      <section id="pathway" className="bg-paper py-20 lg:py-28 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">The Kizen Pathway</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium leading-tight max-w-2xl mx-auto">Every stage builds on the last — no gaps, no repetition, no starting over.</h2>
+          </div>
+          <div className="grid lg:grid-cols-5 gap-6">
+            {PATHWAY_STAGES.map((p) => (
+              <div
+                key={p.num}
+                className={`relative rounded-2xl p-6 transition-all ${
+                  p.accent
+                    ? 'bg-navy text-paper border border-gold/30 shadow-xl'
+                    : 'bg-ivory border border-ink/10 hover:border-gold/40'
+                }`}
+              >
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold text-navy bg-gold">
+                  {p.num}
+                </div>
+                <div className="pt-6 text-center">
+                  <div className="w-14 h-14 mx-auto rounded-full flex items-center justify-center mb-4 bg-white/10">
+                    <i className={`${p.icon} text-2xl ${p.accent ? 'text-gold' : 'text-ink'}`}></i>
+                  </div>
+                  <div className="font-serif text-lg font-semibold mb-1">{p.stage}</div>
+                  <div className="text-xs text-gold font-semibold uppercase tracking-wide mb-2">{p.title}</div>
+                  <p className="text-sm text-ink/60 leading-relaxed">{p.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ HOW WE TEACH — ivory ============ */}
+      <section id="how-we-teach" className="bg-ivory py-20 lg:py-28">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">How We Teach</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium leading-tight max-w-2xl mx-auto">Concept-driven, small batches, seamless transitions — every classroom decision follows these four principles.</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HOW_WE_TEACH.map((h) => (
+              <div key={h.title} className="bg-paper rounded-2xl p-6 border border-ink/10 hover:border-gold/40 transition-all">
+                <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4">
+                  <i className={`${h.icon} text-xl text-gold`}></i>
+                </div>
+                <div className="font-serif text-lg font-semibold mb-2">{h.title}</div>
+                <p className="text-sm text-ink/60 leading-relaxed">{h.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="values" className="bg-paper py-20 lg:py-28 border-t border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <h2 className="font-serif text-3xl lg:text-4xl font-medium text-center mb-16 max-w-2xl mx-auto">Three principles that shape every classroom decision</h2>
