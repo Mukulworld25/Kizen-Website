@@ -7,6 +7,9 @@ const FAQ = [
   { q: 'Can my child start ACCA directly after 12th?', a: 'Yes — 12th pass with English and Mathematics/Statistics is sufficient to begin, though many students choose to complete B.Com or BBA first.' },
   { q: 'Do you offer weekend batches?', a: 'Yes, weekend and evening batches are available for working professionals across all postgraduate and ACCA programmes.' },
   { q: 'Is there a fee for the counselling session?', a: 'No, initial counselling and pathway planning is completely free.' },
+  { q: 'Are fees payable in installments?', a: 'Yes, flexible installment plans are available for all programmes. Our counsellors will walk you through the options during your visit.' },
+  { q: 'How large are the batches?', a: 'Batches are intentionally small so faculty can track every student\u2019s progress individually — that\u2019s core to how we teach.' },
+  { q: 'Can we try a class before enrolling?', a: 'Yes, we invite prospective students to attend a trial class and visit the campus before making any commitment.' },
 ]
 
 export default function Contact() {

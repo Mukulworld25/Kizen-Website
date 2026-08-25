@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { getCtaText, getCtaShortText } from '../utils/seo.js'
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },
@@ -14,6 +15,8 @@ export default function Header() {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
   const ctaHref = pathname === '/contact' ? '#form' : '#enquiry'
+  const ctaText = getCtaText(pathname)
+  const ctaShortText = getCtaShortText(pathname)
 
   const navClass = ({ isActive }) =>
     isActive
@@ -41,7 +44,7 @@ export default function Header() {
           <a href="tel:+917696963377" className="flex items-center gap-2 text-sm font-semibold text-ink/80">
             <i className="fa-solid fa-phone text-gold"></i> +91 76969 63377
           </a>
-          <a href={ctaHref} className="bg-navy text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-ink transition whitespace-nowrap">Talk to an ACCA Counsellor</a>
+          <a href={ctaHref} className="bg-navy text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-ink transition whitespace-nowrap">{ctaText}</a>
         </div>
 
         <button className="lg:hidden text-xl" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -72,7 +75,7 @@ export default function Header() {
               className="block w-full bg-navy text-paper text-center text-sm font-semibold px-5 py-3 rounded-full hover:bg-ink transition"
               onClick={close}
             >
-              Talk to an ACCA Counsellor
+              {ctaText}
             </a>
           </div>
         </div>

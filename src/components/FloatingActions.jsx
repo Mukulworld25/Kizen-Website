@@ -197,8 +197,8 @@ export default function FloatingActions() {
 
   return (
     <>
-      {/* Persistent sitewide FAB — sits above the sticky mobile bar on phones */}
-      <div className="fixed right-4 bottom-24 lg:right-6 lg:bottom-6 z-[60] flex flex-col items-end gap-3">
+      {/* Persistent sitewide FAB — hidden on mobile (StickyMobileCTA covers Call/WhatsApp/Counselling) */}
+      <div className="fixed right-4 bottom-24 lg:right-6 lg:bottom-6 z-[60] hidden sm:flex flex-col items-end gap-3">
         <AnimatePresence>
           {open &&
             actions.map((a, i) => (

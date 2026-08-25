@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { getCtaShortText } from '../utils/seo.js'
 
 // Shared sticky bottom bar for mobile — Call + WhatsApp + Book a Seat below lg.
 // WhatsApp uses the real institute number with a short prefilled intro message.
@@ -8,6 +9,7 @@ export default function StickyMobileCTA() {
   const { pathname } = useLocation()
   const ctaHref = pathname === '/contact' ? '#form' : '#enquiry'
   const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hi Kizen Education! I want to know more about your courses.')}`
+  const ctaShortText = getCtaShortText(pathname)
 
   return (
     <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-navy border-t border-paper/10 px-3 py-2.5 flex items-center gap-2">
@@ -30,7 +32,7 @@ export default function StickyMobileCTA() {
         href={ctaHref}
         className="flex-[1.9] inline-flex items-center justify-center gap-1.5 bg-gold text-navy text-[11px] leading-tight text-center font-semibold px-2 py-3 rounded-full hover:bg-paper transition"
       >
-        Talk to an ACCA Counsellor
+        {ctaShortText}
       </a>
     </div>
   )

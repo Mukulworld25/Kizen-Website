@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Eyebrow from '../components/Eyebrow.jsx'
 import BrochureGate from '../components/BrochureGate.jsx'
 import EnquiryForm from '../components/EnquiryForm.jsx'
+import VideoTestimonials from '../components/VideoTestimonials.jsx'
 import { setPageMeta } from '../utils/seo.js'
 
 const PAPERS = [
@@ -149,6 +150,13 @@ export default function Acca() {
           </div>
         </div>
       </section>
+
+      {/* ============ STUDENT TESTIMONIALS — social proof for ACCA candidates ============ */}
+      <VideoTestimonials
+        id="acca-reviews"
+        eyebrow="What Kizen Students Say"
+        heading="Real students, real outcomes."
+      />
 
       {/* ============ FEE / ELIGIBILITY — ivory ============ */}
       <section id="details" className="bg-ivory py-20 lg:py-28">

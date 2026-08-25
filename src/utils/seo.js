@@ -16,3 +16,23 @@ export function setPageMeta({ title, description }) {
     el.setAttribute('content', description)
   }
 }
+
+// ---------------------------------------------------------------------------
+// Context-aware CTA copy — adapts to the current route so school students
+// see "Talk to a Counsellor" while ACCA aspirants see "Talk to an ACCA Counsellor".
+// ---------------------------------------------------------------------------
+export function getCtaText(pathname) {
+  // ACCA-specific pages
+  if (pathname === '/acca' || pathname.startsWith('/acca/')) {
+    return 'Talk to an ACCA Counsellor'
+  }
+  // Default: inclusive for all pathways (school, UG, PG, general)
+  return 'Talk to a Counsellor'
+}
+
+export function getCtaShortText(pathname) {
+  if (pathname === '/acca' || pathname.startsWith('/acca/')) {
+    return 'ACCA Counselling'
+  }
+  return 'Free Counselling'
+}

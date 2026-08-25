@@ -109,7 +109,7 @@ export default function About() {
                   </div>
                   <div className="font-serif text-lg font-semibold mb-1">{p.stage}</div>
                   <div className="text-xs text-gold font-semibold uppercase tracking-wide mb-2">{p.title}</div>
-                  <p className="text-sm text-ink/60 leading-relaxed">{p.desc}</p>
+                  <p className={`text-sm leading-relaxed ${p.accent ? 'text-paper/75' : 'text-ink/60'}`}>{p.desc}</p>
                 </div>
               </div>
             ))}

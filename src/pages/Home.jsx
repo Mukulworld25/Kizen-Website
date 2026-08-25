@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import Eyebrow from '../components/Eyebrow.jsx'
 import EnquiryForm from '../components/EnquiryForm.jsx'
-import { setPageMeta } from '../utils/seo.js'
+import VideoTestimonials from '../components/VideoTestimonials.jsx'
+import { setPageMeta, getCtaText } from '../utils/seo.js'
 
 // Animation variants
 const fadeUpVariants = {
@@ -225,6 +226,8 @@ function HeroShowcase() {
 
 export default function Home() {
   const [activeStep, setActiveStep] = useState(null)
+  const { pathname } = useLocation()
+  const ctaText = getCtaText(pathname)
 
   useEffect(() => {
     setPageMeta({
@@ -668,47 +671,7 @@ export default function Home() {
       </section>
 
       {/* ============ VIDEO TESTIMONIALS ============ */}
-      <section id="reviews" className="bg-paper py-20 lg:py-28 border-b border-ink/10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="max-w-[1440px] mx-auto px-6 lg:px-12"
-        >
-          <motion.div variants={fadeUpVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-            <div>
-              <Eyebrow>Trusted by Students & Parents</Eyebrow>
-              <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink mt-2">Hear from the Kizen community.</h2>
-            </div>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {VIDEO_TESTIMONIALS.map((v) => (
-              <motion.div
-                key={v.src}
-                variants={fadeUpVariants}
-                whileHover={{ y: -6, boxShadow: "0 16px 32px rgba(0,0,0,0.1)" }}
-                transition={{ duration: 0.3 }}
-                className="bg-ivory rounded-2xl overflow-hidden border border-ink/10 cursor-pointer shadow-sm"
-              >
-                <video
-                  className="w-full aspect-video object-cover"
-                  controls
-                  preload="metadata"
-                  playsInline
-                >
-                  <source src={v.src} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="p-4">
-                  <p className="text-sm font-semibold text-ink/80">{v.label}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
+      <VideoTestimonials id="reviews" />
 
       {/* ============ DEDICATED ENQUIRY & COUNSELLING SECTION ============ */}
       <section id="counselling" className="bg-ivory py-20 lg:py-28 border-b border-ink/10">
@@ -781,7 +744,7 @@ export default function Home() {
               href="#enquiry"
               className="inline-flex items-center justify-center gap-2 bg-navy text-paper font-semibold text-sm px-7 py-4 rounded-full hover:bg-ink transition shadow-sm"
             >
-              Talk to an ACCA Counsellor
+              {ctaText}
             </a>
           </motion.div>
         </motion.div>
