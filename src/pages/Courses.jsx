@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Eyebrow from '../components/Eyebrow.jsx'
+import EnquiryForm from '../components/EnquiryForm.jsx'
 import { setPageMeta } from '../utils/seo.js'
 
 const SCHOOL = [
@@ -94,7 +95,7 @@ export default function Courses() {
 
   return (
     <>
-      {/* ============ HERO — headline (conversion handled by sitewide FloatingActions) ============ */}
+      {/* ============ HERO — headline + inline EnquiryForm (visible on load) ============ */}
       <section id="courses-hero" className="bg-paper pt-12 pb-14 lg:pt-16 lg:pb-20 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -103,9 +104,19 @@ export default function Courses() {
           }}
         />
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
-          <Eyebrow>All Programmes</Eyebrow>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.4rem] font-medium leading-[1.08] tracking-tight">Six programmes.<br />One continuous pathway.</h1>
-          <p className="text-ink/60 text-base leading-relaxed mt-5 max-w-2xl">Every course at Kizen is a step on the same ladder — from a student's first commerce class to a globally recognised professional qualification. Choose your entry point below.</p>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* Left — headline */}
+            <div className="lg:col-span-7">
+              <Eyebrow>All Programmes</Eyebrow>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.4rem] font-medium leading-[1.08] tracking-tight">Six programmes.<br />One continuous pathway.</h1>
+              <p className="text-ink/60 text-base leading-relaxed mt-5 max-w-2xl">Every course at Kizen is a step on the same ladder — from a student's first commerce class to a globally recognised professional qualification. Choose your entry point below.</p>
+            </div>
+
+            {/* Right — Course Enquiry Form (inline, visible on load) */}
+            <div className="lg:col-span-5">
+              <EnquiryForm variant="courses" />
+            </div>
+          </div>
         </div>
       </section>
 

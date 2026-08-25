@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Eyebrow from '../components/Eyebrow.jsx'
 import BrochureGate from '../components/BrochureGate.jsx'
+import EnquiryForm from '../components/EnquiryForm.jsx'
 import { setPageMeta } from '../utils/seo.js'
 
 const PAPERS = [
@@ -61,20 +62,9 @@ export default function Acca() {
               <p className="text-paper/70 text-[15px] lg:text-base leading-relaxed max-w-xl">Association of Chartered Certified Accountants — recognised in 180+ countries. At Kizen, it's the natural next step after B.Com, BBA, M.Com or MBA, taught by faculty who've built the entire commerce pathway around it.</p>
             </div>
 
-            {/* Right — verifiable stats */}
-            <div className="lg:col-span-4 grid grid-cols-3 lg:grid-cols-1 gap-4 text-center lg:text-left border-t lg:border-t-0 lg:border-l border-paper/15 pt-6 lg:pt-0 lg:pl-8">
-              <div>
-                <div className="font-serif text-3xl font-bold text-gold">95%+</div>
-                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Pass Rate</div>
-              </div>
-              <div>
-                <div className="font-serif text-3xl font-bold text-gold">13</div>
-                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Papers</div>
-              </div>
-              <div>
-                <div className="font-serif text-3xl font-bold text-gold">180+</div>
-                <div className="text-[11px] text-paper/60 mt-1 uppercase tracking-wide">Countries</div>
-              </div>
+            {/* Right — ACCA Enquiry Form (inline, visible on load) */}
+            <div className="lg:col-span-4">
+              <EnquiryForm variant="acca" />
             </div>
           </div>
         </div>

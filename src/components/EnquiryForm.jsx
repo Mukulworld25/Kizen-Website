@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 
 // Shared enquiry form. variant:
-//   home    -> Compact navy-card form (Name, Phone, Interest select, Request a Call Back)
-//   acca    -> Navy-card ACCA form    (Name, Phone, Qualification, Request ACCA Info Pack)
-//   contact -> Light labelled form    (Name, Phone, Email, Programme select, Message, Submit)
+//   home     -> Compact navy-card form (Name, Phone, Interest select, Request a Call Back)
+//   acca     -> Navy-card ACCA form    (Name, Phone, Qualification, Request ACCA Info Pack)
+//   contact  -> Light labelled form    (Name, Phone, Email, Programme select, Message, Submit)
+//   courses  -> Compact navy-card form (Name, Phone, Programme select, Request Course Info)
 const NAVY_INPUT =
   'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
 const LIGHT_INPUT =
@@ -27,17 +28,22 @@ export default function EnquiryForm({ variant = 'home' }) {
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  // WhatsApp-native enquiry: opens a chat with the real institute number and
-  // prefills name + chosen programme so counsellors get instant context.
-  // Called synchronously inside the submit handler so popup blockers don't eat it.
-  const openWhatsAppEnquiry = () => {
+  // Build the WhatsApp message for a given form state
+  const buildWhatsAppMessage = (formData) => {
     const interest =
       variant === 'acca'
         ? 'the ACCA programme'
-        : isContact
-          ? `${form.programme}`
-          : form.programme.replace(/^Interested in /, '')
-    const msg = `Hi Kizen Education! I'm ${form.name || 'a prospective student'}. I'm interested in ${interest}.${form.phone ? ` You can reach me at ${form.phone}.` : ''}`
+        : variant === 'courses'
+          ? formData.programme
+          : isContact
+            ? `${formData.programme}`
+            : formData.programme.replace(/^Interested in /, '')
+    return `Hi Kizen Education! I'm ${formData.name || 'a prospective student'}. I'm interested in ${interest}.${formData.phone ? ` You can reach me at ${formData.phone}.` : ''}`
+  }
+
+  // Open WhatsApp with prefilled message
+  const openWhatsAppEnquiry = (formData) => {
+    const msg = buildWhatsAppMessage(formData)
     window.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,
       '_blank',
@@ -48,8 +54,13 @@ export default function EnquiryForm({ variant = 'home' }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(`[EnquiryForm:${variant}] Submitted payload:`, form)
-    openWhatsAppEnquiry()
+    // Do NOT auto-open WhatsApp — show inline Thank You state with action buttons
     setSubmitted(true)
+  }
+
+  // Called when user clicks "Continue on WhatsApp" from Thank You state
+  const handleContinueWhatsApp = () => {
+    openWhatsAppEnquiry(form)
   }
 
   useEffect(() => {
@@ -77,14 +88,37 @@ export default function EnquiryForm({ variant = 'home' }) {
             : 'border-gold/60 bg-paper/10 text-paper'
         }`}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-4">
           <i className="fa-solid fa-circle-check text-gold text-xl"></i>
           <div>
-            <div className="font-serif text-base text-ink mb-0.5">Enquiry Received Successfully</div>
+            <div className="font-serif text-base text-ink mb-0.5">Thank You</div>
             <div className={`text-xs ${isContact ? 'text-ink/70' : 'text-paper/80'} font-normal`}>
-              Thank you, {form.name || 'there'}! Our senior academic counsellor will contact you within 24 hours.
+              Thank you for submitting the form. Our team will be in touch with you soon.
             </div>
           </div>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            type="button"
+            onClick={handleContinueWhatsApp}
+            className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+              isContact
+                ? 'bg-gold text-navy hover:bg-gold/90'
+                : 'bg-gold text-navy hover:bg-gold/90'
+            }`}
+          >
+            <i className="fa-brands fa-whatsapp"></i> Continue on WhatsApp
+          </button>
+          <a
+            href="tel:+917696963377"
+            className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
+              isContact
+                ? 'border border-ink/20 text-ink hover:border-ink hover:bg-ivory'
+                : 'border border-paper/20 text-paper hover:border-gold hover:bg-paper/10'
+            }`}
+          >
+            <i className="fa-solid fa-phone"></i> Call Us
+          </a>
         </div>
       </div>
     )
@@ -257,4 +291,54 @@ export default function EnquiryForm({ variant = 'home' }) {
       </button>
     </form>
   )
+
+  // courses variant
+  if (variant === 'courses') {
+    return (
+      <form className="relative bg-paper/5 border border-paper/15 rounded-2xl p-6 sm:p-7 space-y-4 shadow-xl" onSubmit={handleSubmit}>
+        <div>
+          <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Full Name *</label>
+          <input
+            type="text"
+            name="name"
+            required
+            value={form.name}
+            onChange={update}
+            placeholder="Your full name"
+            className={NAVY_INPUT}
+          />
+        </div>
+        <div>
+          <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Phone Number *</label>
+          <input
+            type="tel"
+            name="phone"
+            required
+            value={form.phone}
+            onChange={update}
+            placeholder="+91 XXXXX XXXXX"
+            className={NAVY_INPUT}
+          />
+        </div>
+        <div>
+          <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Programme of Interest *</label>
+          <select name="programme" value={form.programme} onChange={update} className={`${NAVY_INPUT} text-paper`}>
+            <option className="text-ink">11th Commerce</option>
+            <option className="text-ink">12th Commerce</option>
+            <option className="text-ink">B.Com</option>
+            <option className="text-ink">BBA</option>
+            <option className="text-ink">M.Com</option>
+            <option className="text-ink">MBA</option>
+            <option className="text-ink">ACCA</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-paper transition shadow-sm font-sans"
+        >
+          Request Course Info & Counselling
+        </button>
+      </form>
+    )
+  }
 }

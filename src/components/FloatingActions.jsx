@@ -14,19 +14,58 @@ const PANEL_LABEL =
 // EnquiryForm: logged + handed to WhatsApp with a prefilled message.
 function CallbackForm() {
   const [form, setForm] = useState({ name: '', phone: '' })
-  const [sent, setSent] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
-  if (sent) {
+  const buildWhatsAppMessage = (formData) => {
+    return `Hi Kizen Education! I'm ${formData.name || 'a prospective student'}. Please call me back at ${formData.phone}.`
+  }
+
+  const openWhatsAppEnquiry = (formData) => {
+    const msg = buildWhatsAppMessage(formData)
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,
+      '_blank',
+      'noopener,noreferrer'
+    )
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('[FloatingActions] Callback requested:', form)
+    // Do NOT auto-open WhatsApp — show inline Thank You state with action buttons
+    setSubmitted(true)
+  }
+
+  const handleContinueWhatsApp = () => {
+    openWhatsAppEnquiry(form)
+  }
+
+  if (submitted) {
     return (
       <div className="bg-paper/10 border border-gold/50 rounded-xl p-5">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-4">
           <i className="fa-solid fa-circle-check text-gold text-xl"></i>
           <div>
-            <div className="font-semibold text-sm text-paper">Callback requested</div>
-            <div className="text-xs text-paper/70 mt-1">
-              Thanks, {form.name || 'there'}! We&rsquo;ll call you back shortly.
+            <div className="font-serif text-base text-paper mb-0.5">Thank You</div>
+            <div className="text-xs text-paper/70 font-normal">
+              Thank you for submitting the form. Our team will be in touch with you soon.
             </div>
           </div>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            type="button"
+            onClick={handleContinueWhatsApp}
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-gold text-navy hover:bg-gold/90 transition"
+          >
+            <i className="fa-brands fa-whatsapp"></i> Continue on WhatsApp
+          </button>
+          <a
+            href="tel:+917696963377"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-paper/20 text-paper hover:border-gold hover:bg-paper/10 transition"
+          >
+            <i className="fa-solid fa-phone"></i> Call Us
+          </a>
         </div>
       </div>
     )
@@ -35,17 +74,7 @@ function CallbackForm() {
   return (
     <form
       className="space-y-3.5"
-      onSubmit={(e) => {
-        e.preventDefault()
-        console.log('[FloatingActions] Callback requested:', form)
-        const msg = `Hi Kizen Education! I'm ${form.name}. Please call me back at ${form.phone}.`
-        window.open(
-          `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,
-          '_blank',
-          'noopener,noreferrer'
-        )
-        setSent(true)
-      }}
+      onSubmit={handleSubmit}
     >
       <div>
         <label className={PANEL_LABEL}>Full Name *</label>
