@@ -252,51 +252,6 @@ export default function EnquiryForm({ variant = 'home' }) {
     )
   }
 
-  // default: home
-  return (
-    <form className="space-y-3.5" onSubmit={handleSubmit}>
-      <div>
-        <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1">Full Name *</label>
-        <input
-          type="text"
-          name="name"
-          required
-          value={form.name}
-          onChange={update}
-          placeholder="Student or Parent name"
-          className={NAVY_INPUT}
-        />
-      </div>
-      <div>
-        <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1">Phone Number *</label>
-        <input
-          type="tel"
-          name="phone"
-          required
-          value={form.phone}
-          onChange={update}
-          placeholder="+91 XXXXX XXXXX"
-          className={NAVY_INPUT}
-        />
-      </div>
-      <div>
-        <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1">Pathway Milestone</label>
-        <select name="programme" value={form.programme} onChange={update} className={`${NAVY_INPUT} text-paper`}>
-          <option className="text-ink">Interested in ACCA (Global)</option>
-          <option className="text-ink">Interested in 11th/12th Commerce</option>
-          <option className="text-ink">Interested in B.Com / BBA</option>
-          <option className="text-ink">Interested in M.Com / MBA</option>
-        </select>
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-gold/90 transition shadow-sm font-sans mt-2"
-      >
-        Talk to an ACCA Counsellor
-      </button>
-    </form>
-  )
-
   // courses variant - MUST come before default home return
   if (variant === 'courses') {
     return (
@@ -387,7 +342,7 @@ export default function EnquiryForm({ variant = 'home' }) {
         type="submit"
         className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-gold/90 transition shadow-sm font-sans mt-2"
       >
-        Talk to an ACCA Counsellor
+        Talk to a Counsellor
       </button>
     </form>
   )
