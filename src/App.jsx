@@ -3,6 +3,7 @@ import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import StickyMobileCTA from './components/StickyMobileCTA.jsx'
 import FloatingActions from './components/FloatingActions.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import Home from './pages/Home.jsx'
 import Acca from './pages/Acca.jsx'
 import Courses from './pages/Courses.jsx'
@@ -22,12 +23,13 @@ function FooterShell() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="font-sans text-ink antialiased">
         <Header />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-                        <Route path="/acca" element={<Acca />} />
+            <Route path="/acca" element={<Acca />} />
             <Route path="/fintech" element={<Fintech />} />
             <Route path="/ifrs" element={<Ifrs />} />
             <Route path="/ai-programmes" element={<AiProgrammes />} />
