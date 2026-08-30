@@ -61,8 +61,56 @@ const HOW_WE_TEACH = [
 export default function About() {
   useEffect(() => {
     setPageMeta({
-      title: 'About Kizen Education — Chandigarh Commerce Institute & Leadership',
-      description: "Learn about Kizen Education's founding story, leadership team under Shivam Sharma and Simrat, and our continuous 7-year commerce and ACCA pathway in Sector 34-A, Chandigarh.",
+      title: 'About Kizen Education — Chandigarh Commerce Institute & Leadership | Sector 34-A',
+      description: 'Learn about Kizen Education’s founding vision, faculty leadership under Shivam Sharma and Simrat, and our continuous commerce-to-ACCA pathway in Sector 34-A, Chandigarh.',
+      keywords: 'About Kizen Education, Shivam Sharma Commerce Chandigarh, Simrat Kizen, Best Commerce Mentors Chandigarh, Commerce Institute Sector 34',
+      canonicalUrl: 'https://kizeneducation.com/about',
+      og: {
+        title: 'About Kizen Education — Commerce Institute & Leadership',
+        description: 'Continuous commerce and ACCA education from Class 11 to professional degrees in Sector 34-A, Chandigarh.',
+        url: 'https://kizeneducation.com/about',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'profile',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'About Kizen Education | Chandigarh Commerce Institute',
+        description: 'Meet the faculty leadership and explore our continuous commerce pathway in Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'AboutPage',
+            'name': 'About Kizen Education',
+            'url': 'https://kizeneducation.com/about',
+            'mainEntity': {
+              '@type': 'EducationalOrganization',
+              'name': 'Kizen Education',
+              'founder': [
+                {
+                  '@type': 'Person',
+                  'name': 'Shivam Sharma',
+                  'jobTitle': 'Co-Founder & Academic Lead',
+                },
+                {
+                  '@type': 'Person',
+                  'name': 'Simrat',
+                  'jobTitle': 'Co-Founder & Programme Director',
+                },
+              ],
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'About', 'item': 'https://kizeneducation.com/about' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

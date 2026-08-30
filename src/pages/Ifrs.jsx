@@ -98,8 +98,51 @@ const ELIGIBILITY_IFRS = [
 export default function Ifrs() {
   useEffect(() => {
     setPageMeta({
-      title: 'IFRS Certification in Chandigarh | Kizen Education -- Global Financial Reporting',
-      description: 'IFRS certification at Kizen Education, Chandigarh. 4-module course covering IASB Framework, Financial Statement Elements, Presentation & Disclosures, Group Reporting. Big 4 faculty, case-based learning, career support. Download brochure.',
+      title: 'IFRS Certification & DipIFR Coaching in Chandigarh | Kizen Education',
+      description: 'Master International Financial Reporting Standards (IFRS) and ACCA DipIFR at Kizen Education, Sector 34-A Chandigarh. Big 4 curriculum, IASB framework, consolidation & financial reporting.',
+      keywords: 'IFRS Certification Chandigarh, DipIFR Coaching Chandigarh, ACCA DipIFR Classes, International Financial Reporting Standards, Corporate Reporting Training',
+      canonicalUrl: 'https://kizeneducation.com/ifrs',
+      og: {
+        title: 'IFRS Certification & DipIFR Coaching in Chandigarh | Kizen Education',
+        description: 'Comprehensive IFRS training covering IASB framework, revenue recognition, financial instruments & group reporting in Sector 34-A Chandigarh.',
+        url: 'https://kizeneducation.com/ifrs',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'IFRS Certification in Chandigarh | Kizen Education',
+        description: 'Global financial reporting and DipIFR masterclasses in Sector 34-A Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Course',
+            'name': 'IFRS & DipIFR Masterclass Certification',
+            'description': '4-module course covering IASB conceptual framework, recognition of financial statement elements, presentation and disclosures, and complex group reporting.',
+            'provider': {
+              '@type': 'EducationalOrganization',
+              'name': 'Kizen Education',
+              'url': 'https://kizeneducation.com',
+            },
+            'hasCourseInstance': {
+              '@type': 'CourseInstance',
+              'courseMode': ['in-person', 'blended'],
+              'location': 'SCO 193-195, Sector 34-A, Chandigarh',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Courses', 'item': 'https://kizeneducation.com/courses' },
+              { '@type': 'ListItem', 'position': 3, 'name': 'IFRS', 'item': 'https://kizeneducation.com/ifrs' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

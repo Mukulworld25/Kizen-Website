@@ -90,8 +90,45 @@ const ARTICLES = [
 export default function Resources() {
   useEffect(() => {
     setPageMeta({
-      title: 'ACCA Resource Hub — Free Guides | Kizen Education Chandigarh',
-      description: 'Free factual guides to the ACCA qualification: what ACCA is, ACCA vs CA, the complete exam structure, and career paths — from Kizen Education, Sector 34-A, Chandigarh.',
+      title: 'ACCA Resource Hub & Commerce Guides | Kizen Education Chandigarh',
+      description: 'Free comprehensive ACCA and Commerce guides: ACCA vs CA comparison, paper structure, syllabus breakdown, career paths, and study strategies from Kizen Education, Sector 34-A, Chandigarh.',
+      keywords: 'ACCA vs CA, ACCA Guides Chandigarh, ACCA Syllabus Free Download, ACCA Exam Structure, Commerce Resources Chandigarh, ACCA Career Guide',
+      canonicalUrl: 'https://kizeneducation.com/resources',
+      og: {
+        title: 'ACCA Resource Hub & Commerce Guides | Kizen Education Chandigarh',
+        description: 'Factual guides to the ACCA qualification: ACCA vs CA, exam structure, exemptions & career pathways from Sector 34-A, Chandigarh.',
+        url: 'https://kizeneducation.com/resources',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'ACCA Resource Hub | Kizen Education Chandigarh',
+        description: 'Free guides on ACCA vs CA, exam structure, and career pathways in Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'CollectionPage',
+            'name': 'ACCA Resource Hub & Educational Guides',
+            'description': 'Curated knowledge base covering ACCA overview, CA vs ACCA comparison, syllabus details, and global career opportunities.',
+            'publisher': {
+              '@type': 'EducationalOrganization',
+              'name': 'Kizen Education',
+              'url': 'https://kizeneducation.com',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Resources', 'item': 'https://kizeneducation.com/resources' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

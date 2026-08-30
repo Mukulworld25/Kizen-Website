@@ -124,8 +124,51 @@ const ELIGIBILITY_AI = [
 export default function AiProgrammes() {
   useEffect(() => {
     setPageMeta({
-      title: 'AI in Finance Programme in Chandigarh | Kizen Education - Machine Learning & Deep Learning',
-      description: 'AI in Finance programme at Kizen Education, Chandigarh. 4-module course covering Python, ML for finance, deep learning, fraud detection, algorithmic trading, NLP & model deployment. Hands-on labs, capstone project, career mentorship from AI engineers.',
+      title: 'AI in Finance Programme in Chandigarh | Kizen Education — Machine Learning & Algorithmic Trading',
+      description: 'Master Python, Machine Learning, Deep Learning, Algorithmic Trading & Quantitative Risk Modeling at Kizen Education, Sector 34-A, Chandigarh. Hands-on labs & industry mentorship.',
+      keywords: 'AI in Finance Chandigarh, Machine Learning for Finance, Algorithmic Trading Course Chandigarh, Quantitative Finance Training, Python for Finance',
+      canonicalUrl: 'https://kizeneducation.com/ai-programmes',
+      og: {
+        title: 'AI in Finance Programme in Chandigarh | Kizen Education',
+        description: '4-module advanced curriculum covering Python, ML, NLP, Algorithmic Trading and Quantitative Risk Analytics in Sector 34-A Chandigarh.',
+        url: 'https://kizeneducation.com/ai-programmes',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'AI in Finance Programme | Kizen Education Chandigarh',
+        description: 'Hands-on training in Python, ML, and Algorithmic Trading in Sector 34-A Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Course',
+            'name': 'AI in Finance & Quantitative Machine Learning Programme',
+            'description': 'Advanced 4-module curriculum covering Python programming, machine learning for asset pricing, deep learning for fraud detection, and algorithmic trading.',
+            'provider': {
+              '@type': 'EducationalOrganization',
+              'name': 'Kizen Education',
+              'url': 'https://kizeneducation.com',
+            },
+            'hasCourseInstance': {
+              '@type': 'CourseInstance',
+              'courseMode': ['in-person', 'blended'],
+              'location': 'SCO 193-195, Sector 34-A, Chandigarh',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Courses', 'item': 'https://kizeneducation.com/courses' },
+              { '@type': 'ListItem', 'position': 3, 'name': 'AI in Finance', 'item': 'https://kizeneducation.com/ai-programmes' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

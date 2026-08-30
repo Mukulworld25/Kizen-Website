@@ -1,0 +1,12 @@
+﻿# Robots.txt for Kizen Education
+# https://kizeneducation.com
+
+User-agent: *
+Allow: /
+
+# Disallow internal files if any
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemaps
+Sitemap: https://kizeneducation.com/sitemap.xml

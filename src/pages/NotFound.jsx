@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { setPageMeta } from '../utils/seo.js'
 
 export default function NotFound() {
   useEffect(() => {
     setPageMeta({
-      title: 'Page Not Found � 404 | Kizen Education Chandigarh',
+      title: 'Page Not Found — 404 | Kizen Education Chandigarh',
       description: 'The page you requested could not be found. Explore Kizen Education programmes or return to the homepage.',
+      canonicalUrl: 'https://kizeneducation.com/404',
     })
   }, [])
 

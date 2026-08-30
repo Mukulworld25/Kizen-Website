@@ -35,8 +35,89 @@ const INCLUDED = [
 export default function Acca() {
   useEffect(() => {
     setPageMeta({
-      title: 'ACCA Coaching in Chandigarh | Kizen Education — Sector 34-A',
-      description: "ACCA coaching at Kizen Education, Chandigarh. Three levels, thirteen papers, full mock exam cycles and mentorship — a qualification recognised in 180+ countries. Request the info pack.",
+      title: 'Best ACCA Coaching in Chandigarh | Kizen Education — Sector 34-A',
+      description: 'Join top-rated ACCA coaching in Chandigarh at Kizen Education, Sector 34-A. 13 papers covered across Knowledge, Skills & Professional levels. Mock exam cycles, Big 4 placement prep & small batches. 95%+ pass rate.',
+      keywords: 'ACCA Chandigarh, ACCA Coaching Sector 34, Best ACCA Institute Chandigarh, ACCA Course Fees Chandigarh, ACCA Classes Punjab, ACCA Exam Prep',
+      canonicalUrl: 'https://kizeneducation.com/acca',
+      og: {
+        title: 'Best ACCA Coaching in Chandigarh | Kizen Education',
+        description: 'ACCA coaching in Sector 34-A, Chandigarh. 3 levels, 13 papers, full mock exam cycles, Big 4 mentorship & placement guidance.',
+        url: 'https://kizeneducation.com/acca',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'ACCA Coaching in Chandigarh | Kizen Education',
+        description: 'Prepare for all 13 ACCA papers with personalized mentorship in Sector 34-A, Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Course',
+            'name': 'ACCA (Association of Chartered Certified Accountants) Qualification',
+            'description': 'Comprehensive coaching for ACCA qualification across Applied Knowledge, Applied Skills, and Strategic Professional levels in Chandigarh.',
+            'provider': {
+              '@type': 'EducationalOrganization',
+              'name': 'Kizen Education',
+              'url': 'https://kizeneducation.com',
+            },
+            'educationalCredentialAwarded': 'ACCA Affiliate / Member',
+            'hasCourseInstance': {
+              '@type': 'CourseInstance',
+              'courseMode': ['in-person', 'blended'],
+              'location': 'SCO 193-195, Sector 34-A, Chandigarh',
+            },
+          },
+          {
+            '@type': 'FAQPage',
+            'mainEntity': [
+              {
+                '@type': 'Question',
+                'name': 'Can I start ACCA directly after Class 12th Commerce?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Yes! Any student who has passed Class 12th (with English and Mathematics or Accounts) is eligible to register for ACCA directly. At Kizen, 12th pass students start with the 3 Applied Knowledge papers and build strong global finance fundamentals.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'Can I pursue regular college (B.Com / BBA) alongside ACCA at Kizen?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Absolutely. Over 70% of our ACCA students in Chandigarh concurrently attend Panjab University affiliated colleges (like SD College, DAV College, GCC-50, MCM DAV). Our batch timings are designed specifically so college attendance and exam cycles never clash.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'How many papers do I have to clear, and how long does it take?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'ACCA has a total of 13 papers divided across 3 levels. Most students clearing 3 to 4 papers per year finish all exams in 2.5 to 3 years. B.Com/BBA graduates receive up to 4 exemptions.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'What are the career opportunities and placement support at Kizen?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'ACCA is recognised across 180+ countries and all Big 4 audit firms (EY, PwC, Deloitte, KPMG) as well as global MNCs. Kizen provides resume building, technical interview prep, and corporate placement referral support.',
+                },
+              },
+            ],
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Courses', 'item': 'https://kizeneducation.com/courses' },
+              { '@type': 'ListItem', 'position': 3, 'name': 'ACCA', 'item': 'https://kizeneducation.com/acca' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

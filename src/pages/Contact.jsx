@@ -15,8 +15,82 @@ const FAQ = [
 export default function Contact() {
   useEffect(() => {
     setPageMeta({
-      title: 'Contact Kizen Education — Sector 34-A, Chandigarh',
-      description: 'Visit Kizen Education at SCO 193-195, Sector 34-A, Chandigarh. Call +91 76969 63377 or send an enquiry — our academic counsellors respond within 24 hours.',
+      title: 'Contact Kizen Education — Sector 34-A, Chandigarh | Phone, Map & Visit',
+      description: 'Visit Kizen Education at SCO 193-195, Sector 34-A, Chandigarh (Pin 160022). Call +91 76969 63377 to book free counselling for Commerce, ACCA, FinTech & AI.',
+      keywords: 'Contact Kizen Education, Kizen Sector 34 Chandigarh, Commerce Coaching Phone Number Chandigarh, ACCA Counselling Sector 34, Visit Kizen Campus',
+      canonicalUrl: 'https://kizeneducation.com/contact',
+      og: {
+        title: 'Contact Kizen Education — Sector 34-A, Chandigarh',
+        description: 'Get in touch with Kizen Education academic counsellors. Campus at SCO 193-195, Sector 34-A, Chandigarh.',
+        url: 'https://kizeneducation.com/contact',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Contact Kizen Education | Sector 34-A Chandigarh',
+        description: 'SCO 193-195, Sector 34-A, Chandigarh. Call +91 76969 63377.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'ContactPage',
+            'name': 'Contact Kizen Education',
+            'url': 'https://kizeneducation.com/contact',
+            'mainEntity': {
+              '@type': 'LocalBusiness',
+              'name': 'Kizen Education',
+              'telephone': '+91 76969 63377',
+              'email': 'info@kizeneducation.com',
+              'address': {
+                '@type': 'PostalAddress',
+                'streetAddress': 'SCO 193-195, Sector 34-A',
+                'addressLocality': 'Chandigarh',
+                'postalCode': '160022',
+                'addressCountry': 'IN',
+              },
+            },
+          },
+          {
+            '@type': 'FAQPage',
+            'mainEntity': [
+              {
+                '@type': 'Question',
+                'name': 'Are fees payable in installments?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Yes, flexible installment plans are available for all programmes. Our counsellors will walk you through the options during your visit.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'How large are the batches?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Batches are intentionally small so faculty can track every student’s progress individually — that’s core to how we teach.',
+                },
+              },
+              {
+                '@type': 'Question',
+                'name': 'Can we try a class before enrolling?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Yes, we invite prospective students to attend a trial class and visit the campus before making any commitment.',
+                },
+              },
+            ],
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Contact', 'item': 'https://kizeneducation.com/contact' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

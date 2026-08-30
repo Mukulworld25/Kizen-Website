@@ -95,8 +95,51 @@ const ELIGIBILITY = [
 export default function Fintech() {
   useEffect(() => {
     setPageMeta({
-      title: 'FinTech Course in Chandigarh | Kizen Education — AI, Payments, Digital Banking',
-      description: 'FinTech certification at Kizen Education, Chandigarh. 4-module course covering Digital Payments, AI in Banking, Lending/InsurTech, Risk Analytics. Industry projects, expert mentors, career support. Download brochure.',
+      title: 'FinTech Course in Chandigarh | Kizen Education — Digital Banking, AI & Payments',
+      description: 'Comprehensive FinTech certification at Kizen Education, Sector 34-A Chandigarh. Digital payments (UPI, CBDC), AI in banking, Neo-banking, and InsurTech analytics.',
+      keywords: 'FinTech Course Chandigarh, FinTech Certification Chandigarh, Digital Banking Course, Financial Technology Training, UPI CBDC Course',
+      canonicalUrl: 'https://kizeneducation.com/fintech',
+      og: {
+        title: 'FinTech Course in Chandigarh | Kizen Education',
+        description: 'Industry-mapped FinTech certification covering Digital Payments, AI in Banking, and Risk Analytics in Sector 34-A Chandigarh.',
+        url: 'https://kizeneducation.com/fintech',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'article',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'FinTech Certification in Chandigarh | Kizen Education',
+        description: 'Digital payments, AI in banking, and financial analytics training in Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Course',
+            'name': 'FinTech (Financial Technology) Certification Programme',
+            'description': '4-module comprehensive course covering Digital Payments & Neo-Banking, AI & Machine Learning in Banking, LendingTech & InsurTech, and Blockchain & Future of Money.',
+            'provider': {
+              '@type': 'EducationalOrganization',
+              'name': 'Kizen Education',
+              'url': 'https://kizeneducation.com',
+            },
+            'hasCourseInstance': {
+              '@type': 'CourseInstance',
+              'courseMode': ['in-person', 'blended'],
+              'location': 'SCO 193-195, Sector 34-A, Chandigarh',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Courses', 'item': 'https://kizeneducation.com/courses' },
+              { '@type': 'ListItem', 'position': 3, 'name': 'FinTech', 'item': 'https://kizeneducation.com/fintech' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 

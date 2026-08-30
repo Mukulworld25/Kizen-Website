@@ -235,8 +235,34 @@ export default function Home() {
 
   useEffect(() => {
     setPageMeta({
-      title: 'Kizen Education — Commerce Coaching & ACCA in Chandigarh',
-      description: "Kizen Education, Sector 34-A Chandigarh — one continuous commerce pathway from Class 11 to ACCA under one roof. Small batches, 95%+ pass rate, 4.9-rated by students and parents. Call or WhatsApp to book free counselling.",
+      title: 'Kizen Education — Commerce Coaching & ACCA in Chandigarh | Sector 34-A',
+      description: 'One continuous commerce pathway from Class 11-12 to B.Com, BBA, ACCA, FinTech & AI in Finance under one roof at Sector 34-A, Chandigarh. 95%+ pass rate, 4.9★ rated.',
+      keywords: 'Commerce Coaching Chandigarh, ACCA Institute Chandigarh, Sector 34 Commerce Tuition, Best Commerce Coaching, Class 11 12 Commerce, BCom Coaching Chandigarh',
+      canonicalUrl: 'https://kizeneducation.com/',
+      og: {
+        title: 'Kizen Education — Commerce Coaching & ACCA in Chandigarh',
+        description: 'One continuous commerce pathway from Class 11 to ACCA, FinTech & AI in Finance under one roof in Sector 34-A, Chandigarh.',
+        url: 'https://kizeneducation.com/',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Kizen Education — Commerce Coaching & ACCA in Chandigarh',
+        description: 'One continuous commerce pathway from Class 11 to ACCA under one roof in Sector 34-A Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        'name': 'Kizen Education',
+        'url': 'https://kizeneducation.com/',
+        'potentialAction': {
+          '@type': 'SearchAction',
+          'target': 'https://kizeneducation.com/courses?search={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      },
     })
   }, [])
 

@@ -129,8 +129,52 @@ export default function Courses() {
 
   useEffect(() => {
     setPageMeta({
-      title: 'Programmes — Commerce, ACCA, FinTech & AI Courses | Kizen Education',
-      description: "Explore Kizen's 10 integrated programmes — 11th & 12th Commerce, B.Com, BBA, M.Com, MBA, FinTech, IFRS, AI in Finance, and ACCA — taught as one continuous pathway in Chandigarh.",
+      title: 'Commerce Coaching & Finance Programmes in Chandigarh | Kizen Education',
+      description: 'Explore 10 integrated commerce & finance programmes in Sector 34-A, Chandigarh — Class 11-12 Commerce, B.Com, BBA, M.Com, MBA, ACCA, FinTech, IFRS & AI in Finance. Concept-first teaching with small batches.',
+      keywords: 'Commerce Courses Chandigarh, Class 11 12 Commerce Tuition, BCom Tuition Sector 34, BBA Coaching Chandigarh, ACCA Course Chandigarh, FinTech Training Chandigarh',
+      canonicalUrl: 'https://kizeneducation.com/courses',
+      og: {
+        title: 'Commerce Coaching & Finance Programmes in Chandigarh | Kizen Education',
+        description: 'Explore Kizen’s 10 integrated programmes — 11th & 12th Commerce, B.Com, BBA, ACCA, FinTech, IFRS & AI in Finance in Sector 34-A, Chandigarh.',
+        url: 'https://kizeneducation.com/courses',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Commerce Coaching & Finance Programmes | Kizen Education Chandigarh',
+        description: 'Class 11 to ACCA, FinTech & AI under one roof in Sector 34-A Chandigarh.',
+        image: 'https://kizeneducation.com/images/success-duo.webp',
+      },
+      schema: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'ItemList',
+            'name': 'Kizen Education Programmes & Courses',
+            'description': 'Continuous commerce and global finance educational pathways offered in Chandigarh.',
+            'itemListElement': [
+              { '@type': 'Course', 'position': 1, 'name': '11th Commerce', 'url': 'https://kizeneducation.com/courses' },
+              { '@type': 'Course', 'position': 2, 'name': '12th Commerce', 'url': 'https://kizeneducation.com/courses' },
+              { '@type': 'Course', 'position': 3, 'name': 'B.Com Degree Coaching', 'url': 'https://kizeneducation.com/courses' },
+              { '@type': 'Course', 'position': 4, 'name': 'BBA Degree Mentorship', 'url': 'https://kizeneducation.com/courses' },
+              { '@type': 'Course', 'position': 5, 'name': 'M.Com Coaching', 'url': 'https://kizeneducation.com/courses' },
+              { '@type': 'Course', 'position': 6, 'name': 'MBA Finance Tutoring', 'url': 'https://kizeneducation.com/courses' },
+              { '@type': 'Course', 'position': 7, 'name': 'ACCA (Global Finance)', 'url': 'https://kizeneducation.com/acca' },
+              { '@type': 'Course', 'position': 8, 'name': 'FinTech Certification', 'url': 'https://kizeneducation.com/fintech' },
+              { '@type': 'Course', 'position': 9, 'name': 'IFRS Certification', 'url': 'https://kizeneducation.com/ifrs' },
+              { '@type': 'Course', 'position': 10, 'name': 'AI in Finance', 'url': 'https://kizeneducation.com/ai-programmes' },
+            ],
+          },
+          {
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://kizeneducation.com/' },
+              { '@type': 'ListItem', 'position': 2, 'name': 'Courses', 'item': 'https://kizeneducation.com/courses' },
+            ],
+          },
+        ],
+      },
     })
   }, [])
 
