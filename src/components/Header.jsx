@@ -3,9 +3,12 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import { getCtaText, getCtaShortText } from '../utils/seo.js'
 
 const NAV_ITEMS = [
-  { label: 'Home', to: '/' },
+    { label: 'Home', to: '/' },
   { label: 'Courses', to: '/courses' },
   { label: 'ACCA', to: '/acca' },
+  { label: 'FinTech', to: '/fintech' },
+  { label: 'IFRS', to: '/ifrs' },
+  { label: 'AI', to: '/ai-programmes' },
   { label: 'Resources', to: '/resources' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },

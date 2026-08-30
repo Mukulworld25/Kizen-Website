@@ -26,6 +26,10 @@ export function getCtaText(pathname) {
   if (pathname === '/acca' || pathname.startsWith('/acca/')) {
     return 'Talk to an ACCA Counsellor'
   }
+  // FinTech / IFRS / AI in Finance pages
+  if (pathname === '/fintech' || pathname === '/ifrs' || pathname === '/ai-programmes') {
+    return 'Request Programme Info'
+  }
   // Default: inclusive for all pathways (school, UG, PG, general)
   return 'Talk to a Counsellor'
 }
@@ -33,6 +37,9 @@ export function getCtaText(pathname) {
 export function getCtaShortText(pathname) {
   if (pathname === '/acca' || pathname.startsWith('/acca/')) {
     return 'ACCA Counselling'
+  }
+  if (pathname === '/fintech' || pathname === '/ifrs' || pathname === '/ai-programmes') {
+    return 'Programme Info'
   }
   return 'Free Counselling'
 }

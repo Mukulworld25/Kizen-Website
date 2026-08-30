@@ -27,7 +27,7 @@ export default function EnquiryForm({ variant = 'home' }) {
     phone: '',
     qualification: '',
     email: '',
-    programme: isContact ? 'ACCA' : 'Interested in ACCA',
+    programme: isContact ? 'ACCA' : variant === 'courses' ? '11th Commerce' : 'Interested in ACCA',
     message: '',
   })
 
@@ -77,12 +77,12 @@ export default function EnquiryForm({ variant = 'home' }) {
         phone: '',
         qualification: '',
         email: '',
-        programme: isContact ? 'ACCA' : 'Interested in ACCA',
+        programme: isContact ? 'ACCA' : variant === 'courses' ? '11th Commerce' : 'Interested in ACCA',
         message: '',
       })
     }, 5000)
     return () => clearTimeout(t)
-  }, [submitted, isContact])
+  }, [submitted, isContact, variant])
 
   if (submitted) {
     return (
@@ -289,7 +289,10 @@ export default function EnquiryForm({ variant = 'home' }) {
             <option className="text-ink">BBA</option>
             <option className="text-ink">M.Com</option>
             <option className="text-ink">MBA</option>
-            <option className="text-ink">ACCA</option>
+                        <option className="text-ink">ACCA</option>
+            <option className="text-ink">FinTech</option>
+            <option className="text-ink">IFRS</option>
+            <option className="text-ink">AI in Finance</option>
           </select>
         </div>
         <button

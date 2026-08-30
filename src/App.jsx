@@ -6,6 +6,9 @@ import FloatingActions from './components/FloatingActions.jsx'
 import Home from './pages/Home.jsx'
 import Acca from './pages/Acca.jsx'
 import Courses from './pages/Courses.jsx'
+import Fintech from './pages/Fintech.jsx'
+import Ifrs from './pages/Ifrs.jsx'
+import AiProgrammes from './pages/AiProgrammes.jsx'
 import Resources from './pages/Resources.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
@@ -24,7 +27,10 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/acca" element={<Acca />} />
+                        <Route path="/acca" element={<Acca />} />
+            <Route path="/fintech" element={<Fintech />} />
+            <Route path="/ifrs" element={<Ifrs />} />
+            <Route path="/ai-programmes" element={<AiProgrammes />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />

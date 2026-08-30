@@ -26,6 +26,39 @@ const COURSES_FLAT = [
   ...POSTGRAD.map((c) => ({ ...c, category: 'postgrad' })),
 ]
 
+const SPECIALISATIONS = [
+  {
+    num: '05',
+    icon: 'fa-solid fa-brain',
+    title: 'FinTech Programme',
+    desc: 'AI, digital payments, robo-advisory and blockchain — the technologies reshaping global finance.',
+    to: '/fintech',
+    eyebrow: 'Future Skill',
+    colour: 'navy',
+    text: 'paper',
+  },
+  {
+    num: '06',
+    icon: 'fa-solid fa-file-invoice',
+    title: 'IFRS Certification',
+    desc: 'Master International Financial Reporting Standards used across 140+ countries — from IASB framework to group accounts.',
+    to: '/ifrs',
+    eyebrow: 'Global Finance',
+    colour: 'navy',
+    text: 'paper',
+  },
+  {
+    num: '07',
+    icon: 'fa-solid fa-microchip',
+    title: 'AI in Finance',
+    desc: 'Machine learning, deep learning and NLP for algorithmic trading, fraud detection, credit scoring and robo-advisory.',
+    to: '/ai-programmes',
+    eyebrow: 'Emerging',
+    colour: 'navy',
+    text: 'paper',
+  },
+]
+
 const TABS = [
   { key: 'all', label: 'All', icon: 'fa-solid fa-border-all' },
   { key: 'school', label: 'School Level', num: '01', headline: 'Where the pathway begins', icon: 'fa-solid fa-book' },
@@ -277,6 +310,35 @@ export default function Courses() {
           </div>
         </section>
       )}
+
+      {/* ============ SPECIALISATIONS (FinTech / IFRS / AI) ============ */}
+      <section id="specialisations" className="bg-paper py-20 lg:py-28 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center gap-4 mb-12">
+            <span className="font-serif text-5xl text-ink/15 font-bold">05</span>
+            <div>
+              <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-1">Specialisations</div>
+              <h2 className="font-serif text-3xl lg:text-4xl font-medium">Future-focused programmes in finance technology</h2>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {SPECIALISATIONS.map((s) => (
+              <div key={s.title} className="border border-ink/12 rounded-2xl p-8 bg-ivory hover:border-gold/40 transition-all group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center"><i className={`${s.icon} text-2xl text-gold`}></i></div>
+                  <div className="font-serif text-3xl font-bold text-ink/20">0{s.num.slice(-1)}</div>
+                </div>
+                <div className="text-gold text-xs font-bold uppercase tracking-[0.2em] mb-2">{s.eyebrow}</div>
+                <div className="font-serif text-2xl font-semibold mb-3 text-ink">{s.title}</div>
+                <p className="text-sm text-ink/60 leading-relaxed mb-6">{s.desc}</p>
+                <Link to={s.to} className="inline-flex items-center gap-2 text-sm font-semibold text-navy group-hover:text-gold transition">
+                  Explore programme <i className="fa-solid fa-arrow-right text-xs"></i>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ============ ENQUIRY CTA — paper ============ */}
       <section id="counselling" className="bg-paper py-20 lg:py-24 border-t border-ink/10">

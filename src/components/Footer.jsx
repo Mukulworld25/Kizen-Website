@@ -21,7 +21,10 @@ export default function Footer({ borderTop = false }) {
           <div>
             <div className="text-xs uppercase tracking-widest text-gold font-bold mb-4">Programmes</div>
             <ul className="space-y-2.5 text-sm text-paper/70">
-              <li><Link to="/acca" className="hover:text-paper transition">ACCA (Global Finance)</Link></li>
+                          <li><Link to="/acca" className="hover:text-paper transition">ACCA (Global Finance)</Link></li>
+            <li><Link to="/ifrs" className="hover:text-paper transition">IFRS Certification</Link></li>
+            <li><Link to="/fintech" className="hover:text-paper transition">FinTech Programme</Link></li>
+            <li><Link to="/ai-programmes" className="hover:text-paper transition">AI in Finance</Link></li>
               <li><Link to="/courses#school" className="hover:text-paper transition">11th & 12th Commerce</Link></li>
               <li><Link to="/courses#undergrad" className="hover:text-paper transition">B.Com</Link></li>
               <li><Link to="/courses#undergrad" className="hover:text-paper transition">BBA</Link></li>

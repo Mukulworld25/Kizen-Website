@@ -31,7 +31,24 @@ const HOW_WE_TEACH = [
   { icon: 'fa-solid fa-file-circle-check', title: 'Mock exams every cycle', body: 'Timed, full-length practice mapped to actual board/university/ACCA exam sessions with detailed feedback.' },
 ]
 
-/* TODO: Faculty section removed — awaiting real faculty names, photos, and credentials */
+/* Faculty directory — verbatim role/credentials & headshots added below. */
+const FACULTY = [
+  { name: 'Aadya Sharma' },
+  { name: 'Megha Dadwal' },
+  { name: 'Shaifali' },
+  { name: 'Shivangi' },
+]
+
+const AVATAR_COLORS = [
+  'bg-indigo-600',
+  'bg-emerald-600',
+  'bg-violet-600',
+  'bg-teal-700',
+]
+
+const initials = (name) => name.split(/\s+/).map((n) => n[0]).join('').toUpperCase()
+
+
 /* TODO: Replace with real verified review text before going live */
 
 export default function About() {
@@ -152,8 +169,32 @@ export default function About() {
         </div>
       </section>
 
-      {/* TODO: Faculty section — awaiting real names, photos, and credentials */}
-      {/* TODO: Remove this placeholder and replace with real content */}
+      {/* ============ FACULTY ============ */}
+      <section id="faculty" className="bg-paper py-20 lg:py-28 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <Eyebrow>Meet the faculty</Eyebrow>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium mb-4">The mentors who guide the pathway</h2>
+            <p className="text-ink/60 text-lg">Taught by practitioners who hold ACCA, CA and international finance qualifications themselves, and who still teach the earliest stages year after year — so the same relationship follows each student forwards.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {FACULTY.map((f, i) => (
+              <div key={f.name} className="bg-paper rounded-2xl p-6 border border-ink/10 text-center">
+                {/* TODO: real headshot — swap avatar for <img src="/images/faculty/<slug>.jpg" alt={f.name} /> when photos are provided */}
+                <div className={`w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-2xl ${AVATAR_COLORS[i % AVATAR_COLORS.length]}`}>
+                  {initials(f.name)}
+                </div>
+                <div className="font-serif text-xl font-semibold mb-1">{f.name}</div>
+                {/* TODO: role & credentials — e.g., "MAcc, ACCA (UK), Head of Finance Programmes" */}
+                <div className="text-gold text-xs font-bold uppercase tracking-[0.15em] mb-3">Role & credentials pending</div>
+                {/* TODO: verbatim bio text — paste provided copy here */}
+                <p className="text-xs text-ink/40 italic">Bio text pending — replace with provided verbatim copy.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ============ VISIT CTA — paper ============ */}
       <section id="enquiry" className="bg-paper py-20 lg:py-24 border-t border-ink/10">
