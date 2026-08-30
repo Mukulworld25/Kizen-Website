@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "deploy": "vite build && python deploy_ftp.py",
     "serve": "node server.mjs",
     "validate": "npm run build && node server.mjs --check"
   },
