@@ -143,7 +143,6 @@ const VIDEO_TESTIMONIALS = [
 
 // Real Kizen campus photos — auto-cycling hero slideshow
 const HERO_SLIDES = [
-  './images/slide-1.webp',
   './images/slide-2.webp',
   './images/slide-3.webp',
   './images/slide-4.webp',

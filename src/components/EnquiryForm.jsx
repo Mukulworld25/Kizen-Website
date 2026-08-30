@@ -178,6 +178,9 @@ export default function EnquiryForm({ variant = 'home' }) {
             <option>BBA</option>
             <option>M.Com</option>
             <option>MBA</option>
+            <option>FinTech Programme</option>
+            <option>IFRS Certification</option>
+            <option>AI in Finance</option>
           </select>
         </div>
         <div className="sm:col-span-2">
