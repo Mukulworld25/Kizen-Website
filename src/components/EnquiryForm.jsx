@@ -68,7 +68,7 @@ export default function EnquiryForm({ variant = 'home' }) {
         ? `ACCA${form.qualification ? ` (${form.qualification})` : ''}`
         : form.programme || ''
 
-    // Persist lead locally so submissions are never lost
+    // 1. Persist lead locally so submissions are never lost
     try {
       const existingLeads = JSON.parse(localStorage.getItem('kizen_enquiries') || '[]')
       existingLeads.push({
@@ -78,14 +78,14 @@ export default function EnquiryForm({ variant = 'home' }) {
         timestamp: new Date().toISOString(),
       })
       localStorage.setItem('kizen_enquiries', JSON.stringify(existingLeads))
-    } catch {
-      // ignore storage errors
+    } catch (localErr) {
+      console.warn('[EnquiryForm] LocalStorage write failed:', localErr)
     }
 
-    // Insert lead into Supabase CRM leads table
+    // 2. Best-effort Supabase CRM insert (silent fail on visitor frontend, logs error to console)
     if (supabase) {
       try {
-        const { data, error } = await supabase.from('leads').insert([
+        const insertPromise = supabase.from('leads').insert([
           {
             name: form.name?.trim() || '',
             phone: form.phone?.trim() || '',
@@ -94,20 +94,27 @@ export default function EnquiryForm({ variant = 'home' }) {
             source: 'website',
           },
         ])
-        if (error) {
-          console.error('[EnquiryForm] Supabase insert error:', error)
+
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Supabase request timed out after 4s')), 4000)
+        )
+
+        const result = await Promise.race([insertPromise, timeoutPromise])
+
+        if (result && result.error) {
+          console.error('[EnquiryForm] Supabase insert error:', result.error)
         } else {
-          console.log('[EnquiryForm] Successfully inserted lead into Supabase:', data)
+          console.log('[EnquiryForm] Successfully inserted lead into Supabase:', result?.data || 'OK')
         }
       } catch (err) {
-        console.error('[EnquiryForm] Failed to submit lead to Supabase:', err)
+        console.error('[EnquiryForm] Failed to submit lead to Supabase (silent fallback active):', err)
       }
     } else {
       console.warn('[EnquiryForm] Supabase client not initialized (missing environment variables)')
     }
 
+    // 3. Always show Thank You confirmation regardless of CRM status
     setSubmitting(false)
-    // Do NOT auto-open WhatsApp — show inline Thank You state with action buttons
     setSubmitted(true)
   }
 
