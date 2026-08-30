@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { supabase } from '../utils/supabase'
 
 // Shared enquiry form. variant:
 //   home     -> Compact navy-card form (Name, Phone, Interest select, Request a Call Back)
@@ -22,6 +23,7 @@ const WHATSAPP_NUMBER = '917696963377'
 export default function EnquiryForm({ variant = 'home' }) {
   const isContact = variant === 'contact'
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -56,17 +58,55 @@ export default function EnquiryForm({ variant = 'home' }) {
     )
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmitting(true)
     console.log(`[EnquiryForm:${variant}] Submitted payload:`, form)
+
+    const programmeInterest =
+      variant === 'acca'
+        ? `ACCA${form.qualification ? ` (${form.qualification})` : ''}`
+        : form.programme || ''
+
     // Persist lead locally so submissions are never lost
     try {
       const existingLeads = JSON.parse(localStorage.getItem('kizen_enquiries') || '[]')
-      existingLeads.push({ ...form, variant, timestamp: new Date().toISOString() })
+      existingLeads.push({
+        ...form,
+        programmeInterest,
+        variant,
+        timestamp: new Date().toISOString(),
+      })
       localStorage.setItem('kizen_enquiries', JSON.stringify(existingLeads))
     } catch {
       // ignore storage errors
     }
+
+    // Insert lead into Supabase CRM leads table
+    if (supabase) {
+      try {
+        const { data, error } = await supabase.from('leads').insert([
+          {
+            name: form.name?.trim() || '',
+            phone: form.phone?.trim() || '',
+            email: form.email?.trim() || null,
+            programme: programmeInterest,
+            source: 'website',
+          },
+        ])
+        if (error) {
+          console.error('[EnquiryForm] Supabase insert error:', error)
+        } else {
+          console.log('[EnquiryForm] Successfully inserted lead into Supabase:', data)
+        }
+      } catch (err) {
+        console.error('[EnquiryForm] Failed to submit lead to Supabase:', err)
+      }
+    } else {
+      console.warn('[EnquiryForm] Supabase client not initialized (missing environment variables)')
+    }
+
+    setSubmitting(false)
     // Do NOT auto-open WhatsApp — show inline Thank You state with action buttons
     setSubmitted(true)
   }
