@@ -3,9 +3,9 @@ import Eyebrow from './Eyebrow.jsx'
 // Shared video testimonials grid — used on Home (/reviews) and ACCA page.
 // Videos live in /public/videos/ and are real institute assets.
 export const VIDEO_TESTIMONIALS = [
-  { src: './videos/new-reel-kizen.mp4', label: 'Kizen Education Overview', poster: './images/campus-1.webp' },
-  { src: './videos/testimonial-2.mp4', label: 'Student Testimonial 2', poster: './images/campus-2.webp' },
-  { src: './videos/testimonial-3.mp4', label: 'Student Testimonial 3', poster: './images/campus-3.webp' },
+  { src: './videos/new-reel-kizen.mp4', label: 'Kizen Education Overview', poster: './images/poster-reel.webp' },
+  { src: './videos/testimonial-2.mp4', label: 'Student Testimonial 2', poster: './images/poster-testimonial-2.webp' },
+  { src: './videos/testimonial-3.mp4', label: 'Student Testimonial 3', poster: './images/poster-testimonial-3.webp' },
 ]
 
 export default function VideoTestimonials({ id = 'reviews', eyebrow = 'Trusted by Students & Parents', heading = 'Hear from the Kizen community.' }) {
