@@ -11,7 +11,7 @@ const WHATSAPP_NUMBER = '917696963377'
 // capture. Until then, submissions open a WhatsApp chat with a prefilled
 // request instead. NO fee figure is ever displayed without client data.
 // ---------------------------------------------------------------------------
-const BROCHURE_PDF_PATH = null
+const BROCHURE_PDF_PATH = './brochures/acca-brochure.pdf'
 
 const INPUT =
   'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
@@ -29,17 +29,23 @@ export default function BrochureGate() {
     e.preventDefault()
     console.log('[BrochureGate] Lead captured:', form)
 
-    const msg = `Hi Kizen Education! I'm ${form.name}. Please share the ACCA fee structure and brochure.${form.email ? ` (Email: ${form.email})` : ''}`
+    try {
+      const existingLeads = JSON.parse(localStorage.getItem('kizen_brochure_leads') || '[]')
+      existingLeads.push({ ...form, programme: 'ACCA', timestamp: new Date().toISOString() })
+      localStorage.setItem('kizen_brochure_leads', JSON.stringify(existingLeads))
+    } catch {
+      // ignore
+    }
+
+    const msg = `Hi Kizen Education! I'm ${form.name}. Please share the ACCA fee structure and counselling details.${form.email ? ` (Email: ${form.email})` : ''}`
     window.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,
       '_blank',
       'noopener,noreferrer'
     )
 
-    // Future path: once the real PDF is in /public/brochures/, this delivers it
-    if (BROCHURE_PDF_PATH) {
-      window.open(BROCHURE_PDF_PATH, '_blank', 'noopener,noreferrer')
-    }
+    // Trigger brochure download
+    window.open(BROCHURE_PDF_PATH, '_blank', 'noopener,noreferrer')
 
     setSent(true)
   }
@@ -47,15 +53,34 @@ export default function BrochureGate() {
   if (sent) {
     return (
       <div className="mt-6 pt-6 border-t border-paper/15">
-        <div className="bg-paper/10 border border-gold/50 rounded-xl p-5">
+        <div className="bg-paper/10 border border-gold/50 rounded-xl p-5 space-y-4">
           <div className="flex items-center gap-3">
             <i className="fa-solid fa-circle-check text-gold text-xl"></i>
             <div>
-              <div className="font-semibold text-sm text-paper">Request received</div>
+              <div className="font-semibold text-sm text-paper">Brochure Unlocked!</div>
               <div className="text-xs text-paper/70 mt-1">
-                Thank you, {form.name}! Our counsellor will share the ACCA fee structure and brochure with you shortly.
+                Thank you, {form.name}! Your official ACCA Brochure is downloading. Our counsellor will also reach out to assist you.
               </div>
             </div>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <a
+              href={BROCHURE_PDF_PATH}
+              download="Kizen-ACCA-Brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-gold text-navy font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl hover:bg-paper transition"
+            >
+              <i className="fa-solid fa-file-arrow-down"></i> Download PDF Again
+            </a>
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Kizen Education! I'm ${form.name}. I downloaded the ACCA brochure and have a question.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 border border-paper/20 text-paper font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl hover:border-gold hover:bg-paper/10 transition"
+            >
+              <i className="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
           </div>
         </div>
       </div>

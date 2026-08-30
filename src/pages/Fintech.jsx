@@ -237,9 +237,59 @@ export default function Fintech() {
         </div>
       </section>
 
+      {/* ============ BATCH SCHEDULES & LEARNING MODES ============ */}
+      <section id="fintech-schedules" className="bg-paper py-16 lg:py-24 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-2">Flexible Timings</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink">
+              Cohort Timings for Students &amp; Banking Professionals
+            </h2>
+            <p className="text-ink/65 text-sm sm:text-base mt-2">
+              Accelerate your financial technology credentials with schedules designed around working hours.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-8 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-gold/15 text-navy flex items-center justify-center text-xl mb-5">
+                <i className="fa-solid fa-briefcase"></i>
+              </div>
+              <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">Executive Weekend Track</div>
+              <h3 className="font-serif text-xl font-bold text-ink mb-2">Weekend Masterclasses</h3>
+              <p className="text-sm text-ink/65 leading-relaxed">
+                Saturday &amp; Sunday practical case studies in neo-banking, digital lending risk, and API integrations for finance professionals.
+              </p>
+            </div>
+
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-8 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-gold/15 text-navy flex items-center justify-center text-xl mb-5">
+                <i className="fa-solid fa-graduation-cap"></i>
+              </div>
+              <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">Undergraduate Track</div>
+              <h3 className="font-serif text-xl font-bold text-ink mb-2">Weekday Evening Hybrid</h3>
+              <p className="text-sm text-ink/65 leading-relaxed">
+                Designed for B.Com &amp; BBA college students seeking future-ready digital payments and fintech product management skills.
+              </p>
+            </div>
+
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-8 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-gold/15 text-navy flex items-center justify-center text-xl mb-5">
+                <i className="fa-solid fa-laptop-code"></i>
+              </div>
+              <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">Live Projects</div>
+              <h3 className="font-serif text-xl font-bold text-ink mb-2">Mentored Capstone</h3>
+              <p className="text-sm text-ink/65 leading-relaxed">
+                Build end-to-end payment gateway architectures and credit scoring workflows with 1-on-1 industry mentor guidance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ============ FEATURES ============ */}
       <section id="features" className="bg-ivory py-20 lg:py-28 border-t border-ink/10 border-b border-ink/10">
-<div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="flex items-center gap-4 mb-12">
             <span className="font-serif text-5xl text-ink/15 font-bold">05</span>
             <div>

@@ -170,15 +170,71 @@ export default function Acca() {
             </ul>
           </div>
           <div className="bg-navy text-paper rounded-2xl p-8 lg:p-10">
-            <div className="font-serif text-2xl font-semibold mb-6">Fee & What's Included</div>
+            <div className="font-serif text-2xl font-semibold mb-6">Fee &amp; What&apos;s Included</div>
             <ul className="space-y-4 text-sm text-paper/80">
               {INCLUDED.map((item) => (
                 <li key={item} className="flex gap-3"><i className="fa-solid fa-circle-check text-gold mt-0.5"></i> {item}</li>
               ))}
             </ul>
-            {/* Fee gate — lead capture before brochure; WhatsApp fallback until
-                a real PDF lands in /public/brochures/. No fabricated numbers. */}
+            {/* Fee gate — delivers the official PDF and connects directly with counsellors */}
             <BrochureGate />
+          </div>
+        </div>
+      </section>
+
+      {/* ============ CLASS 12 & GRADUATE ACCA FAQS ============ */}
+      <section id="acca-faq" className="bg-paper py-20 lg:py-28 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-2">Got Questions?</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink">
+              Frequently Asked Questions About ACCA at Kizen
+            </h2>
+            <p className="text-ink/65 text-sm sm:text-base mt-3">
+              Everything Class 12 students, college graduates, and parents need to know before starting.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            <details className="group bg-ivory rounded-2xl p-6 border border-ink/10 [&_summary::-webkit-details-marker]:hidden cursor-pointer open:border-navy/40 open:shadow-md transition-all">
+              <summary className="flex items-center justify-between font-serif text-lg font-bold text-ink list-none">
+                <span>Can I start ACCA directly after Class 12th Commerce?</span>
+                <i className="fa-solid fa-chevron-down text-sm text-gold group-open:rotate-180 transition-transform"></i>
+              </summary>
+              <p className="text-sm text-ink/75 leading-relaxed mt-4 pt-4 border-t border-ink/10">
+                Yes! Any student who has passed Class 12th (with English and Mathematics or Accounts) is eligible to register for ACCA directly. At Kizen, 12th pass students start with the 3 Applied Knowledge papers (Business &amp; Technology, Management Accounting, Financial Accounting) and build strong global finance fundamentals early.
+              </p>
+            </details>
+
+            <details className="group bg-ivory rounded-2xl p-6 border border-ink/10 [&_summary::-webkit-details-marker]:hidden cursor-pointer open:border-navy/40 open:shadow-md transition-all">
+              <summary className="flex items-center justify-between font-serif text-lg font-bold text-ink list-none">
+                <span>Can I pursue regular college (B.Com / BBA) alongside ACCA at Kizen?</span>
+                <i className="fa-solid fa-chevron-down text-sm text-gold group-open:rotate-180 transition-transform"></i>
+              </summary>
+              <p className="text-sm text-ink/75 leading-relaxed mt-4 pt-4 border-t border-ink/10">
+                Absolutely. In fact, over 70% of our ACCA students in Chandigarh concurrently attend Panjab University affiliated colleges (like SD College, DAV College, GCC-50, MCM DAV). Our batch timings (early morning, evening, and weekend hybrid tracks) are designed specifically so college attendance and university exam cycles never clash.
+              </p>
+            </details>
+
+            <details className="group bg-ivory rounded-2xl p-6 border border-ink/10 [&_summary::-webkit-details-marker]:hidden cursor-pointer open:border-navy/40 open:shadow-md transition-all">
+              <summary className="flex items-center justify-between font-serif text-lg font-bold text-ink list-none">
+                <span>How many papers do I have to clear, and how long does it take?</span>
+                <i className="fa-solid fa-chevron-down text-sm text-gold group-open:rotate-180 transition-transform"></i>
+              </summary>
+              <p className="text-sm text-ink/75 leading-relaxed mt-4 pt-4 border-t border-ink/10">
+                ACCA has a total of 13 papers divided across 3 levels. Most students clearing 3 to 4 papers per year finish all exams in 2.5 to 3 years. B.Com/BBA graduates receive up to 4 exemptions (clearing only 9 papers), and M.Com/CA-inter candidates can receive even higher paper exemptions.
+              </p>
+            </details>
+
+            <details className="group bg-ivory rounded-2xl p-6 border border-ink/10 [&_summary::-webkit-details-marker]:hidden cursor-pointer open:border-navy/40 open:shadow-md transition-all">
+              <summary className="flex items-center justify-between font-serif text-lg font-bold text-ink list-none">
+                <span>What are the career opportunities and placement support at Kizen?</span>
+                <i className="fa-solid fa-chevron-down text-sm text-gold group-open:rotate-180 transition-transform"></i>
+              </summary>
+              <p className="text-sm text-ink/75 leading-relaxed mt-4 pt-4 border-t border-ink/10">
+                ACCA is recognised across 180+ countries and all Big 4 audit firms (EY, PwC, Deloitte, KPMG) as well as global MNCs (Bain, Barclays, Genpact, Morgan Stanley, HSBC). Kizen provides resume building, technical interview prep, and corporate placement referral support for students completing their papers.
+              </p>
+            </details>
           </div>
         </div>
       </section>

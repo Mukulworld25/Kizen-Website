@@ -13,6 +13,7 @@ import AiProgrammes from './pages/AiProgrammes.jsx'
 import Resources from './pages/Resources.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 function FooterShell() {
   const { pathname } = useLocation()
@@ -37,7 +38,7 @@ export default function App() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <FooterShell />

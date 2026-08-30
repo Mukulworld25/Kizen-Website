@@ -56,6 +56,7 @@ const STEPS = [
     title: '11th Commerce',
     sub: 'Foundation year',
     detail: 'Accounts, Economics & Business Studies foundations built for board exams and beyond.',
+    to: '/courses#school',
     accent: false
   },
   {
@@ -65,6 +66,7 @@ const STEPS = [
     title: '12th Commerce',
     sub: 'Board + concepts',
     detail: 'Board-focused mastery with early exposure to professional CA/ACCA problem solving.',
+    to: '/courses#school',
     accent: false
   },
   {
@@ -74,6 +76,7 @@ const STEPS = [
     title: 'B.Com / BBA',
     sub: 'Undergraduate',
     detail: 'University syllabus paired with practical applied accounting, finance, and corporate cases.',
+    to: '/courses#undergrad',
     accent: false
   },
   {
@@ -83,6 +86,7 @@ const STEPS = [
     title: 'M.Com / MBA',
     sub: 'Postgraduate',
     detail: 'Advanced commerce specialisation for students aiming at leadership and corporate finance.',
+    to: '/courses#postgrad',
     accent: false
   },
   {
@@ -92,6 +96,7 @@ const STEPS = [
     title: 'ACCA',
     sub: 'Globally Recognised',
     detail: 'The only globally valid professional finance qualification taught locally in the tricity.',
+    to: '/acca',
     accent: true
   },
 ]
@@ -443,54 +448,58 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   whileHover={{ y: -6 }}
-                  onClick={() => setActiveStep(activeStep === i ? null : i)}
-                  className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer transition-all duration-300 ${
-                    s.accent
-                      ? 'bg-navy text-paper border-2 border-gold/40 shadow-xl'
-                      : 'bg-paper text-ink border border-ink/10 shadow-sm hover:shadow-md hover:border-navy/30'
-                  }`}
+                  className="h-full"
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className="font-serif text-sm font-bold"
-                        style={{ color: s.accent ? 'rgba(200,155,60,0.9)' : 'rgba(27,26,23,0.4)' }}
-                      >
-                        {s.num}
-                      </span>
-                      <span
-                        className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
-                          s.accent ? 'bg-gold/20 text-gold' : 'bg-ink/5 text-ink/60'
+                  <Link
+                    to={s.to}
+                    className={`rounded-2xl p-6 sm:p-7 flex flex-col justify-between h-full transition-all duration-300 group block ${
+                      s.accent
+                        ? 'bg-navy text-paper border-2 border-gold/40 shadow-xl hover:border-gold hover:shadow-2xl'
+                        : 'bg-paper text-ink border border-ink/10 shadow-sm hover:shadow-md hover:border-navy/30'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span
+                          className="font-serif text-sm font-bold"
+                          style={{ color: s.accent ? 'rgba(200,155,60,0.9)' : 'rgba(27,26,23,0.4)' }}
+                        >
+                          {s.num}
+                        </span>
+                        <span
+                          className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                            s.accent ? 'bg-gold/20 text-gold' : 'bg-ink/5 text-ink/60'
+                          }`}
+                        >
+                          {s.stage}
+                        </span>
+                      </div>
+
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
+                          s.accent ? 'bg-gold text-navy shadow-md' : 'bg-ivory border border-ink/10 text-ink/80'
                         }`}
                       >
-                        {s.stage}
-                      </span>
+                        <i className={`${s.icon} text-xl`}></i>
+                      </div>
+
+                      <div className={`font-serif text-xl font-bold leading-snug ${s.accent ? 'text-paper' : 'text-ink'}`}>
+                        {s.title}
+                      </div>
+                      <div className={`text-xs mt-1 font-medium ${s.accent ? 'text-gold' : 'text-ink/50'}`}>
+                        {s.sub}
+                      </div>
+
+                      <p className={`text-xs leading-relaxed mt-4 ${s.accent ? 'text-paper/75' : 'text-ink/60'}`}>
+                        {s.detail}
+                      </p>
                     </div>
 
-                    <div
-                      className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${
-                        s.accent ? 'bg-gold text-navy shadow-md' : 'bg-ivory border border-ink/10 text-ink/80'
-                      }`}
-                    >
-                      <i className={`${s.icon} text-xl`}></i>
+                    <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between text-xs font-semibold">
+                      <span className={s.accent ? 'text-gold' : 'text-navy'}>Explore Stage</span>
+                      <i className={`fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform ${s.accent ? 'text-gold' : 'text-navy'}`}></i>
                     </div>
-
-                    <div className={`font-serif text-xl font-bold leading-snug ${s.accent ? 'text-paper' : 'text-ink'}`}>
-                      {s.title}
-                    </div>
-                    <div className={`text-xs mt-1 font-medium ${s.accent ? 'text-gold' : 'text-ink/50'}`}>
-                      {s.sub}
-                    </div>
-
-                    <p className={`text-xs leading-relaxed mt-4 ${s.accent ? 'text-paper/75' : 'text-ink/60'}`}>
-                      {s.detail}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between text-xs font-semibold">
-                    <span className={s.accent ? 'text-gold' : 'text-navy'}>Explore Stage</span>
-                    <i className={`fa-solid fa-arrow-right text-[10px] ${s.accent ? 'text-gold' : 'text-navy'}`}></i>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>

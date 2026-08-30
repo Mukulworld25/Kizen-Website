@@ -59,6 +59,14 @@ export default function EnquiryForm({ variant = 'home' }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(`[EnquiryForm:${variant}] Submitted payload:`, form)
+    // Persist lead locally so submissions are never lost
+    try {
+      const existingLeads = JSON.parse(localStorage.getItem('kizen_enquiries') || '[]')
+      existingLeads.push({ ...form, variant, timestamp: new Date().toISOString() })
+      localStorage.setItem('kizen_enquiries', JSON.stringify(existingLeads))
+    } catch {
+      // ignore storage errors
+    }
     // Do NOT auto-open WhatsApp — show inline Thank You state with action buttons
     setSubmitted(true)
   }
@@ -98,7 +106,7 @@ export default function EnquiryForm({ variant = 'home' }) {
           <div>
             <div className="font-serif text-base text-ink mb-0.5">Thank You</div>
             <div className={`text-xs ${isContact ? 'text-ink/70' : 'text-paper/80'} font-normal`}>
-              Thank you for submitting the form. Our team will be in touch with you soon.
+              Thank you for submitting your enquiry. Our team will be in touch with you shortly.
             </div>
           </div>
         </div>
@@ -106,11 +114,7 @@ export default function EnquiryForm({ variant = 'home' }) {
           <button
             type="button"
             onClick={handleContinueWhatsApp}
-            className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition ${
-              isContact
-                ? 'bg-gold text-navy hover:bg-gold/90'
-                : 'bg-gold text-navy hover:bg-gold/90'
-            }`}
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition bg-gold text-navy hover:bg-gold/90"
           >
             <i className="fa-brands fa-whatsapp"></i> Continue on WhatsApp
           </button>
@@ -235,21 +239,27 @@ export default function EnquiryForm({ variant = 'home' }) {
         </div>
         <div>
           <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5">Current Qualification *</label>
-          <input
-            type="text"
+          <select
             name="qualification"
             required
             value={form.qualification}
             onChange={update}
-            placeholder="e.g. 12th Commerce / B.Com"
-            className={NAVY_INPUT}
-          />
+            className={`${NAVY_INPUT} text-paper`}
+          >
+            <option value="" className="text-ink">Select your qualification</option>
+            <option className="text-ink">12th Commerce (Pursuing / Passed)</option>
+            <option className="text-ink">12th Non-Medical / Arts</option>
+            <option className="text-ink">B.Com / BBA (Student / Graduate)</option>
+            <option className="text-ink">M.Com / MBA (Student / Graduate)</option>
+            <option className="text-ink">Working Professional (Finance / Accounts)</option>
+            <option className="text-ink">Other Graduate Degree</option>
+          </select>
         </div>
         <button
           type="submit"
           className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-paper transition shadow-sm font-sans"
         >
-          Request ACCA Info Pack & Syllabus
+          Request ACCA Info Pack &amp; Syllabus
         </button>
       </form>
     )
@@ -292,7 +302,7 @@ export default function EnquiryForm({ variant = 'home' }) {
             <option className="text-ink">BBA</option>
             <option className="text-ink">M.Com</option>
             <option className="text-ink">MBA</option>
-                        <option className="text-ink">ACCA</option>
+            <option className="text-ink">ACCA</option>
             <option className="text-ink">FinTech</option>
             <option className="text-ink">IFRS</option>
             <option className="text-ink">AI in Finance</option>
@@ -302,7 +312,7 @@ export default function EnquiryForm({ variant = 'home' }) {
           type="submit"
           className="w-full bg-gold text-navy font-semibold text-sm rounded-xl py-3.5 hover:bg-gold/90 transition shadow-sm font-sans"
         >
-          Request Course Info & Counselling
+          Request Course Info &amp; Counselling
         </button>
       </form>
     )
@@ -338,10 +348,14 @@ export default function EnquiryForm({ variant = 'home' }) {
       <div>
         <label className="text-[11px] font-bold text-gold uppercase tracking-wider block mb-1">Pathway Milestone</label>
         <select name="programme" value={form.programme} onChange={update} className={`${NAVY_INPUT} text-paper`}>
-          <option className="text-ink">Interested in ACCA (Global)</option>
+          <option className="text-ink">Interested in ACCA (Global Finance)</option>
           <option className="text-ink">Interested in 11th/12th Commerce</option>
           <option className="text-ink">Interested in B.Com / BBA</option>
           <option className="text-ink">Interested in M.Com / MBA</option>
+          <option className="text-ink">Interested in FinTech Programme</option>
+          <option className="text-ink">Interested in AI in Finance</option>
+          <option className="text-ink">Interested in IFRS Certification</option>
+          <option className="text-ink">Executive / Working Professional Track</option>
         </select>
       </div>
       <button

@@ -266,8 +266,116 @@ export default function AiProgrammes() {
         </div>
       </section>
 
+      {/* TOOLS & TECHNOLOGIES RIBBON */}
+      <section id="ai-tools" className="bg-paper py-16 lg:py-20 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-2">Industry Tech Stack</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink">
+              Tools &amp; Libraries You Will Master Hands-On
+            </h2>
+            <p className="text-ink/65 text-sm sm:text-base mt-2">
+              From exploratory finance data science in Python to production MLOps deployment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-brands fa-python text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">Python</div>
+              <div className="text-xs text-ink/60 mt-1">NumPy, Pandas, Scipy</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-brain text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">Scikit-Learn</div>
+              <div className="text-xs text-ink/60 mt-1">Supervised &amp; Unsupervised ML</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-bolt text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">XGBoost &amp; LightGBM</div>
+              <div className="text-xs text-ink/60 mt-1">Credit Scoring &amp; Risk Trees</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-network-wired text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">TensorFlow &amp; PyTorch</div>
+              <div className="text-xs text-ink/60 mt-1">LSTM &amp; Deep Neural Nets</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-robot text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">NLP &amp; LLM APIs</div>
+              <div className="text-xs text-ink/60 mt-1">Financial Sentiment &amp; SEC Filings</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-server text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">Docker &amp; FastAPI</div>
+              <div className="text-xs text-ink/60 mt-1">Production Model Serving</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-chart-line text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">Streamlit &amp; Plotly</div>
+              <div className="text-xs text-ink/60 mt-1">Algorithmic Trading Dashboards</div>
+            </div>
+            <div className="bg-ivory border border-ink/10 rounded-2xl p-5 text-center hover:border-gold hover:shadow-md transition">
+              <i className="fa-solid fa-database text-3xl text-gold mb-3"></i>
+              <div className="font-serif font-bold text-ink text-base">Financial Datasets</div>
+              <div className="text-xs text-ink/60 mt-1">Yahoo Finance, Alpha Vantage, FRED</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BATCH SCHEDULES & LEARNING MODES */}
+      <section id="ai-schedules" className="bg-ivory py-16 lg:py-24 border-y border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-2">Flexible Timings</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink">
+              Batch Schedules Built for College Students &amp; Working Execs
+            </h2>
+            <p className="text-ink/65 text-sm sm:text-base mt-2">
+              Learn without leaving your current college lecture schedule or full-time corporate role.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-paper border border-ink/10 rounded-2xl p-8 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-gold/15 text-navy flex items-center justify-center text-xl mb-5">
+                <i className="fa-solid fa-calendar-check"></i>
+              </div>
+              <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">Weekend Cohort</div>
+              <h3 className="font-serif text-xl font-bold text-ink mb-2">Saturday &amp; Sunday Masterclasses</h3>
+              <p className="text-sm text-ink/65 leading-relaxed">
+                4-hour intensive weekend practical labs designed specifically for working financial analysts, accountants, and outstation learners.
+              </p>
+            </div>
+
+            <div className="bg-paper border border-ink/10 rounded-2xl p-8 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-gold/15 text-navy flex items-center justify-center text-xl mb-5">
+                <i className="fa-solid fa-moon"></i>
+              </div>
+              <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">Weekday Evening</div>
+              <h3 className="font-serif text-xl font-bold text-ink mb-2">Post-College Hybrid Track</h3>
+              <p className="text-sm text-ink/65 leading-relaxed">
+                Monday to Thursday 6:00 PM – 8:00 PM sessions allowing B.Com, BBA, and economics undergraduates to upskill after university hours.
+              </p>
+            </div>
+
+            <div className="bg-paper border border-ink/10 rounded-2xl p-8 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-gold/15 text-navy flex items-center justify-center text-xl mb-5">
+                <i className="fa-solid fa-video"></i>
+              </div>
+              <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">LMS &amp; Mentorship</div>
+              <h3 className="font-serif text-xl font-bold text-ink mb-2">100% HD Recordings &amp; Code Reviews</h3>
+              <p className="text-sm text-ink/65 leading-relaxed">
+                Every session is recorded with starter repos on GitHub, automated grading tests, and 1-on-1 weekly mentor doubt resolution.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURES */}
-      <section id="ai-features" className="bg-ivory py-20 lg:py-28 border-t border-ink/10 border-b border-ink/10">
+      <section id="ai-features" className="bg-paper py-20 lg:py-28 border-b border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="flex items-center gap-4 mb-12">
             <span className="font-serif text-5xl text-ink/15 font-bold">05</span>
@@ -278,7 +386,7 @@ export default function AiProgrammes() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {FEATURES_AI.map((f) => (
-              <div key={f.title} className="bg-paper border border-ink/10 rounded-2xl p-6 hover:border-gold/40 transition-all">
+              <div key={f.title} className="bg-ivory border border-ink/10 rounded-2xl p-6 hover:border-gold/40 transition-all">
                 <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mb-4"><i className={`${f.icon} text-xl text-gold`}></i></div>
                 <div className="font-serif text-lg font-semibold mb-2">{f.title}</div>
                 <p className="text-sm text-ink/60 leading-relaxed">{f.body}</p>
@@ -286,7 +394,7 @@ export default function AiProgrammes() {
             ))}
           </div>
         </div>
-            </section>
+      </section>
 
       {/* AI PATHWAY CHOICE */}
       <section id="ai-pathways" className="bg-paper py-20 lg:py-28 border-t border-ink/10">
