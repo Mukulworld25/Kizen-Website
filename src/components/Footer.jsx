@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 export default function Footer({ borderTop = false }) {
   const cls = borderTop
-    ? 'bg-navy text-paper pt-16 pb-24 lg:pb-8 border-t border-paper/10'
-    : 'bg-navy text-paper pt-16 pb-24 lg:pb-8'
+    ? 'bg-navy text-paper pt-16 pb-[calc(7rem+env(safe-area-inset-bottom))] lg:pb-8 border-t border-paper/10'
+    : 'bg-navy text-paper pt-16 pb-[calc(7rem+env(safe-area-inset-bottom))] lg:pb-8'
 
   return (
     <footer id="footer" className={cls}>

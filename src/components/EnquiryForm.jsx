@@ -7,12 +7,12 @@ import { supabase } from '../utils/supabase'
 //   contact  -> Light labelled form    (Name, Phone, Email, Programme select, Message, Submit)
 //   courses  -> Compact navy-card form (Name, Phone, Programme select, Request Course Info)
 const NAVY_INPUT =
-  'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
+  'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-base sm:text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
 const LIGHT_INPUT =
-  'w-full bg-ivory border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink focus:outline-none focus:border-navy'
+  'w-full bg-ivory border border-ink/15 rounded-lg px-4 py-3 text-base sm:text-sm text-ink focus:outline-none focus:border-navy'
 // High-contrast input for courses variant (light background)
 const COURSES_INPUT =
-  'w-full bg-white border border-ink/30 rounded-lg px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20'
+  'w-full bg-white border border-ink/30 rounded-lg px-4 py-2.5 text-base sm:text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:border-navy focus:ring-2 focus:ring-navy/20'
 const LABEL = 'text-xs font-semibold text-ink/60 uppercase tracking-wide mb-2 block'
 // Label for navy-card forms (home, acca, courses)
 const NAVY_LABEL = 'text-[11px] font-bold text-ink uppercase tracking-wider block mb-1.5'
@@ -189,6 +189,7 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="text"
             name="name"
             required
+            autoComplete="name"
             value={form.name}
             onChange={update}
             placeholder="Your full name"
@@ -201,6 +202,8 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="tel"
             name="phone"
             required
+            inputMode="tel"
+            autoComplete="tel"
             value={form.phone}
             onChange={update}
             placeholder="+91 76969 63377"
@@ -213,6 +216,7 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="email"
             name="email"
             required
+            autoComplete="email"
             value={form.email}
             onChange={update}
             placeholder="you@example.com"
@@ -266,6 +270,7 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="text"
             name="name"
             required
+            autoComplete="name"
             value={form.name}
             onChange={update}
             placeholder="Your full name"
@@ -278,6 +283,8 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="tel"
             name="phone"
             required
+            inputMode="tel"
+            autoComplete="tel"
             value={form.phone}
             onChange={update}
             placeholder="+91 XXXXX XXXXX"
@@ -322,6 +329,7 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="text"
             name="name"
             required
+            autoComplete="name"
             value={form.name}
             onChange={update}
             placeholder="Your full name"
@@ -334,6 +342,8 @@ export default function EnquiryForm({ variant = 'home' }) {
             type="tel"
             name="phone"
             required
+            inputMode="tel"
+            autoComplete="tel"
             value={form.phone}
             onChange={update}
             placeholder="+91 XXXXX XXXXX"
@@ -374,6 +384,7 @@ export default function EnquiryForm({ variant = 'home' }) {
           type="text"
           name="name"
           required
+          autoComplete="name"
           value={form.name}
           onChange={update}
           placeholder="Student or Parent name"
@@ -386,6 +397,8 @@ export default function EnquiryForm({ variant = 'home' }) {
           type="tel"
           name="phone"
           required
+          inputMode="tel"
+          autoComplete="tel"
           value={form.phone}
           onChange={update}
           placeholder="+91 XXXXX XXXXX"

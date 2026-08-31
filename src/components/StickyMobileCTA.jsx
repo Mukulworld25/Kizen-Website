@@ -12,10 +12,10 @@ export default function StickyMobileCTA() {
   const ctaShortText = getCtaShortText(pathname)
 
   return (
-    <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-navy border-t border-paper/10 px-3 py-2.5 flex items-center gap-2">
+    <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-navy border-t border-paper/10 px-3 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))] flex items-center gap-2">
       <a
         href="tel:+917696963377"
-        className="flex-1 inline-flex items-center justify-center gap-1.5 border border-paper/25 text-paper text-[13px] font-semibold py-3 rounded-full hover:border-paper transition"
+        className="flex-1 inline-flex items-center justify-center gap-1.5 border border-paper/25 text-paper text-[13px] font-semibold min-h-[44px] rounded-full hover:border-paper active:scale-95 transition-transform"
       >
         <i className="fa-solid fa-phone text-gold"></i> Call
       </a>
@@ -24,13 +24,13 @@ export default function StickyMobileCTA() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Kizen Education on WhatsApp"
-        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#25D366] text-white text-[13px] font-semibold py-3 rounded-full hover:brightness-105 transition"
+        className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#25D366] text-white text-[13px] font-semibold min-h-[44px] rounded-full hover:brightness-105 active:scale-95 transition-transform"
       >
         <i className="fa-brands fa-whatsapp text-base"></i> WhatsApp
       </a>
       <a
         href={ctaHref}
-        className="flex-[1.9] inline-flex items-center justify-center gap-1.5 bg-gold text-navy text-[11px] leading-tight text-center font-semibold px-2 py-3 rounded-full hover:bg-paper transition"
+        className="flex-[1.9] inline-flex items-center justify-center gap-1.5 bg-gold text-navy text-[11px] leading-tight text-center font-semibold px-2 min-h-[44px] rounded-full hover:bg-paper active:scale-95 transition-transform"
       >
         {ctaShortText}
       </a>

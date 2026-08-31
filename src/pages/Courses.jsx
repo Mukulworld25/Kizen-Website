@@ -210,16 +210,16 @@ export default function Courses() {
       </section>
 
       {/* ============ LEVEL FILTER TABS ============ */}
-      <section id="level-filter" aria-label="Filter programmes by level" className="sticky top-20 z-30 bg-ivory/95 backdrop-blur border-b border-ink/10 py-4">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <div role="tablist" className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+      <section id="level-filter" aria-label="Filter programmes by level" className="sticky top-16 sm:top-20 z-30 bg-ivory/95 backdrop-blur border-b border-ink/10 py-3 sm:py-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+          <div role="tablist" className="flex items-center sm:justify-center gap-2 sm:gap-3 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap pb-1 sm:pb-0">
             {TABS.map((t) => (
               <button
                 key={t.key}
                 role="tab"
                 aria-selected={filter === t.key}
                 onClick={() => setFilter(t.key)}
-                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-[13px] font-semibold border transition ${
+                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-[13px] font-semibold border transition shrink-0 whitespace-nowrap ${
                   filter === t.key
                     ? 'bg-navy text-paper border-gold/50 shadow-sm'
                     : 'bg-paper text-ink/70 border-ink/10 hover:border-navy/40 hover:text-ink'

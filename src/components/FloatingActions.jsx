@@ -6,7 +6,7 @@ import EnquiryForm from './EnquiryForm.jsx'
 const WHATSAPP_NUMBER = '917696963377'
 
 const PANEL_INPUT =
-  'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
+  'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-base sm:text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
 const PANEL_LABEL =
   'text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5'
 
@@ -82,6 +82,7 @@ function CallbackForm() {
           type="text"
           name="name"
           required
+          autoComplete="name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           placeholder="Student or Parent name"
@@ -94,6 +95,8 @@ function CallbackForm() {
           type="tel"
           name="phone"
           required
+          inputMode="tel"
+          autoComplete="tel"
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
           placeholder="+91 XXXXX XXXXX"
@@ -126,7 +129,7 @@ function ActionPanel({ mode, onClose }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.97 }}
         transition={{ duration: 0.28, ease: 'easeOut' }}
-        className="relative w-full max-w-md bg-navy text-paper rounded-t-3xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl border border-gold/25 max-h-[88vh] overflow-y-auto"
+        className="relative w-full max-w-md bg-navy text-paper rounded-t-3xl sm:rounded-3xl p-6 sm:p-8 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:pb-8 shadow-2xl border border-gold/25 max-h-[90dvh] overflow-y-auto"
       >
         <button
           onClick={onClose}

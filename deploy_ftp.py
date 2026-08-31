@@ -3,9 +3,9 @@ import sys
 import ftplib
 import time
 
-FTP_HOST = os.environ.get('FTP_HOST', '[FTP_HOST]')
-FTP_USER = os.environ.get('FTP_USER', '[FTP_USERNAME]')
-FTP_PASS = os.environ.get('FTP_PASS', '[FTP_PASSWORD]')
+FTP_HOST = os.environ.get('FTP_HOST', '217.21.87.65')
+FTP_USER = os.environ.get('FTP_USER', 'u415724291')
+FTP_PASS = os.environ.get('FTP_PASS', 'KizenAdmin@2026##')
 FTP_PORT = int(os.environ.get('FTP_PORT', '21'))
 
 # Find dist directory
@@ -17,7 +17,7 @@ elif os.path.exists(os.path.join(script_dir, 'kizen-react', 'dist')):
 else:
     LOCAL_DIST = r'd:\KIZEN website\kizen-react\dist'
 
-REMOTE_ROOT = 'public_html'
+REMOTE_ROOT = 'domains/kizeneducation.com/public_html'
 
 def deploy():
     print(f"Connecting to FTP server {FTP_HOST}:{FTP_PORT} as {FTP_USER}...")
@@ -41,19 +41,21 @@ def deploy():
             sys.exit(1)
 
     print("Current remote directory:", ftp.pwd())
+    remote_base = ftp.pwd()
 
-    # Navigate to public_html
+    # Navigate to public_html if it exists inside current dir
     try:
         ftp.cwd(REMOTE_ROOT)
-        print(f"Changed to remote directory: {ftp.pwd()}")
+        remote_base = ftp.pwd()
+        print(f"Changed to remote directory: {remote_base}")
     except Exception:
-        print(f"Note: Could not cwd to {REMOTE_ROOT}, continuing in root {ftp.pwd()}")
+        print(f"Note: Could not cwd to {REMOTE_ROOT}, continuing in root {remote_base}")
 
     def ensure_remote_dir(remote_dir_path):
         parts = [p for p in remote_dir_path.replace('\\', '/').split('/') if p]
-        curr = ''
+        curr = remote_base
         for part in parts:
-            curr = f"{curr}/{part}" if curr else part
+            curr = f"{curr}/{part}" if curr != '/' else f"/{part}"
             try:
                 ftp.mkd(curr)
             except Exception:
@@ -94,14 +96,16 @@ def deploy():
         print(f"[{idx:2d}/{len(files_to_upload)}] Uploading {rel_path_unix} ({file_size:,} B)... ", end='', flush=True)
 
         try:
+            target_dir = remote_base
             if rel_dir_unix:
-                ftp.cwd(f"/{REMOTE_ROOT}/{rel_dir_unix}")
+                target_dir = f"{remote_base}/{rel_dir_unix}" if remote_base != '/' else f"/{rel_dir_unix}"
+                ftp.cwd(target_dir)
 
             with open(local_path, 'rb') as fp:
                 ftp.storbinary(f'STOR {filename}', fp, blocksize=65536)
 
             try:
-                ftp.cwd(f"/{REMOTE_ROOT}")
+                ftp.cwd(remote_base)
             except Exception:
                 pass
 

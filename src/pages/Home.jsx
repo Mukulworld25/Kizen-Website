@@ -312,7 +312,7 @@ export default function Home() {
               {/* Primary High-Converting Headline — balanced height */}
               <motion.h1
                 variants={fadeUpVariants}
-                className="font-serif font-medium text-2xl sm:text-4xl lg:text-[2.6rem] xl:text-[3rem] leading-[1.12] tracking-tight text-paper mt-3"
+                className="font-serif font-medium text-[1.75rem] leading-[1.2] min-[400px]:text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-[3rem] sm:leading-[1.12] tracking-tight text-paper mt-3"
               >
                 Launch Your Global Finance Career with <span className="italic text-gold font-normal">ACCA</span> &amp; Commerce Mastery.
               </motion.h1>
@@ -366,8 +366,8 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.25 }}
               className="lg:col-span-5 flex flex-col justify-end items-start lg:items-end mt-4 lg:mt-0"
             >
-              <div className="flex flex-wrap lg:flex-nowrap items-center gap-3 bg-navy/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-gold/30 shadow-2xl">
-                <div className="flex items-center gap-2 pr-3 border-r border-paper/15">
+              <div className="flex flex-col min-[500px]:flex-row lg:flex-nowrap items-start min-[500px]:items-center gap-4 min-[500px]:gap-3 bg-navy/90 backdrop-blur-md px-5 min-[500px]:px-4 py-4 min-[500px]:py-3 rounded-3xl min-[500px]:rounded-2xl border border-gold/30 shadow-2xl w-full lg:w-auto">
+                <div className="flex items-center gap-3 min-[500px]:gap-2 w-full min-[500px]:w-auto min-[500px]:pr-3 border-b min-[500px]:border-b-0 min-[500px]:border-r border-paper/15 pb-3 min-[500px]:pb-0">
                   <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
                     <i className="fa-solid fa-star"></i>
                   </span>
@@ -377,7 +377,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 pr-3 border-r border-paper/15">
+                <div className="flex items-center gap-3 min-[500px]:gap-2 w-full min-[500px]:w-auto min-[500px]:pr-3 border-b min-[500px]:border-b-0 min-[500px]:border-r border-paper/15 pb-3 min-[500px]:pb-0">
                   <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
                     <i className="fa-solid fa-arrow-trend-up"></i>
                   </span>
@@ -387,7 +387,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3 min-[500px]:gap-2">
                   <span className="w-8 h-8 rounded-lg bg-gold/15 text-gold flex items-center justify-center text-sm shrink-0">
                     <i className="fa-solid fa-earth-americas"></i>
                   </span>

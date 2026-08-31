@@ -197,8 +197,12 @@ export default function Resources() {
               }
               if (b.type === 'table') {
                 return (
-                  <div key={bi} className="overflow-x-auto rounded-xl border border-ink/10 mb-6 shadow-sm">
-                    <table className="w-full text-sm min-w-[560px]">
+                  <div key={bi} className="mb-6">
+                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-ink/40 font-bold mb-2 sm:hidden" aria-hidden="true">
+                      <i className="fa-solid fa-arrows-left-right"></i> Swipe table to view
+                    </div>
+                    <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-xl border border-ink/10 shadow-sm">
+                      <table className="w-full text-sm min-w-[560px]">
                       <thead>
                         <tr className="bg-navy text-paper text-left">
                           {b.head.map((h) => (
@@ -217,6 +221,7 @@ export default function Resources() {
                       </tbody>
                     </table>
                   </div>
+                </div>
                 )
               }
               return null

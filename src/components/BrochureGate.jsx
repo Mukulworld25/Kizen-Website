@@ -14,7 +14,7 @@ const WHATSAPP_NUMBER = '917696963377'
 const BROCHURE_PDF_PATH = './brochures/acca-brochure.pdf'
 
 const INPUT =
-  'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
+  'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-base sm:text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
 const LABEL = 'text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5'
 
 export default function BrochureGate() {
@@ -106,15 +106,15 @@ export default function BrochureGate() {
           <div className="font-serif text-lg font-semibold text-paper">Where should we send it?</div>
           <div>
             <label className={LABEL}>Full Name *</label>
-            <input type="text" name="name" required value={form.name} onChange={update} placeholder="Student or Parent name" className={INPUT} />
+            <input type="text" name="name" required autoComplete="name" value={form.name} onChange={update} placeholder="Student or Parent name" className={INPUT} />
           </div>
           <div>
             <label className={LABEL}>Phone Number *</label>
-            <input type="tel" name="phone" required value={form.phone} onChange={update} placeholder="+91 XXXXX XXXXX" className={INPUT} />
+            <input type="tel" name="phone" required inputMode="tel" autoComplete="tel" value={form.phone} onChange={update} placeholder="+91 XXXXX XXXXX" className={INPUT} />
           </div>
           <div>
             <label className={LABEL}>Email Address *</label>
-            <input type="email" name="email" required value={form.email} onChange={update} placeholder="you@example.com" className={INPUT} />
+            <input type="email" name="email" required autoComplete="email" value={form.email} onChange={update} placeholder="you@example.com" className={INPUT} />
           </div>
           <button
             type="submit"

@@ -196,12 +196,10 @@ export default function Contact() {
               Get Directions <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
             </a>
           </div>
-          <div className="rounded-2xl overflow-hidden border border-ink/10 h-[420px]">
+          <div className="rounded-2xl overflow-hidden border border-ink/10 h-[280px] sm:h-[420px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.7415999999997!2d76.77894!3d30.72266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed0be6e6e6e6%3A0x123456789abcdef!2sSCO+193-195%2C+Sector+34-A%2C+Chandigarh!5e0!3m2!1sen!2sin!4v1"
-              width="100%"
-              height="100%"
-              style={{ border: 0, minHeight: '420px' }}
+              className="w-full h-full min-h-[280px] sm:min-h-[420px] border-0"
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
