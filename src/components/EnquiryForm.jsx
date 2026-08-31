@@ -82,36 +82,82 @@ export default function EnquiryForm({ variant = 'home' }) {
       console.warn('[EnquiryForm] LocalStorage write failed:', localErr)
     }
 
-    // 2. Best-effort Supabase CRM insert (silent fail on visitor frontend, logs error to console)
+    // Prepare standardized lead payload for CRM destinations
+    const leadPayload = {
+      name: form.name?.trim() || '',
+      phone: form.phone?.trim() || '',
+      email: form.email?.trim() || null,
+      programme: programmeInterest,
+      source: 'website',
+      timestamp: new Date().toISOString(),
+    }
+
+    // 2. Best-effort parallel CRM dispatch (Supabase + Google Apps Script Webhook)
+    // Both destinations execute independently — failure or timeout in one never affects the other.
+    const crmTasks = []
+
+    // 2a. Supabase CRM destination
     if (supabase) {
-      try {
-        const insertPromise = supabase.from('leads').insert([
-          {
-            name: form.name?.trim() || '',
-            phone: form.phone?.trim() || '',
-            email: form.email?.trim() || null,
-            programme: programmeInterest,
-            source: 'website',
-          },
-        ])
-
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Supabase request timed out after 4s')), 4000)
-        )
-
-        const result = await Promise.race([insertPromise, timeoutPromise])
-
-        if (result && result.error) {
-          console.error('[EnquiryForm] Supabase insert error:', result.error)
-        } else {
-          console.log('[EnquiryForm] Successfully inserted lead into Supabase:', result?.data || 'OK')
+      const supabaseTask = (async () => {
+        try {
+          const insertPromise = supabase.from('leads').insert([
+            {
+              name: leadPayload.name,
+              phone: leadPayload.phone,
+              email: leadPayload.email,
+              programme: leadPayload.programme,
+              source: leadPayload.source,
+            },
+          ])
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Supabase request timed out after 4s')), 4000)
+          )
+          const result = await Promise.race([insertPromise, timeoutPromise])
+          if (result && result.error) {
+            console.error('[EnquiryForm] Supabase insert error:', result.error)
+          } else {
+            console.log('[EnquiryForm] Successfully inserted lead into Supabase:', result?.data || 'OK')
+          }
+        } catch (err) {
+          console.error('[EnquiryForm] Failed to submit lead to Supabase (silent fallback active):', err)
         }
-      } catch (err) {
-        console.error('[EnquiryForm] Failed to submit lead to Supabase (silent fallback active):', err)
-      }
+      })()
+      crmTasks.push(supabaseTask)
     } else {
       console.warn('[EnquiryForm] Supabase client not initialized (missing environment variables)')
     }
+
+    // 2b. Google Apps Script Webhook destination
+    const googleSheetsWebhookUrl =
+      import.meta.env.VITE_GOOGLE_SHEETS_WEBHOOK_URL ||
+      'https://script.google.com/macros/s/[PASTE_SHEETS_WEBHOOK_URL]/exec'
+
+    if (googleSheetsWebhookUrl && !googleSheetsWebhookUrl.includes('[PASTE_SHEETS_WEBHOOK_URL]')) {
+      const sheetsTask = (async () => {
+        try {
+          const controller = new AbortController()
+          const timeoutId = setTimeout(() => controller.abort(), 4000)
+
+          await fetch(googleSheetsWebhookUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Google Apps Script redirects require no-cors mode in browser
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(leadPayload),
+            signal: controller.signal,
+          })
+          clearTimeout(timeoutId)
+          console.log('[EnquiryForm] Successfully dispatched lead to Google Apps Script webhook')
+        } catch (err) {
+          console.error('[EnquiryForm] Failed to submit lead to Google Sheets (silent fallback active):', err)
+        }
+      })()
+      crmTasks.push(sheetsTask)
+    }
+
+    // Await CRM tasks with complete isolation (never throws to user)
+    await Promise.allSettled(crmTasks)
 
     // 3. Always show Thank You confirmation regardless of CRM status
     setSubmitting(false)
