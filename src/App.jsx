@@ -10,9 +10,14 @@ import Courses from './pages/Courses.jsx'
 import Fintech from './pages/Fintech.jsx'
 import Ifrs from './pages/Ifrs.jsx'
 import AiProgrammes from './pages/AiProgrammes.jsx'
+import CorporateTraining from './pages/CorporateTraining.jsx'
+import InstitutionSchools from './pages/InstitutionSchools.jsx'
+import InstitutionColleges from './pages/InstitutionColleges.jsx'
+import InstitutionInstitutes from './pages/InstitutionInstitutes.jsx'
 import Resources from './pages/Resources.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
+import WallOfFame from './pages/WallOfFame.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function FooterShell() {
@@ -33,11 +38,16 @@ export default function App() {
             <Route path="/acca" element={<Acca />} />
             <Route path="/fintech" element={<Fintech />} />
             <Route path="/ifrs" element={<Ifrs />} />
+            <Route path="/corporate-training" element={<CorporateTraining />} />
+            <Route path="/institutions/schools" element={<InstitutionSchools />} />
+            <Route path="/institutions/colleges" element={<InstitutionColleges />} />
+            <Route path="/institutions/institutes" element={<InstitutionInstitutes />} />
             <Route path="/ai-programmes" element={<AiProgrammes />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/wall-of-fame" element={<WallOfFame />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

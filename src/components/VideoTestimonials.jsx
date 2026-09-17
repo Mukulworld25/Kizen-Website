@@ -1,25 +1,33 @@
-import Eyebrow from './Eyebrow.jsx'
+import { Link } from 'react-router-dom'
 
 // Shared video testimonials grid — used on Home (/reviews) and ACCA page.
 // Videos live in /public/videos/ and are real institute assets.
+//
+// NOTE: The section heading/eyebrow above the cards was REMOVED at client
+// request (default choice was "remove entirely"). The previous props were
+// eyebrow="Trusted by Students & Parents" / "What Kizen Students Say" (ACCA)
+// and heading="Hear from the Kizen community." / "Real students, real
+// outcomes." (ACCA). To restore, re-add the header block — props are ignored
+// by this component now but still accepted at call sites.
 export const VIDEO_TESTIMONIALS = [
   { src: './videos/new-reel-kizen.mp4', label: 'Kizen Education Overview', poster: './images/poster-reel.webp' },
   { src: './videos/testimonial-2.mp4', label: 'Student Testimonial 2', poster: './images/poster-testimonial-2.webp' },
   { src: './videos/testimonial-3.mp4', label: 'Student Testimonial 3', poster: './images/poster-testimonial-3.webp' },
 ]
 
-export default function VideoTestimonials({ id = 'reviews', eyebrow = 'Trusted by Students & Parents', heading = 'Hear from the Kizen community.' }) {
+// Real social URLs — already in use in Footer.jsx (not placeholders)
+const YOUTUBE_URL = 'https://youtube.com/@kizeneducation'
+const INSTAGRAM_URL = 'https://instagram.com/kizeneducation'
+
+const SOCIAL_BUTTON_CLS =
+  'w-11 h-11 rounded-full bg-ivory border border-ink/10 flex items-center justify-center text-ink/70 hover:text-navy hover:border-gold hover:bg-gold/10 transition-all'
+
+export default function VideoTestimonials({ id = 'reviews' }) {
   return (
     <section id={id} className="bg-paper py-20 lg:py-28 border-b border-ink/10">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-          <div>
-            <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink mt-2">{heading}</h2>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
+        {/* Enlarged testimonial cards (was: gap-6 with p-4 label bar) */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
           {VIDEO_TESTIMONIALS.map((v) => (
             <div
               key={v.src}
@@ -35,11 +43,43 @@ export default function VideoTestimonials({ id = 'reviews', eyebrow = 'Trusted b
                 <source src={v.src} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              <div className="p-4">
-                <p className="text-sm font-semibold text-ink/80">{v.label}</p>
+              <div className="p-6 lg:p-7">
+                <p className="text-base lg:text-lg font-semibold text-ink/85">{v.label}</p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* See-more strip: social links (real URLs) + Wall of Fame page */}
+        <div className="mt-12 lg:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <span className="text-sm text-ink/55">More student stories on</span>
+          <div className="flex items-center gap-3">
+            <a
+              href={YOUTUBE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Kizen Education on YouTube"
+              className={SOCIAL_BUTTON_CLS}
+            >
+              <i className="fa-brands fa-youtube text-lg"></i>
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Kizen Education on Instagram"
+              className={SOCIAL_BUTTON_CLS}
+            >
+              <i className="fa-brands fa-instagram text-lg"></i>
+            </a>
+          </div>
+          <Link
+            to="/wall-of-fame"
+            className="inline-flex items-center gap-2.5 bg-navy text-paper text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-ink transition shadow-sm"
+          >
+            <i className="fa-solid fa-award text-gold text-xs"></i>
+            View our Wall of Fame
+          </Link>
         </div>
       </div>
     </section>

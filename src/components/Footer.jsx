@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import AppAccessBlock from './AppAccessBlock.jsx'
 
 export default function Footer({ borderTop = false }) {
   const cls = borderTop
@@ -60,6 +61,9 @@ export default function Footer({ borderTop = false }) {
             </ul>
           </div>
         </div>
+
+        {/* App Access — compact block (Google Play live · App Store placeholder) */}
+        <AppAccessBlock compact />
 
         <div className="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-paper/50">
           <div>© {new Date().getFullYear()} Kizen Education. All rights reserved.</div>

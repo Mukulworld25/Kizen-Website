@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
@@ -31,9 +31,49 @@
   <!-- 4. AI in Finance -->
   <url>
     <loc>https://kizeneducation.com/ai-programmes</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+  </url>
+
+  <!-- 4b. AI for Corporate Training -->
+  <url>
+    <loc>https://kizeneducation.com/corporate-training</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 4c. Institutions: Schools -->
+  <url>
+    <loc>https://kizeneducation.com/institutions/schools</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 4d. Institutions: Colleges -->
+  <url>
+    <loc>https://kizeneducation.com/institutions/colleges</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 4e. Institutions: Institutes -->
+  <url>
+    <loc>https://kizeneducation.com/institutions/institutes</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 4f. Wall of Fame -->
+  <url>
+    <loc>https://kizeneducation.com/wall-of-fame</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
   </url>
 
   <!-- 5. FinTech Certification -->

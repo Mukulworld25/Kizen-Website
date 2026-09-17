@@ -150,7 +150,6 @@ const VIDEO_TESTIMONIALS = [
 const HERO_SLIDES = [
   './images/slide-2.webp',
   './images/slide-3.webp',
-  './images/slide-4.webp',
   './images/slide-5.webp',
   './images/slide-6.webp',
   './images/slide-7.webp',
@@ -528,6 +527,40 @@ export default function Home() {
                   </Link>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ CORPORATE TRAINING TEASER ============ */}
+      <section id="corporate-training-teaser" className="bg-paper py-14 lg:py-16 border-b border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="bg-navy text-paper rounded-3xl p-8 sm:p-10 lg:p-12 relative overflow-hidden border border-gold/20 shadow-xl">
+            {/* Ambient gold glow */}
+            <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-gold/10 blur-2xl pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-10">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 rounded-full px-3 py-0.5 text-[11px] font-bold text-gold tracking-widest uppercase mb-3">
+                  <i className="fa-solid fa-briefcase text-[10px]"></i> Enterprise &amp; Teams
+                </div>
+                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium leading-tight text-paper">
+                  Upskill Your Finance &amp; Analytics Teams with Corporate Training
+                </h2>
+                <p className="text-paper/75 text-sm sm:text-base leading-relaxed mt-2.5">
+                  Custom executive programmes in IFRS, FinTech, and Applied AI in Finance — delivered on-premise or live-cohort for leading enterprises.
+                </p>
+              </div>
+
+              <div className="shrink-0 flex items-center">
+                <Link
+                  to="/corporate-training"
+                  className="inline-flex items-center gap-2.5 bg-gold text-navy font-bold text-sm px-6 sm:px-7 py-3.5 rounded-full hover:bg-paper hover:text-ink transition-all shadow-md shadow-gold/20 group"
+                >
+                  <span>Explore Corporate Training</span>
+                  <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

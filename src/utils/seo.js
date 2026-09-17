@@ -108,6 +108,13 @@ export function getCtaText(pathname) {
   if (pathname === '/fintech' || pathname === '/ifrs' || pathname === '/ai-programmes') {
     return 'Request Programme Info'
   }
+  // Institutions pages
+  if (pathname.startsWith('/institutions/')) {
+    return 'Partner With Kizen'
+  }
+  if (pathname === '/corporate-training') {
+    return 'Request Corporate Training Info'
+  }
   // Default: inclusive for all pathways (school, UG, PG, general)
   return 'Talk to a Counsellor'
 }
@@ -118,6 +125,12 @@ export function getCtaShortText(pathname) {
   }
   if (pathname === '/fintech' || pathname === '/ifrs' || pathname === '/ai-programmes') {
     return 'Programme Info'
+  }
+  if (pathname.startsWith('/institutions/')) {
+    return 'Partner With Us'
+  }
+  if (pathname === '/corporate-training') {
+    return 'Training Info'
   }
   return 'Free Counselling'
 }

@@ -100,7 +100,7 @@ export default function Contact() {
       <section id="contact-hero" className="bg-paper py-16 lg:py-20">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <Eyebrow>Get in Touch</Eyebrow>
-          <h1 className="font-serif text-4xl lg:text-5xl font-medium leading-[1.08] tracking-tight max-w-3xl">Let's map out the next step on your pathway.</h1>
+          <h1 className="font-serif text-4xl lg:text-5xl font-medium leading-[1.08] tracking-tight max-w-3xl">Plan the next step on your pathway.</h1>
           <p className="text-ink/60 text-[15px] leading-relaxed mt-6 max-w-2xl">Whether you're exploring Class 11 options, planning ACCA papers, or somewhere in between, our academic counsellors respond within 24 hours with a personalised pathway — batch timings, fee structure, and the right entry point for your background. No obligation, just clarity.</p>
         </div>
       </section>

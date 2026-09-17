@@ -238,17 +238,29 @@ export default function FloatingActions() {
             ))}
         </AnimatePresence>
 
-        {/* Main FAB */}
+        {/* Main FAB — enlarged 25% with Kizen brand lotus emblem */}
         <motion.button
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-label={open ? 'Close quick actions' : 'Open quick actions'}
           whileTap={{ scale: 0.92 }}
-          className="w-14 h-14 rounded-full bg-navy text-paper shadow-xl border-2 border-gold/50 flex items-center justify-center relative"
+          className="w-[70px] h-[70px] rounded-full bg-navy text-paper shadow-2xl border-2 border-gold/60 hover:border-gold flex items-center justify-center relative group transition-all"
         >
-          <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-comment-dots'} text-xl transition-transform`}></i>
+          {!open ? (
+            <span
+              aria-hidden="true"
+              className="w-12 h-12 rounded-full shrink-0 shadow-sm bg-no-repeat transition-transform group-hover:scale-105 pointer-events-none"
+              style={{
+                backgroundImage: "url('./kizen-logo.jpg')",
+                backgroundSize: '329% auto',
+                backgroundPosition: '3.6% 53.7%',
+              }}
+            />
+          ) : (
+            <i className="fa-solid fa-xmark text-2xl text-gold transition-transform"></i>
+          )}
           {!open && (
-            <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-gold animate-pulse" />
+            <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold animate-pulse shadow-md border-2 border-navy" />
           )}
         </motion.button>
       </div>

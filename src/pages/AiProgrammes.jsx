@@ -13,7 +13,7 @@ const WHY_KIZEN_AI = [
 const AI_PATHWAYS = [
   {
     title: 'AI Job Ready Programme',
-    desc: 'Intensive 16-week track into machine learning for trading, fraud detection, credit scoring and robo-advisory — for graduates and working professionals.',
+    desc: 'Practical 8–12 week track into machine learning for trading, fraud detection, credit scoring and robo-advisory — for graduates and working professionals.',
     icon: 'fa-solid fa-rocket',
     brochure: '/brochures/ai-jobready-brochure.pdf',
     label: 'Full Programme',

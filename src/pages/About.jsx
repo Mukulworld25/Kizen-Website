@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import Eyebrow from '../components/Eyebrow.jsx'
+import AppAccessBlock from '../components/AppAccessBlock.jsx'
+import GoogleReviews from '../components/GoogleReviews.jsx'
 import { setPageMeta } from '../utils/seo.js'
 
 const STATS = [
@@ -167,6 +169,54 @@ export default function About() {
         </div>
       </section>
 
+      {/* ============ YOUTUBE SHOWCASE — navy ============ */}
+      <section id="youtube" className="bg-navy text-paper py-20 lg:py-28 relative overflow-hidden">
+        <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gold/5"></div>
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Embedded real Kizen reel (local asset — no load cost until played) */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl overflow-hidden border border-paper/20 shadow-2xl bg-black/40">
+              <video
+                className="w-full aspect-video object-cover"
+                controls
+                preload="none"
+                poster="./images/poster-reel.webp"
+                playsInline
+              >
+                <source src="./videos/new-reel-kizen.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-4">Kizen on YouTube</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium leading-tight text-paper mb-4">
+              Watch our teaching videos
+            </h2>
+            <p className="text-paper/70 text-base lg:text-lg leading-relaxed mb-6">
+              Real classrooms, student testimonials and exam strategy — see how the Kizen pathway
+              works before you visit.
+            </p>
+            <ul className="space-y-3 text-sm text-paper/65 mb-8">
+              <li className="flex gap-3"><i className="fa-solid fa-circle-check text-gold mt-1"></i> Classroom walkthroughs &amp; teaching demos</li>
+              <li className="flex gap-3"><i className="fa-solid fa-circle-check text-gold mt-1"></i> Student &amp; parent testimonials</li>
+              <li className="flex gap-3"><i className="fa-solid fa-circle-check text-gold mt-1"></i> Board &amp; ACCA exam guidance sessions</li>
+            </ul>
+            <a
+              href="https://youtube.com/@kizeneducation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-gold via-amber-400 to-gold text-navy text-sm sm:text-base font-bold px-7 py-3.5 rounded-full hover:shadow-lg hover:shadow-gold/30 active:scale-95 transition-all"
+            >
+              <i className="fa-brands fa-youtube text-xl"></i>
+              Watch more on YouTube
+            </a>
+            <p className="text-xs text-paper/50 mt-4">@kizeneducation on YouTube</p>
+          </div>
+        </div>
+      </section>
+
       {/* ============ LEADERSHIP & VISION (Merged from Old Website) ============ */}
       <section id="leadership" className="bg-paper py-20 lg:py-28 border-b border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
@@ -324,6 +374,14 @@ export default function About() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ============ GOOGLE REVIEWS ============ */}
+      <GoogleReviews id="reviews" />
+
+      {/* ============ APP ACCESS — navy ============ */}
+      <section id="app-access" className="bg-navy text-paper py-20 lg:py-28">
+        <AppAccessBlock />
       </section>
 
       {/* ============ VISIT CTA — paper ============ */}
