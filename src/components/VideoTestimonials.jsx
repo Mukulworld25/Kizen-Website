@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom'
 // outcomes." (ACCA). To restore, re-add the header block — props are ignored
 // by this component now but still accepted at call sites.
 export const VIDEO_TESTIMONIALS = [
-  { src: './videos/new-reel-kizen.mp4', label: 'Kizen Education Overview', poster: './images/poster-reel.webp' },
-  { src: './videos/testimonial-2.mp4', label: 'Student Testimonial 2', poster: './images/poster-testimonial-2.webp' },
-  { src: './videos/testimonial-3.mp4', label: 'Student Testimonial 3', poster: './images/poster-testimonial-3.webp' },
+  { src: '/videos/testimonial-7.mp4', label: 'Harman — ACCA & Commerce Student Story', poster: '/images/poster-testimonial-7.webp' },
+  { src: '/videos/testimonial-6.mp4', label: 'Student Review — Campus Learning Experience', poster: '/images/poster-testimonial-6.webp' },
+  { src: '/videos/testimonial-1.mp4', label: 'Mannat — Classroom & Concept Clarity', poster: '/images/poster-testimonial-1.webp' },
+  { src: '/videos/new-reel-kizen.mp4', label: 'Kizen Campus Walkthrough & Overview', poster: '/images/poster-reel.webp' },
 ]
 
 // Real social URLs — already in use in Footer.jsx (not placeholders)
@@ -26,8 +27,8 @@ export default function VideoTestimonials({ id = 'reviews' }) {
   return (
     <section id={id} className="bg-paper py-20 lg:py-28 border-b border-ink/10">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-        {/* Enlarged testimonial cards (was: gap-6 with p-4 label bar) */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
+        {/* Responsive 4-card grid on desktop */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-7">
           {VIDEO_TESTIMONIALS.map((v) => (
             <div
               key={v.src}

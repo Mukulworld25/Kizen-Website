@@ -282,6 +282,81 @@ export default function About() {
             </p>
           </div>
 
+          {/* Visual Campus Showcase Bento */}
+          <div className="grid md:grid-cols-12 gap-6 lg:gap-8 mb-16">
+            {/* Card 1: Reception & Academic Roadmaps (7 cols) */}
+            <div className="md:col-span-7 group relative h-[320px] sm:h-[380px] lg:h-[420px] rounded-3xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300 bg-navy/5">
+              <img
+                src="/images/campus-reception.webp"
+                alt="Kizen Education Sector 34-A Reception and Academic Roadmaps"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+              <div className="absolute top-4 left-4 bg-navy/85 backdrop-blur-sm text-gold text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <i className="fa-solid fa-location-dot mr-1.5"></i> Sector 34-A, Chandigarh
+              </div>
+              <div className="absolute bottom-5 left-6 right-6 text-white">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold mb-1.5 drop-shadow-sm">Reception &amp; Academic Guidance Hub</h3>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed">Structured pathways from Class 11 Commerce to ACCA and FinTech under one roof.</p>
+              </div>
+            </div>
+
+            {/* Card 2: Live Interactive Classroom (5 cols) */}
+            <div className="md:col-span-5 group relative h-[320px] sm:h-[380px] lg:h-[420px] rounded-3xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300 bg-navy/5">
+              <img
+                src="/images/campus-classroom-lecture.webp"
+                alt="Live Interactive Commerce Class at Kizen Education"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+              <div className="absolute top-4 left-4 bg-navy/85 backdrop-blur-sm text-gold text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <i className="fa-solid fa-chalkboard-user mr-1.5"></i> Interactive Classrooms
+              </div>
+              <div className="absolute bottom-5 left-6 right-6 text-white">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold mb-1.5 drop-shadow-sm">Concept-First Faculty Teaching</h3>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed">Digital projection and individual desks for active problem-solving.</p>
+              </div>
+            </div>
+
+            {/* Card 3: Quantitative & Analytics Prep (5 cols) */}
+            <div className="md:col-span-5 group relative h-[320px] sm:h-[380px] lg:h-[420px] rounded-3xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300 bg-navy/5">
+              <img
+                src="/images/campus-quantitative-class.webp"
+                alt="Quantitative Analysis and Problem Solving at Kizen"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+              <div className="absolute top-4 left-4 bg-navy/85 backdrop-blur-sm text-gold text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <i className="fa-solid fa-calculator mr-1.5"></i> Applied Problem-Solving
+              </div>
+              <div className="absolute bottom-5 left-6 right-6 text-white">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold mb-1.5 drop-shadow-sm">Financial Analysis &amp; Case Studies</h3>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed">Practical calculator and analytical drills for board and professional exams.</p>
+              </div>
+            </div>
+
+            {/* Card 4: Vibrant Student Community (7 cols) */}
+            <div className="md:col-span-7 group relative h-[320px] sm:h-[380px] lg:h-[420px] rounded-3xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300 bg-navy/5">
+              <img
+                src="/images/campus-community-celebration.webp"
+                alt="Student Community at Kizen Education"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+              <div className="absolute top-4 left-4 bg-navy/85 backdrop-blur-sm text-gold text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <i className="fa-solid fa-users mr-1.5"></i> Student Community
+              </div>
+              <div className="absolute bottom-5 left-6 right-6 text-white">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold mb-1.5 drop-shadow-sm">Life at Kizen Campus</h3>
+                <p className="text-xs sm:text-sm text-white/90 leading-relaxed">A collaborative, motivating environment celebrating student growth every day.</p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {INFRASTRUCTURE_FEATURES.map((feat) => (
               <div

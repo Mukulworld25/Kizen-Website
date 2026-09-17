@@ -101,17 +101,30 @@ def deploy():
                 target_dir = f"{remote_base}/{rel_dir_unix}" if remote_base != '/' else f"/{rel_dir_unix}"
                 ftp.cwd(target_dir)
 
-            with open(local_path, 'rb') as fp:
-                ftp.storbinary(f'STOR {filename}', fp, blocksize=65536)
+            skip = False
+            if filename != 'index.html' and not filename.startswith('index-'):
+                try:
+                    rem_size = ftp.size(filename)
+                    if rem_size == file_size:
+                        skip = True
+                except Exception:
+                    pass
+
+            if skip:
+                print("[SKIP: Up-to-date]")
+                success_count += 1
+                total_bytes += file_size
+            else:
+                with open(local_path, 'rb') as fp:
+                    ftp.storbinary(f'STOR {filename}', fp, blocksize=65536)
+                print("[OK]")
+                success_count += 1
+                total_bytes += file_size
 
             try:
                 ftp.cwd(remote_base)
             except Exception:
                 pass
-
-            print("[OK]")
-            success_count += 1
-            total_bytes += file_size
         except Exception as err:
             print(f"[FAILED: {err}]")
             fail_count += 1

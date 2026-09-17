@@ -76,6 +76,28 @@ export const WALL_OF_FAME_ENTRIES = [
     poster: '/images/poster-testimonial-new-3.webp',
     filename: 'Testimonial new 3.mov',
   },
+  {
+    id: 7,
+    title: 'Student Review — Reception Walkthrough',
+    tag: 'Student Story',
+    quote: '"The structured teaching and supportive faculty make studying commerce and ACCA so rewarding."',
+    student: 'Kizen Student',
+    programme: 'Commerce / ACCA',
+    src: '/videos/testimonial-6.mp4',
+    poster: '/images/poster-testimonial-6.webp',
+    filename: 'testimonial-6.mp4',
+  },
+  {
+    id: 8,
+    title: 'Harman — ACCA Pathway Testimonial',
+    tag: 'Student Story',
+    quote: '"Concept clarity is the highest priority here — mentors give personal attention across every paper."',
+    student: 'Harman',
+    programme: 'ACCA',
+    src: '/videos/testimonial-7.mp4',
+    poster: '/images/poster-testimonial-7.webp',
+    filename: 'testimonial-7.mp4',
+  },
 ]
 
 export default function WallOfFame() {
@@ -209,6 +231,83 @@ export default function WallOfFame() {
               Watch B.Com &amp; ACCA Review
               <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-paper/50"></i>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ CAMPUS CULTURE & MOMENTS OF CELEBRATION ============ */}
+      <section className="bg-ivory py-20 lg:py-24 border-t border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-3">Life at Kizen</div>
+            <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink">
+              Moments of Celebration &amp; Community
+            </h2>
+            <p className="text-ink/65 text-base mt-3">
+              Beyond examinations and syllabus milestones — celebrating student achievements, national festivals, and academic breakthroughs together at our Sector 34-A campus.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="group bg-ivory rounded-2xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300">
+              <div className="relative aspect-[4/3] overflow-hidden bg-navy/5">
+                <img
+                  src="/images/campus-community-celebration.webp"
+                  alt="Kizen Education Independence Day Celebration"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-navy/85 backdrop-blur-sm text-gold text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  Campus Community
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-serif text-lg font-bold text-ink mb-1.5">Independence Day &amp; Student Gathering</h3>
+                <p className="text-xs text-ink/65 leading-relaxed">
+                  Students and mentors gathered in the institute lobby with the tricolour, celebrating unity and national pride.
+                </p>
+              </div>
+            </div>
+
+            <div className="group bg-ivory rounded-2xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300">
+              <div className="relative aspect-[4/3] overflow-hidden bg-navy/5">
+                <img
+                  src="/images/campus-student-celebration.webp"
+                  alt="Kizen Students Milestone Celebration"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-navy/85 backdrop-blur-sm text-gold text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  Milestone Celebration
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-serif text-lg font-bold text-ink mb-1.5">Exam Success &amp; Cake Celebration</h3>
+                <p className="text-xs text-ink/65 leading-relaxed">
+                  Recognizing batch achievements and paper completions with cake-cutting and peer appreciation.
+                </p>
+              </div>
+            </div>
+
+            <div className="group bg-ivory rounded-2xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-xl transition-all duration-300">
+              <div className="relative aspect-[4/3] overflow-hidden bg-navy/5">
+                <img
+                  src="/images/campus-classroom-lecture.webp"
+                  alt="Live Interactive Commerce Classroom at Kizen"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 bg-navy/85 backdrop-blur-sm text-gold text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  Active Learning
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-serif text-lg font-bold text-ink mb-1.5">Interactive Classroom Sessions</h3>
+                <p className="text-xs text-ink/65 leading-relaxed">
+                  Live problem-solving, digital projector concept breakdowns, and dedicated mentor interaction every week.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
