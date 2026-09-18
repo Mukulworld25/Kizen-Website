@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom'
 // by this component now but still accepted at call sites.
 export const VIDEO_TESTIMONIALS = [
   { src: '/videos/testimonial-7.mp4', label: 'Harman — ACCA & Commerce Student Story', poster: '/images/poster-testimonial-7.webp' },
-  { src: '/videos/testimonial-6.mp4', label: 'Student Review — Campus Learning Experience', poster: '/images/poster-testimonial-6.webp' },
+  { src: '/videos/testimonial-new-2.mp4', label: 'Aditi — Managing the ACCA Journey', poster: '/images/poster-testimonial-new-2.webp' },
   { src: '/videos/testimonial-1.mp4', label: 'Mannat — Classroom & Concept Clarity', poster: '/images/poster-testimonial-1.webp' },
-  { src: '/videos/new-reel-kizen.mp4', label: 'Kizen Campus Walkthrough & Overview', poster: '/images/poster-reel.webp' },
+  { src: '/videos/testimonial-6.mp4', label: 'Student Review — Campus Learning Experience', poster: '/images/poster-testimonial-6.webp' },
 ]
 
 // Real social URLs — already in use in Footer.jsx (not placeholders)

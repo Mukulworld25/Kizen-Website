@@ -148,11 +148,11 @@ const VIDEO_TESTIMONIALS = [
 
 // Real Kizen campus photos — auto-cycling hero slideshow
 const HERO_SLIDES = [
-  './images/slide-2.webp',
-  './images/slide-3.webp',
-  './images/slide-5.webp',
-  './images/slide-6.webp',
-  './images/slide-7.webp',
+  '/images/campus-classroom-lecture.webp',
+  '/images/campus-reception.webp',
+  '/images/campus-quantitative-class.webp',
+  '/images/campus-student-celebration.webp',
+  '/images/campus-community-celebration.webp',
 ]
 
 // Full-bleed cinematic campus showcase with solid layered crossfades and trust capsules
@@ -584,14 +584,43 @@ export default function Home() {
               <p className="text-ink/60 text-[15px] leading-relaxed mt-5">
                 Most institutes teach one stage. We built our faculty, mentorship and study material to carry a single student across five academic milestones without ever changing address.
               </p>
-              {/* Real campus photo — desktop only below left text */}
-              <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(0,0,0,0.1)" }}
-                transition={{ duration: 0.3 }}
-                className="rounded-2xl overflow-hidden border border-ink/10 mt-8 hidden lg:block shadow-sm"
-              >
-                <img src="./images/campus-why-kizen.webp" alt="Kizen Education classrooms" className="w-full h-52 object-cover" />
-              </motion.div>
+              {/* Real campus photo showcase — desktop */}
+              <div className="grid grid-cols-1 gap-3.5 mt-8 hidden lg:block">
+                <motion.div
+                  whileHover={{ y: -3, boxShadow: "0 12px 24px rgba(0,0,0,0.1)" }}
+                  transition={{ duration: 0.3 }}
+                  className="relative rounded-2xl overflow-hidden border border-ink/10 shadow-sm group"
+                >
+                  <img
+                    src="/images/campus-classroom-lecture.webp"
+                    alt="Interactive Faculty Teaching at Kizen Sector 34-A"
+                    className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-2.5 left-3.5 text-white text-xs font-semibold drop-shadow-sm flex items-center gap-1.5">
+                    <i className="fa-solid fa-chalkboard-user text-gold text-[10px]"></i>
+                    <span>Interactive Concept Classrooms</span>
+                  </div>
+                </motion.div>
+                <motion.div
+                  whileHover={{ y: -3, boxShadow: "0 12px 24px rgba(0,0,0,0.1)" }}
+                  transition={{ duration: 0.3 }}
+                  className="relative rounded-2xl overflow-hidden border border-ink/10 shadow-sm group"
+                >
+                  <img
+                    src="/images/campus-quantitative-class.webp"
+                    alt="Applied Problem Solving and Drills at Kizen"
+                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-2.5 left-3.5 text-white text-xs font-semibold drop-shadow-sm flex items-center gap-1.5">
+                    <i className="fa-solid fa-calculator text-gold text-[10px]"></i>
+                    <span>Applied Analytical Drills</span>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
 
             <div className="lg:col-span-8">
@@ -610,14 +639,33 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
-              {/* Real campus photo — mobile/tablet below cards */}
-              <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 24px rgba(0,0,0,0.1)" }}
-                transition={{ duration: 0.3 }}
-                className="rounded-2xl overflow-hidden border border-ink/10 mt-6 lg:hidden shadow-sm"
-              >
-                <img src="./images/campus-why-kizen.webp" alt="Kizen Education classrooms" className="w-full h-48 object-cover" />
-              </motion.div>
+              {/* Real campus photo showcase — mobile/tablet */}
+              <div className="grid grid-cols-2 gap-3 mt-6 lg:hidden">
+                <div className="relative rounded-2xl overflow-hidden border border-ink/10 shadow-sm">
+                  <img
+                    src="/images/campus-classroom-lecture.webp"
+                    alt="Interactive Faculty Teaching at Kizen"
+                    className="w-full h-36 object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-2 left-2 text-white text-[11px] font-semibold drop-shadow-sm">
+                    Interactive Teaching
+                  </div>
+                </div>
+                <div className="relative rounded-2xl overflow-hidden border border-ink/10 shadow-sm">
+                  <img
+                    src="/images/campus-quantitative-class.webp"
+                    alt="Applied Problem Solving at Kizen"
+                    className="w-full h-36 object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-2 left-2 text-white text-[11px] font-semibold drop-shadow-sm">
+                    Analytical Drills
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -682,6 +730,79 @@ export default function Home() {
             )}
           </div>
         </motion.div>
+      </section>
+
+      {/* ============ REAL CAMPUS SHOWCASE STRIP ============ */}
+      <section id="campus-life" className="bg-paper py-16 lg:py-20 border-b border-ink/10">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <span className="inline-flex items-center gap-2 text-gold text-xs font-bold uppercase tracking-widest mb-3">
+                <i className="fa-solid fa-location-dot"></i> Sector 34-A, Chandigarh
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-ink">
+                Built for deep focus, mentorship &amp; community.
+              </h2>
+            </div>
+            <Link
+              to="/about#infrastructure"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold border-b-2 border-navy hover:border-gold pb-1 transition-all w-fit"
+            >
+              <span>Explore full campus infrastructure</span>
+              <i className="fa-solid fa-arrow-right text-xs"></i>
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Card 1: Reception & Academic Roadmaps */}
+            <div className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-lg transition-all duration-300">
+              <img
+                src="/images/campus-reception.webp"
+                alt="Kizen Academic Roadmaps & Guidance Reception"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-4 left-5 right-5 text-white">
+                <span className="text-gold text-[11px] font-bold uppercase tracking-wider block mb-1">Academic Guidance Hub</span>
+                <h3 className="font-serif text-lg font-bold">11th to ACCA Roadmaps</h3>
+                <p className="text-xs text-white/80 mt-1">Dedicated counselling desks for students and parents.</p>
+              </div>
+            </div>
+
+            {/* Card 2: Interactive Smart Classrooms */}
+            <div className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-lg transition-all duration-300">
+              <img
+                src="/images/campus-classroom-lecture.webp"
+                alt="Interactive Concept Teaching at Kizen"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-4 left-5 right-5 text-white">
+                <span className="text-gold text-[11px] font-bold uppercase tracking-wider block mb-1">Digital Smart Systems</span>
+                <h3 className="font-serif text-lg font-bold">Concept-First Teaching</h3>
+                <p className="text-xs text-white/80 mt-1">Projection systems and individual desks for active problem-solving.</p>
+              </div>
+            </div>
+
+            {/* Card 3: Milestone Celebrations & Community */}
+            <div className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden border border-ink/10 shadow-sm hover:shadow-lg transition-all duration-300 sm:col-span-2 lg:col-span-1">
+              <img
+                src="/images/campus-student-celebration.webp"
+                alt="Student Community & Milestone Celebrations at Kizen"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-4 left-5 right-5 text-white">
+                <span className="text-gold text-[11px] font-bold uppercase tracking-wider block mb-1">Vibrant Community</span>
+                <h3 className="font-serif text-lg font-bold">Celebrating Every Milestone</h3>
+                <p className="text-xs text-white/80 mt-1">A culture of mutual encouragement and student success.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ============ ACCA SPOTLIGHT — NAVY BAND ============ */}

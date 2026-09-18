@@ -188,12 +188,12 @@ export default function Contact() {
               <h2 className="font-serif text-3xl font-medium">SCO 193-195, Sector 34-A, Chandigarh</h2>
             </div>
             <a
-              href="https://maps.google.com/?q=SCO+193-195,+Sector+34-A,+Chandigarh,+160034"
+              href="https://local.google.com/place?placeid=ChIJ_ZdfM_LtDzkRzniBPtyDF-0&utm_medium=noren&utm_source=gbp&utm_campaign=2026"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-1 w-fit"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-navy border-b-2 border-navy pb-1 w-fit hover:border-gold hover:text-gold transition"
             >
-              Get Directions <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              Get Directions &amp; View Profile <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
             </a>
           </div>
           <div className="rounded-2xl overflow-hidden border border-ink/10 h-[280px] sm:h-[420px]">

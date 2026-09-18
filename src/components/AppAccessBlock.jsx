@@ -13,7 +13,8 @@
 // Live, real domain URL — but the APP-SPECIFIC listing URL is unconfirmed.
 // TODO(client): replace with the real Kizen app listing URL, e.g.
 // https://play.google.com/store/apps/details?id=<package.name>
-const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps'
+// Client confirmed real Play Store listing URL:
+const GOOGLE_PLAY_URL = 'https://clppenny.page.link/w8yk'
 
 export default function AppAccessBlock({ compact = false }) {
   if (compact) {
@@ -39,14 +40,14 @@ export default function AppAccessBlock({ compact = false }) {
               aria-label="Get it on Google Play"
               className="inline-flex bg-paper rounded-md px-2 py-1.5 hover:opacity-85 transition"
             >
-              <img src="./store-badges/google-play-badge.png" alt="Get it on Google Play" className="h-10 w-auto" loading="lazy" />
+              <img src="/store-badges/google-play-badge.png" alt="Get it on Google Play" className="h-10 w-auto" loading="lazy" />
             </a>
             <span
-              title="iOS app — App Store link pending confirmation"
+              title="iOS app — currently Android-only (coming soon)"
               aria-disabled="true"
               className="inline-flex opacity-50 grayscale cursor-not-allowed select-none bg-paper rounded-md px-2 py-1.5"
             >
-              <img src="./store-badges/app-store-badge.svg" alt="Download on the App Store (coming soon)" className="h-9 w-auto" loading="lazy" />
+              <img src="/store-badges/app-store-badge.svg" alt="Download on the App Store (coming soon)" className="h-9 w-auto" loading="lazy" />
             </span>
           </div>
         </div>
@@ -73,14 +74,14 @@ export default function AppAccessBlock({ compact = false }) {
             aria-label="Get it on Google Play"
             className="inline-flex bg-paper rounded-md px-2.5 py-2 hover:opacity-85 transition"
           >
-            <img src="./store-badges/google-play-badge.png" alt="Get it on Google Play" className="h-12 w-auto" loading="lazy" />
+            <img src="/store-badges/google-play-badge.png" alt="Get it on Google Play" className="h-12 w-auto" loading="lazy" />
           </a>
           <span
-            title="iOS app — App Store link pending confirmation"
+            title="iOS app — currently Android-only (coming soon)"
             aria-disabled="true"
             className="inline-flex opacity-50 grayscale cursor-not-allowed select-none bg-paper rounded-md px-2.5 py-2"
           >
-            <img src="./store-badges/app-store-badge.svg" alt="Download on the App Store (coming soon)" className="h-11 w-auto" loading="lazy" />
+            <img src="/store-badges/app-store-badge.svg" alt="Download on the App Store (coming soon)" className="h-11 w-auto" loading="lazy" />
           </span>
         </div>
       </div>
