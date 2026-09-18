@@ -312,7 +312,7 @@ export default function Fintech() {
               <div className="text-xs font-bold text-gold uppercase tracking-wider mb-1">Undergraduate Track</div>
               <h3 className="font-serif text-xl font-bold text-ink mb-2">Weekday Evening Hybrid</h3>
               <p className="text-sm text-ink/65 leading-relaxed">
-                Designed for B.Com &amp; BBA college students seeking future-ready digital payments and fintech product management skills.
+                Designed for B.Com &amp; BBA college students seeking future-ready digital payments and FinTech product management skills.
               </p>
             </div>
 

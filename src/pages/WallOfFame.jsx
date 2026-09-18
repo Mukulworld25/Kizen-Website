@@ -16,10 +16,9 @@ export const WALL_OF_FAME_ENTRIES = [
     tag: 'Student Story',
     quote: '"And I am really satisfied with the teaching and concept clarity at Kizen."',
     student: 'Mannat',
-    programme: '[pending]',
+    programme: 'Commerce Foundation',
     src: '/videos/testimonial-1.mp4',
     poster: '/images/poster-testimonial-1.webp',
-    filename: 'Testimonial 1.mov',
   },
   {
     id: 2,
@@ -30,7 +29,6 @@ export const WALL_OF_FAME_ENTRIES = [
     programme: 'ACCA',
     src: '/videos/testimonial-4.mp4',
     poster: '/images/poster-testimonial-4.webp',
-    filename: 'Testimonial 4.mov',
   },
   {
     id: 3,
@@ -38,10 +36,9 @@ export const WALL_OF_FAME_ENTRIES = [
     tag: 'Student Story',
     quote: '"Kizen Education se krrha hu — excellent classroom atmosphere and mentors."',
     student: 'Keshav',
-    programme: '[pending]',
+    programme: 'Commerce / ACCA',
     src: '/videos/testimonial-5.mp4',
     poster: '/images/poster-testimonial-5.webp',
-    filename: 'Testimonial 4(1).mov',
   },
   {
     id: 4,
@@ -49,10 +46,9 @@ export const WALL_OF_FAME_ENTRIES = [
     tag: 'Student Story',
     quote: '"Structured study sessions and hands-on faculty support at the Sector 34-A centre."',
     student: 'Ganga',
-    programme: '[pending]',
+    programme: 'ACCA Pathway',
     src: '/videos/testimonial-new.mp4',
     poster: '/images/poster-testimonial-new.webp',
-    filename: 'Testimonial new.mov',
   },
   {
     id: 5,
@@ -60,10 +56,9 @@ export const WALL_OF_FAME_ENTRIES = [
     tag: 'Student Story',
     quote: '"Personalised attention and structured roadmap for commerce and finance subjects."',
     student: 'Aditi',
-    programme: '[pending]',
+    programme: 'ACCA Student',
     src: '/videos/testimonial-new-2.mp4',
     poster: '/images/poster-testimonial-new-2.webp',
-    filename: 'Testimonial new 2.mov',
   },
   {
     id: 6,
@@ -74,7 +69,6 @@ export const WALL_OF_FAME_ENTRIES = [
     programme: 'ACCA',
     src: '/videos/testimonial-new-3.mp4',
     poster: '/images/poster-testimonial-new-3.webp',
-    filename: 'Testimonial new 3.mov',
   },
   {
     id: 7,
@@ -85,7 +79,6 @@ export const WALL_OF_FAME_ENTRIES = [
     programme: 'Commerce / ACCA',
     src: '/videos/testimonial-6.mp4',
     poster: '/images/poster-testimonial-6.webp',
-    filename: 'testimonial-6.mp4',
   },
   {
     id: 8,
@@ -96,7 +89,6 @@ export const WALL_OF_FAME_ENTRIES = [
     programme: 'ACCA',
     src: '/videos/testimonial-7.mp4',
     poster: '/images/poster-testimonial-7.webp',
-    filename: 'testimonial-7.mp4',
   },
 ]
 
@@ -203,7 +195,9 @@ export default function WallOfFame() {
                         <span>Programme: <strong className="text-ink/70">{entry.programme}</strong></span>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono text-ink/35 uppercase shrink-0">{entry.filename}</span>
+                    <span className="text-[11px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2.5 py-0.5 rounded-full shrink-0 flex items-center gap-1">
+                      <i className="fa-solid fa-circle-check text-[10px]"></i> Verified Review
+                    </span>
                   </div>
                 </div>
               </div>

@@ -123,7 +123,7 @@ export default function Header() {
         <Link to="/" className="flex items-center group shrink-0" aria-label="Kizen Education Home">
           <div className="h-10 sm:h-[54px] lg:h-[58px] w-[150px] sm:w-[220px] lg:w-[250px] overflow-hidden rounded-xl bg-[#18334e] flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-sm">
             <img
-              src="./kizen-logo.jpg"
+              src="/kizen-logo.jpg"
               alt="Kizen Education"
               className="h-[215%] w-auto max-w-none object-contain pointer-events-none select-none"
             />

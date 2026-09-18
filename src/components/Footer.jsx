@@ -12,7 +12,7 @@ export default function Footer({ borderTop = false }) {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <img src="./kizen-logo.jpg" alt="Kizen Education" className="h-10 w-auto rounded" />
+              <img src="/kizen-logo.jpg" alt="Kizen Education" className="h-10 w-auto rounded" />
             </Link>
             <p className="text-sm text-paper/60 leading-relaxed">
               From school commerce to a globally recognised qualification — one institute, one pathway in Sector 34-A, Chandigarh.

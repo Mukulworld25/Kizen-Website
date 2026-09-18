@@ -251,7 +251,7 @@ export default function FloatingActions() {
               aria-hidden="true"
               className="w-12 h-12 rounded-full shrink-0 shadow-sm bg-no-repeat transition-transform group-hover:scale-105 pointer-events-none"
               style={{
-                backgroundImage: "url('./kizen-logo.jpg')",
+                backgroundImage: "url('/kizen-logo.jpg')",
                 backgroundSize: '329% auto',
                 backgroundPosition: '3.6% 53.7%',
               }}

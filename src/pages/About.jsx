@@ -11,7 +11,7 @@ const STATS = [
   { value: '180+', label: 'Countries where our ACCA graduates\' qualification is recognised', accent: true },
 ]
 
-const LEADERSHIP = [
+const LEADERSHIP_AND_FACULTY = [
   {
     name: 'Shivam Sharma',
     role: 'Founder & Director',
@@ -19,6 +19,20 @@ const LEADERSHIP = [
     bio: 'Shivam Sharma is the founder and director of Kizen Education, responsible for the institute’s vision, strategic direction, and long-term growth. His academic foundation in Economics shapes his approach toward sustainable institution building. Shivam oversees institutional strategy, infrastructure development, systems & processes, and student welfare, ensuring educators have the resources to teach with dedication and integrity in a safe, world-class learning space.',
     tags: ['Institutional Strategy', 'Systems & Processes', 'Student Welfare'],
     icon: 'fa-solid fa-compass',
+    initials: 'SS',
+    category: 'Leadership & Vision',
+    image: null,
+  },
+  {
+    name: 'Megha Dadwal',
+    role: 'Chief Operating Officer (COO)',
+    credentials: 'Commerce Graduate | Ex-KPMG (4 Yrs) | Toronto, Canada Alumna',
+    bio: 'Megha Dadwal leads operations at Kizen Education, bringing together a strong foundation in finance and global academic exposure. A commerce graduate, she began her career with KPMG, where she spent four years honing her expertise in the corporate and financial world. She later moved to Toronto, Canada, for higher studies, gaining an international perspective on business and education. Today, as COO of Kizen Education, she drives the institute\'s vision of building industry-ready professionals through ACCA, IFRS, CA/CMA, commerce foundation programs, and future-focused offerings like AI-driven skill development.',
+    tags: ['Operations & Strategy', 'Ex-KPMG Corporate Finance', 'Global Business Exposure'],
+    icon: 'fa-solid fa-briefcase',
+    initials: 'MD',
+    category: 'Leadership & Operations',
+    image: null,
   },
   {
     name: 'Simrat',
@@ -27,6 +41,42 @@ const LEADERSHIP = [
     bio: 'Simrat serves as the Academic Coordinator and Senior Faculty at Kizen Education. Holding a B.Com and M.Com from Panjab University, she has cleared UGC-NET in Commerce twice and is pursuing her Ph.D. in Finance. With extensive teaching experience across Class 11-12, B.Com, BBA, M.Com, MBA and ACCA, she oversees curriculum structuring, assessment design, faculty coordination, and individualized student mentoring.',
     tags: ['Academic Coordination', 'Curriculum Design', 'Ph.D. Finance Scholar'],
     icon: 'fa-solid fa-graduation-cap',
+    initials: 'S',
+    category: 'Academic Mentorship',
+    image: null,
+  },
+  {
+    name: 'Shaifali',
+    role: 'ACCA & Commerce Faculty',
+    credentials: 'B.Com (Hons.) Taxation, M.Com (ABST), MBA (Finance), 2x UGC-NET, Ph.D. Scholar',
+    bio: 'Shaifali is a dedicated faculty member at Kizen Education, bringing strong academic expertise and a passion for student success. She holds a B.Com (Hons.) in Accounting and Taxation, an M.Com in ABST, and an MBA in Finance from Rajasthan University, has cleared UGC-NET in Commerce twice, and is currently pursuing her Ph.D. in Commerce from The IIS University, Jaipur. With experience teaching at the school, undergraduate, postgraduate, and professional levels, she specializes in Financial Accounting, Management Accounting, Cost Accounting, Taxation, and Financial Management — guiding students from Class 11–12 through B.Com/BBA/M.Com/MBA and professional courses like ACCA, CA Foundation, and CMA. Known for her clear teaching style and personal mentorship, Shaifali helps students build strong concepts and achieve real exam and career success.',
+    tags: ['ACCA & CA Foundation', 'Financial Accounting & Taxation', '2x UGC-NET Commerce'],
+    icon: 'fa-solid fa-chalkboard-user',
+    initials: 'S',
+    category: 'ACCA & Professional Faculty',
+    image: null,
+  },
+  {
+    name: 'Shivangi',
+    role: 'AI/ML Trainer & AI Researcher',
+    credentials: 'B.Tech Computer Science | AI/ML Specialist | Research: IIT Mandi & IIT BHU',
+    bio: 'Shivangi is a Computer Science Engineer specializing in Artificial Intelligence & Machine Learning, with experience in AI/ML training, research, and practical AI development. Her expertise spans Machine Learning, Deep Learning, Generative AI, Agentic AI, Computer Vision, NLP, and Python. She has trained learners at Theta Academy, Chandigarh and Moltres Institute, Hyderabad, and has research experience with IIT Mandi and IIT BHU. She has also authored a conference paper on deep-learning-based animal breed identification using Computer Vision.',
+    tags: ['Generative & Agentic AI', 'Deep Learning & NLP', 'IIT Research Alumna'],
+    icon: 'fa-solid fa-brain',
+    initials: 'S',
+    category: 'AI & Machine Learning Faculty',
+    image: null,
+  },
+  {
+    name: 'Aadya Sharma',
+    role: 'Business Development Executive & Lead Admission Counsellor',
+    credentials: 'M.Com (Honours), Panjab University | 4+ Years Experience',
+    bio: 'Aadya Sharma is an experienced Admission Counsellor with over 4+ years of expertise in student counselling and career guidance. She holds an M.Com (Honours) from Panjab University and is dedicated to helping aspiring finance professionals make informed academic and career decisions. Specializing in ACCA, IFRS, and global finance qualifications, Aadya has successfully guided students in choosing the right learning pathways aligned with their career goals. Her expertise extends to counselling for higher education opportunities, including Master’s, PhD, and Postdoctoral programs, enabling students to explore both national and international academic prospects.',
+    tags: ['Student Counselling', 'Career Guidance', 'Global Pathways (ACCA & IFRS)'],
+    icon: 'fa-solid fa-comments',
+    initials: 'AS',
+    category: 'Admissions & Career Counselling',
+    image: null,
   },
 ]
 
@@ -90,16 +140,36 @@ export default function About() {
             'mainEntity': {
               '@type': 'EducationalOrganization',
               'name': 'Kizen Education',
-              'founder': [
+              'employee': [
                 {
                   '@type': 'Person',
                   'name': 'Shivam Sharma',
-                  'jobTitle': 'Co-Founder & Academic Lead',
+                  'jobTitle': 'Founder & Director',
+                },
+                {
+                  '@type': 'Person',
+                  'name': 'Megha Dadwal',
+                  'jobTitle': 'Chief Operating Officer (COO)',
                 },
                 {
                   '@type': 'Person',
                   'name': 'Simrat',
-                  'jobTitle': 'Co-Founder & Programme Director',
+                  'jobTitle': 'Academic Coordinator & Senior Faculty',
+                },
+                {
+                  '@type': 'Person',
+                  'name': 'Shaifali',
+                  'jobTitle': 'ACCA & Commerce Faculty',
+                },
+                {
+                  '@type': 'Person',
+                  'name': 'Shivangi',
+                  'jobTitle': 'AI/ML Trainer & AI Researcher',
+                },
+                {
+                  '@type': 'Person',
+                  'name': 'Aadya Sharma',
+                  'jobTitle': 'Business Development Executive & Lead Admission Counsellor',
                 },
               ],
             },
@@ -217,49 +287,81 @@ export default function About() {
         </div>
       </section>
 
-      {/* ============ LEADERSHIP & VISION (Merged from Old Website) ============ */}
+      {/* ============ LEADERSHIP & FACULTY TEAM ============ */}
       <section id="leadership" className="bg-paper py-20 lg:py-28 border-b border-ink/10">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <Eyebrow>Leadership &amp; Vision</Eyebrow>
+            <Eyebrow>Leadership, Faculty &amp; Mentors</Eyebrow>
             <h2 className="font-serif text-3xl lg:text-4xl font-medium text-ink mt-2">
-              The minds behind Kizen Education
+              The educators &amp; mentors behind Kizen
             </h2>
             <p className="text-ink/65 text-base mt-3">
-              Founded on strong ethics, academic rigor, and personal accountability to every student and parent.
+              Experienced academicians, Big 4 alumni, and domain researchers dedicated to first-principles clarity, ethical mentorship, and personal student success.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            {LEADERSHIP.map((leader) => (
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+            {LEADERSHIP_AND_FACULTY.map((member) => (
               <div
-                key={leader.name}
-                className="bg-ivory border border-ink/10 rounded-3xl p-8 sm:p-10 shadow-md hover:border-gold/50 transition-all flex flex-col justify-between"
+                key={member.name}
+                className="bg-ivory border border-ink/10 rounded-3xl p-7 sm:p-9 shadow-sm hover:shadow-xl hover:border-gold/50 transition-all flex flex-col justify-between group"
               >
                 <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-navy text-gold flex items-center justify-center text-2xl shadow-md shrink-0">
-                      <i className={leader.icon}></i>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 mb-6">
+                    {/* Human-like Portrait / Photo Container */}
+                    <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-br from-[#18334e] via-[#122538] to-[#0a1622] border-2 border-gold/40 flex items-center justify-center shrink-0 shadow-md overflow-hidden">
+                      {member.image ? (
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="relative w-full h-full flex items-center justify-center">
+                          {/* Elegant human silhouette portrait */}
+                          <svg
+                            className="w-14 h-14 text-paper/30 group-hover:text-paper/45 transition-colors"
+                            viewBox="0 0 64 64"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle cx="32" cy="22" r="12" />
+                            <path d="M12 54C12 43 21 38 32 38C43 38 52 43 52 54" />
+                          </svg>
+                          {/* Initials badge */}
+                          <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold bg-navy/85 text-gold border border-gold/30 backdrop-blur-xs">
+                            {member.initials}
+                          </span>
+                        </div>
+                      )}
+                      {/* Specialisation icon badge at bottom-right */}
+                      <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-gold text-navy flex items-center justify-center text-xs shadow-md border-2 border-paper">
+                        <i className={member.icon}></i>
+                      </div>
                     </div>
+
                     <div>
-                      <h3 className="font-serif text-2xl font-bold text-ink">{leader.name}</h3>
-                      <div className="text-gold text-xs font-bold uppercase tracking-wider mt-0.5">{leader.role}</div>
-                      <div className="text-ink/55 text-xs font-medium mt-1">{leader.credentials}</div>
+                      <div className="inline-block text-[10px] font-bold uppercase tracking-widest text-gold bg-gold/10 px-2.5 py-0.5 rounded-full mb-1">
+                        {member.category}
+                      </div>
+                      <h3 className="font-serif text-2xl font-bold text-ink leading-tight">{member.name}</h3>
+                      <div className="text-navy font-semibold text-xs mt-0.5">{member.role}</div>
+                      <div className="text-ink/60 text-xs font-medium mt-1 leading-snug">{member.credentials}</div>
                     </div>
                   </div>
 
                   <p className="text-ink/75 text-sm leading-relaxed mb-6">
-                    {leader.bio}
+                    {member.bio}
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-ink/10">
-                  {leader.tags.map((tag) => (
+                  {member.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-paper border border-ink/10 text-ink/75 text-[11px] font-semibold px-3 py-1 rounded-full"
+                      className="bg-paper border border-ink/10 text-ink/75 text-[11px] font-semibold px-3 py-1 rounded-full flex items-center gap-1.5"
                     >
-                      ✓ {tag}
+                      <i className="fa-solid fa-check text-gold text-[10px]"></i> {tag}
                     </span>
                   ))}
                 </div>
