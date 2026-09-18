@@ -68,7 +68,7 @@ export default function Footer({ borderTop = false }) {
         <div className="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-paper/50">
           <div>© {new Date().getFullYear()} Kizen Education. All rights reserved.</div>
           <div className="flex gap-5 text-base">
-            <a href="https://instagram.com/kizeneducation" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-gold transition"><i className="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/kizeneducationofficial?stkn=aDhtbnZ0cGsxOTFr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-gold transition"><i className="fa-brands fa-instagram"></i></a>
             <a href="https://facebook.com/kizeneducation" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-gold transition"><i className="fa-brands fa-facebook"></i></a>
             <a href="https://youtube.com/@kizeneducation" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-gold transition"><i className="fa-brands fa-youtube"></i></a>
             <a href="https://wa.me/917696963377" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:text-gold transition"><i className="fa-brands fa-whatsapp"></i></a>

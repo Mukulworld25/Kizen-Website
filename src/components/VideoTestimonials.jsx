@@ -18,7 +18,7 @@ export const VIDEO_TESTIMONIALS = [
 
 // Real social URLs — already in use in Footer.jsx (not placeholders)
 const YOUTUBE_URL = 'https://youtube.com/@kizeneducation'
-const INSTAGRAM_URL = 'https://instagram.com/kizeneducation'
+const INSTAGRAM_URL = 'https://www.instagram.com/kizeneducationofficial?stkn=aDhtbnZ0cGsxOTFr'
 
 const SOCIAL_BUTTON_CLS =
   'w-11 h-11 rounded-full bg-ivory border border-ink/10 flex items-center justify-center text-ink/70 hover:text-navy hover:border-gold hover:bg-gold/10 transition-all'
