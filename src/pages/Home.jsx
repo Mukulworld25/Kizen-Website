@@ -214,13 +214,42 @@ const HERO_SLIDES = [
 function HeroShowcase() {
   const [index, setIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  // Only mount active and adjacent slides in the DOM so the browser doesn't download all 10 images at once
+  const [mountedSlides, setMountedSlides] = useState(() => new Set([0, 1]))
 
-  // Preload all slides on mount
   useEffect(() => {
-    HERO_SLIDES.forEach((slide) => {
-      const img = new Image()
-      img.src = slide.src
+    setMountedSlides((prev) => {
+      const next = new Set(prev)
+      next.add(index)
+      next.add((index + 1) % HERO_SLIDES.length)
+      return next
     })
+  }, [index])
+
+  // Preload only the next slide immediately, and queue remaining slides after main thread is idle
+  useEffect(() => {
+    // 1. Immediately preload next slide so first transition is instant
+    if (HERO_SLIDES.length > 1) {
+      const nextImg = new Image()
+      nextImg.src = HERO_SLIDES[1].src
+    }
+
+    // 2. Queue remaining slides after 3.5s idle window to keep initial bandwidth completely clear
+    const timer = setTimeout(() => {
+      const preloadRest = () => {
+        HERO_SLIDES.slice(2).forEach((slide) => {
+          const img = new Image()
+          img.src = slide.src
+        })
+      }
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(preloadRest, { timeout: 5000 })
+      } else {
+        preloadRest()
+      }
+    }, 3500)
+
+    return () => clearTimeout(timer)
   }, [])
 
   // Auto-advance every 5.5 seconds unless user is hovering/interacting
@@ -243,23 +272,27 @@ function HeroShowcase() {
       onMouseLeave={() => setIsPaused(false)}
       className="relative w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] rounded-3xl overflow-hidden border border-ink/10 shadow-2xl bg-navy/20 flex flex-col justify-between group select-none"
     >
-      {/* Background slide images stack with smooth crossfade */}
-      {HERO_SLIDES.map((slide, i) => (
-        <motion.img
-          key={slide.src}
-          src={slide.src}
-          alt={slide.title}
-          className="absolute inset-0 w-full h-full object-cover"
-          initial={false}
-          animate={{
-            opacity: i === index ? 1 : 0,
-            scale: i === index ? 1 : 1.03,
-            zIndex: i === index ? 1 : 0,
-          }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
-          loading={i === 0 ? 'eager' : 'lazy'}
-        />
-      ))}
+      {/* Background slide images stack with smooth crossfade — only mounts when needed */}
+      {HERO_SLIDES.map((slide, i) => {
+        if (!mountedSlides.has(i)) return null
+        return (
+          <motion.img
+            key={slide.src}
+            src={slide.src}
+            alt={slide.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            initial={false}
+            animate={{
+              opacity: i === index ? 1 : 0,
+              scale: i === index ? 1 : 1.03,
+              zIndex: i === index ? 1 : 0,
+            }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            loading={i === index ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        )
+      })}
 
       {/* Atmospheric multi-layer gradient vignette for crystal clear contrast */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 via-50% to-black/20 z-10 pointer-events-none" />
@@ -373,10 +406,12 @@ export default function Home() {
       <section id="hero" className="relative min-h-[calc(100svh-5rem)] lg:h-[calc(100vh-5rem)] lg:min-h-[580px] lg:max-h-[720px] bg-navy overflow-hidden flex items-center">
         {/* Full-bleed background image with subjects positioned on the right */}
         <img
-          src="./images/success-duo.webp"
+          src="/images/success-duo.webp"
           alt="Two successful Kizen Commerce and ACCA students celebrating career milestones with offer letters"
           className="absolute inset-0 w-full h-full object-cover object-right sm:object-[82%_center] lg:object-right"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
 
         {/* Cinematic multi-layer gradient overlay — dark on left for text, clear on right for students */}

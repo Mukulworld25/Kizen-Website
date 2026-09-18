@@ -6,8 +6,9 @@ import StickyMobileCTA from './components/StickyMobileCTA.jsx'
 import FloatingActions from './components/FloatingActions.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 
-// Lazy-load route components for fast initial bundle delivery
-const Home = lazy(() => import('./pages/Home.jsx'))
+import Home from './pages/Home.jsx'
+
+// Lazy-load secondary route components on demand while serving Home immediately
 const Acca = lazy(() => import('./pages/Acca.jsx'))
 const Courses = lazy(() => import('./pages/Courses.jsx'))
 const Fintech = lazy(() => import('./pages/Fintech.jsx'))
