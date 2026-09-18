@@ -146,78 +146,180 @@ const VIDEO_TESTIMONIALS = [
 ]
 
 
-// Real Kizen campus photos — auto-cycling hero slideshow
+// Real Kizen campus photos — auto-cycling hero slideshow with rich metadata
 const HERO_SLIDES = [
-  '/images/campus-classroom-lecture.webp',
-  '/images/campus-reception.webp',
-  '/images/campus-quantitative-class.webp',
-  '/images/campus-student-celebration.webp',
-  '/images/campus-community-celebration.webp',
+  {
+    src: '/images/campus-community-celebration.webp',
+    tag: 'Kizen Campus · Sector 34-A',
+    title: 'Vibrant Student Community & Celebrations',
+    desc: 'Energetic, supportive learning atmosphere where aspiring commerce & finance scholars collaborate.',
+  },
+  {
+    src: '/images/campus-classroom-lecture.webp',
+    tag: 'Smart Classrooms',
+    title: 'Concept-First Faculty Lectures & Board Prep',
+    desc: 'Structured pedagogy combining conceptual clarity with board exam rigor and professional insights.',
+  },
+  {
+    src: '/images/campus-reception.webp',
+    tag: 'Sector 34-A Center',
+    title: 'Executive Front Desk & Admission Lounge',
+    desc: 'Welcoming consultation spaces designed for transparent student career mapping and academic advisory.',
+  },
+  {
+    src: '/images/campus-seminar-hall.webp',
+    tag: 'Conference & Seminar Facility',
+    title: 'Modern Commerce & ACCA Seminar Facility',
+    desc: 'Spacious air-conditioned halls equipped for industry masterclasses, guest lectures, and student orientation.',
+  },
+  {
+    src: '/images/campus-quantitative-class.webp',
+    tag: 'Analytics & Problem Solving',
+    title: 'Advanced Quantitative & Problem-Solving Labs',
+    desc: 'Interactive step-by-step problem dissection for applied accounting, financial math, and taxation.',
+  },
+  {
+    src: '/images/campus-student-group-discussion.webp',
+    tag: 'Collaborative Learning',
+    title: 'Peer Discussions & Group Study Sessions',
+    desc: 'Interactive round-table learning encouraging student debate, case studies, and cooperative exam strategies.',
+  },
+  {
+    src: '/images/campus-faculty-mentorship.webp',
+    tag: 'Dedicated Faculty Support',
+    title: '1-on-1 Mentorship & Individual Doubt Resolution',
+    desc: 'Personal faculty access outside lecture hours to resolve doubts and track individual student performance.',
+  },
+  {
+    src: '/images/campus-student-celebration.webp',
+    tag: 'Student Milestones',
+    title: 'Celebrating Academic Excellence & Exam Triumphs',
+    desc: 'Recognizing student achievements in board examinations, ACCA paper clearances, and university admits.',
+  },
+  {
+    src: '/images/campus-classroom-session-2.webp',
+    tag: 'Small Batch Focus',
+    title: 'Focused Small Batches & Direct Mentorship',
+    desc: 'Restricted batch sizes ensuring no student sits at the back unheard or unnoticed during lectures.',
+  },
+  {
+    src: '/images/campus-reception-desk.webp',
+    tag: 'Student Services',
+    title: 'Dedicated Academic Helpdesk & Student Support',
+    desc: 'Full-time support for study material distribution, batch schedules, and ACCA registration guidance.',
+  },
 ]
 
-// Full-bleed cinematic campus showcase with solid layered crossfades and trust capsules
-// Full-bleed feeling campus showcase with solid layered crossfades in hero side column
+// Full-bleed cinematic campus showcase with solid layered crossfades, controls, and dynamic captions
 function HeroShowcase() {
   const [index, setIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   // Preload all slides on mount
   useEffect(() => {
-    HERO_SLIDES.forEach((src) => {
+    HERO_SLIDES.forEach((slide) => {
       const img = new Image()
-      img.src = src
+      img.src = slide.src
     })
   }, [])
 
-  // Auto-advance every 5 seconds
+  // Auto-advance every 5.5 seconds unless user is hovering/interacting
   useEffect(() => {
+    if (isPaused) return
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % HERO_SLIDES.length)
-    }, 5000)
+    }, 5500)
     return () => clearInterval(id)
-  }, [])
+  }, [isPaused])
+
+  const nextSlide = () => setIndex((i) => (i + 1) % HERO_SLIDES.length)
+  const prevSlide = () => setIndex((i) => (i - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)
+
+  const current = HERO_SLIDES[index]
 
   return (
-    <div className="relative w-full h-full min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] rounded-3xl overflow-hidden border border-ink/10 shadow-xl bg-navy/10 flex flex-col justify-end">
-      {/* Background slide images stack */}
-      {HERO_SLIDES.map((src, i) => (
+    <div
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="relative w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] rounded-3xl overflow-hidden border border-ink/10 shadow-2xl bg-navy/20 flex flex-col justify-between group select-none"
+    >
+      {/* Background slide images stack with smooth crossfade */}
+      {HERO_SLIDES.map((slide, i) => (
         <motion.img
-          key={src}
-          src={src}
-          alt={`Kizen Education Campus Slide ${i + 1}`}
+          key={slide.src}
+          src={slide.src}
+          alt={slide.title}
           className="absolute inset-0 w-full h-full object-cover"
           initial={false}
           animate={{
             opacity: i === index ? 1 : 0,
+            scale: i === index ? 1 : 1.03,
             zIndex: i === index ? 1 : 0,
           }}
-          transition={{ duration: 1.4, ease: 'easeInOut' }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
           loading={i === 0 ? 'eager' : 'lazy'}
         />
       ))}
 
-      {/* Atmospheric bottom vignette gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent z-10 pointer-events-none" />
+      {/* Atmospheric multi-layer gradient vignette for crystal clear contrast */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 via-50% to-black/20 z-10 pointer-events-none" />
 
-      {/* Bottom Floating Badge & Caption */}
+      {/* Top Header: Campus Category Pill + Slide Counter */}
+      <div className="relative z-20 p-5 sm:p-6 flex items-center justify-between">
+        <span className="inline-flex items-center gap-2 text-gold text-[11px] font-bold uppercase tracking-widest bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 shadow-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span> {current.tag}
+        </span>
+
+        <span className="text-paper/90 text-xs font-mono bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm">
+          {String(index + 1).padStart(2, '0')} / {String(HERO_SLIDES.length).padStart(2, '0')}
+        </span>
+      </div>
+
+      {/* Interactive Left/Right Arrow Controls */}
+      <div className="absolute inset-y-0 inset-x-3 sm:inset-x-5 z-20 flex items-center justify-between pointer-events-none">
+        <button
+          onClick={prevSlide}
+          aria-label="Previous campus photo"
+          className="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/45 hover:bg-gold hover:text-navy text-paper backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 opacity-85 sm:opacity-0 group-hover:opacity-100 shadow-xl hover:scale-105 active:scale-95"
+        >
+          <i className="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+        <button
+          onClick={nextSlide}
+          aria-label="Next campus photo"
+          className="pointer-events-auto w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/45 hover:bg-gold hover:text-navy text-paper backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 opacity-85 sm:opacity-0 group-hover:opacity-100 shadow-xl hover:scale-105 active:scale-95"
+        >
+          <i className="fa-solid fa-chevron-right text-sm"></i>
+        </button>
+      </div>
+
+      {/* Bottom Floating Caption & Pagination Dots */}
       <div className="relative z-20 p-6 sm:p-7 text-paper flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div>
-          <span className="inline-flex items-center gap-2 text-gold text-[11px] font-bold uppercase tracking-widest bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span> Kizen Campus · Sector 34-A
-          </span>
-          <div className="font-serif text-lg sm:text-xl font-semibold text-paper drop-shadow-sm">
-            State-of-the-Art Commerce Classrooms
-          </div>
+        <div className="max-w-xl">
+          <motion.div
+            key={current.title}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <div className="font-serif text-lg sm:text-2xl font-semibold text-paper drop-shadow-md">
+              {current.title}
+            </div>
+            <p className="text-paper/85 text-xs sm:text-sm mt-1 leading-relaxed drop-shadow-sm line-clamp-2">
+              {current.desc}
+            </p>
+          </motion.div>
         </div>
 
         {/* Slide pagination dots */}
-        <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-2 rounded-full border border-white/10 shrink-0">
+        <div className="flex items-center gap-1.5 bg-black/55 backdrop-blur-md px-3.5 py-2.5 rounded-full border border-white/15 shrink-0 shadow-lg">
           {HERO_SLIDES.map((_, i) => (
             <button
               key={i}
               onClick={() => setIndex(i)}
               aria-label={`Go to slide ${i + 1}`}
               className={`transition-all duration-300 rounded-full ${
-                i === index ? 'w-5 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-white/50 hover:bg-white'
+                i === index ? 'w-5 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-white/40 hover:bg-white'
               }`}
             />
           ))}
