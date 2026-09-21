@@ -1,0 +1,59 @@
+# ---------------------------------------------------------------------------
+# KIZEN EDUCATION - STATIC BUILD (.htaccess)
+#
+# Derived from the previous React build's .htaccess with ONE deliberate change:
+# the SPA catch-all rewrite was REMOVED.
+#
+#   OLD (React):  RewriteRule . /index.html [L]
+#     -> every wrong URL returned HTTP 200 + the homepage ("soft 404").
+#        Verified live: /this-page-does-not-exist-xyz123 -> 200, 10,266 bytes.
+#
+#   NEW (static): the catch-all is gone and ErrorDocument serves 404.html.
+#     -> unknown URLs now return a real 404 status. This is a genuine SEO
+#        improvement: it stops diluting crawl budget with soft-404 pages.
+#
+# URL BEHAVIOUR - verified on this exact Hostinger account in Phase 0.5:
+#   GET /acca/  -> 200, serves /acca/index.html        (directory index works)
+#   GET /acca   -> 301 -> /acca/                       (mod_dir adds the slash)
+# Every internal link, canonical and sitemap entry therefore uses the
+# trailing-slash form, so visitors never take a redirect. Only externally
+# indexed legacy URLs take one standard 301, which Google consolidates.
+#
+# Deliberately NOT added (unvalidated directives, would be a needless risk):
+#   DirectoryIndex, Options -Indexes  -- directory indexing already works with
+#   no config, and /images/ /videos/ /brochures/ /store-badges/ /assets/ were
+#   all verified to return 403 already, so no listing can leak.
+# ---------------------------------------------------------------------------
+
+# GZIP Compression for text, js, css, svg, json
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Browser Caching Headers for immutable static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Cache-Control headers
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|webp|png|jpg|jpeg|svg|woff2)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    # HTML must never be cached, or a deploy cannot propagate.
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Real 404s instead of the old SPA soft-404 catch-all
+ErrorDocument 404 /404.html

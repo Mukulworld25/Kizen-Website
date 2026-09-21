@@ -1,0 +1,20 @@
+/* ---------------------------------------------------------------------------
+   Tailwind entry for the STATIC build.
+    
+   It intentionally imports the React project's own stylesheet rather than
+   copying it, so the design tokens (@theme) and the hand-written utilities
+   (.cta-pulse, .path-line, .num-tag, .stagger, the iOS-zoom input rule,
+   scroll-padding-top) stay a SINGLE source of truth. If src/index.css is ever
+   edited, re-running the static build picks the change up automatically.
+
+   @source tells Tailwind which files to scan for class names. The generated
+   HTML contains exactly the classes the React app rendered, so the compiled
+   output must cover all of them - static-generator/css-coverage.mjs proves it.
+
+   Build:
+     node_modules\.bin\tailwindcss -i static-generator/static.css \
+       -o static-site/styles.css --minify
+--------------------------------------------------------------------------- */
+@import "../src/index.css";
+
+@source "../static-site/**/*.html";

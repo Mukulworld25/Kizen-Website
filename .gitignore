@@ -4,3 +4,23 @@ dist-ssr
 *.local
 *.log
 .DS_Store
+
+# --- static build -----------------------------------------------------------
+# static-site/ is the FTP deploy root. Generated pages, stylesheet, script,
+# .htaccess, robots.txt and sitemap.xml are TRACKED so the branch is directly
+# deployable and every change is reviewable in a diff.
+#
+# The bulk assets below are byte-identical copies of public/ (already versioned
+# in this repo), so they are ignored here rather than duplicated - that would
+# add ~72 MB of redundant data to git history with no benefit.
+# Re-copy them any time with:
+#   robocopy public\images static-site\images /E
+#   robocopy public\videos static-site\videos /E
+#   robocopy public\brochures static-site\brochures /E
+#   robocopy public\store-badges static-site\store-badges /E
+#   copy public\kizen-logo.jpg static-site\kizen-logo.jpg
+static-site/images/
+static-site/videos/
+static-site/brochures/
+static-site/store-badges/
+static-site/kizen-logo.jpg
