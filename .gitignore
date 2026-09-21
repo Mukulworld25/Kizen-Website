@@ -24,3 +24,6 @@ static-site/videos/
 static-site/brochures/
 static-site/store-badges/
 static-site/kizen-logo.jpg
+
+# verification artifacts (regenerable, not source)
+static-generator/_shots/

@@ -53,7 +53,11 @@ for (const p of PAGES) {
       imgs: document.querySelectorAll('img').length,
       cssSheets: document.styleSheets.length,
       stickyBar: !!document.querySelector('.lg\\:hidden.fixed.bottom-0'),
-      partials: !!document.getElementById('kizen-partials'),
+      // script.js adopts #kizen-partials (moves chips into the FAB and panels
+      // to a host div, then deletes the wrapper), so check the ADOPTED state.
+      modalHost: !!document.getElementById('kizen-modal-host'),
+      chips: document.querySelectorAll('[data-kizen-chip]').length,
+      panels: document.querySelectorAll('[data-kizen-panel]').length,
     }
   })
 
@@ -70,7 +74,8 @@ for (const p of PAGES) {
   console.log('  header       : position=' + info.headerPos + ' z=' + info.headerZ + (stickyOk ? '  ok' : '  !!'))
   console.log('  h1 colour    : ' + info.h1Color)
   console.log('  sheets=' + info.cssSheets + '  sections=' + info.sections + '  links=' + info.links + '  imgs=' + info.imgs)
-  console.log('  sticky bar=' + info.stickyBar + '  partials injected=' + info.partials)
+  console.log('  sticky bar=' + info.stickyBar + '  modal-host=' + info.modalHost +
+    '  chips=' + info.chips + '  panels=' + info.panels)
   if (errs.length) console.log('  JS errors    : ' + errs.join(' | '))
   if (failed.length) {
     const uniq = [...new Set(failed)]
