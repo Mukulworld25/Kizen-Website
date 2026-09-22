@@ -131,6 +131,32 @@ if (nonTw.length) {
   console.log('    ' + list.slice(0, 18).join(' ') + (list.length > 18 ? '  ... +' + (list.length - 18) : ''))
 }
 
+/* ---- runtime-toggled classes -------------------------------------------
+   script.js swaps these at runtime (header scroll shadow, mobile drawer,
+   accordion, carousel dots). The captured HTML only ever contains the CLOSED
+   or UNSCROLLED half of each pair, so a normal content scan cannot see the
+   other half. They are declared in static.css via @source inline(...) and
+   verified here, so a purge can never silently drop them. */
+const RUNTIME_TOGGLED = [
+  'bg-paper/95', 'border-ink/15', 'shadow-xl', 'shadow-black/[0.10]',
+  'bg-paper/85', 'border-ink/10', 'shadow-lg', 'shadow-black/[0.04]', 'hover:shadow-xl',
+  'opacity-100', 'visible', 'opacity-0', 'invisible',
+  'translate-y-0', '-translate-y-6', 'max-h-96', 'max-h-0', 'rotate-180',
+  'w-5', 'h-1.5', 'bg-gold', 'w-1.5', 'bg-white/40', 'hover:bg-white',
+]
+const runtimeMissing = RUNTIME_TOGGLED.filter((c) => !coveredByNew(c))
+console.log('\n  runtime-toggled classes : ' + (RUNTIME_TOGGLED.length - runtimeMissing.length) + '/' + RUNTIME_TOGGLED.length + ' covered')
+if (runtimeMissing.length) {
+  console.log('\n' + '!'.repeat(78))
+  console.log('COVERAGE GATE FAILED - ' + runtimeMissing.length + ' runtime-toggled class(es) have NO rule:')
+  console.log('!'.repeat(78))
+  runtimeMissing.forEach((c) => console.log('  ' + c))
+  console.log('  script.js would add these classes and nothing would happen.')
+  console.log('  Fix: add them to @source inline(...) in static-generator/static.css')
+  console.log('='.repeat(78))
+  process.exit(1)
+}
+
 if (regressions.length) {
   console.log('\n' + '!'.repeat(78))
   console.log('COVERAGE GATE FAILED - ' + regressions.length + ' REGRESSION(S) vs live:')

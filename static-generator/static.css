@@ -18,3 +18,25 @@
 @import "../src/index.css";
 
 @source "../static-site/**/*.html";
+
+/* ---------------------------------------------------------------------------
+   RUNTIME-TOGGLED CLASS SAFELIST
+   
+   script.js swaps these classes at runtime (header scroll shadow, mobile
+   drawer, accordion, carousel dots). The captured HTML only ever contains the
+   CLOSED / UNSCROLLED state, so Tailwind cannot see the other half of each
+   pair. Today they happen to be picked up because Tailwind's auto-detection
+   also scans src/ and finds the React source literals - but that is
+   incidental and would break in a clean checkout without src/.
+
+   Declaring them explicitly makes the dependency deliberate.
+   Verified by: node static-generator/css-coverage.mjs
+--------------------------------------------------------------------------- */
+@source inline("bg-paper/95 border-ink/15 shadow-xl shadow-black/[0.10]");
+@source inline("bg-paper/85 border-ink/10 shadow-lg shadow-black/[0.04] hover:shadow-xl");
+@source inline("opacity-100 visible opacity-0 invisible");
+@source inline("translate-y-0 -translate-y-6");
+@source inline("max-h-96 max-h-0");
+@source inline("rotate-180");
+@source inline("w-5 h-1.5 bg-gold w-1.5 bg-white/40 hover:bg-white");
+

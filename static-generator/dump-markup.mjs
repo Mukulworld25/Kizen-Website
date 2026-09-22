@@ -1,0 +1,10 @@
+import re
+c = open('static-site/index.html', encoding='utf-8').read()
+i = c.find('id="header"')
+open('static-generator/_header_dump.txt', 'w', encoding='utf-8').write(c[i-300:i+9000])
+j = c.find('Next campus photo')
+open('static-generator/_hero_dump.txt', 'w', encoding='utf-8').write(c[max(0, j-7000):j+1500])
+cc = open('static-site/courses/index.html', encoding='utf-8').read()
+k = cc.find('role="tablist"')
+open('static-generator/_courses_dump.txt', 'w', encoding='utf-8').write(cc[k-500:k+6000])
+print('dumped')

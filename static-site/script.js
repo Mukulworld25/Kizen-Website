@@ -470,12 +470,375 @@
     });
   }
 
+  /* ==========================================================================
+     SECTION 5 - HEADER
+     The captured markup holds the UNSCROLLED state (capture happened at
+     scrollY 0) and the CLOSED menu state, so the other half of each class pair
+     is applied here. Those classes are safelisted in static-generator/static.css
+     and enforced by css-coverage.mjs, so a Tailwind purge cannot drop them.
+     ========================================================================== */
+
+  var HEADER_SCROLLED = ['bg-paper/95', 'border-ink/15', 'shadow-xl', 'shadow-black/[0.10]'];
+  var HEADER_UNSCROLLED = ['bg-paper/85', 'border-ink/10', 'shadow-lg', 'shadow-black/[0.04]', 'hover:shadow-xl'];
+
+  function initHeader() {
+    var header = document.getElementById('header');
+    if (!header) return;
+    var pill = header.querySelector('div');
+    if (!pill) return;
+
+    var apply = function (scrolled) {
+      HEADER_SCROLLED.forEach(function (c) { pill.classList.toggle(c, scrolled); });
+      HEADER_UNSCROLLED.forEach(function (c) { pill.classList.toggle(c, !scrolled); });
+    };
+    var onScroll = function () { apply(window.scrollY > 8); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  function initMobileMenu() {
+    var header = document.getElementById('header');
+    if (!header) return;
+    var toggle = header.querySelector('button[aria-label="Open menu"]');
+    if (!toggle) return;
+
+    // the drawer is the sibling of the header pill that carries z-40 + fixed
+    var drawer = null;
+    Array.prototype.slice.call(header.children).forEach(function (el) {
+      var cls = (typeof el.className === 'string') ? el.className : '';
+      if (cls.indexOf('z-40') !== -1 && cls.indexOf('fixed') !== -1) drawer = el;
+    });
+    if (!drawer) return;
+
+    var backdrop = drawer.children[0] || null;   // absolute inset-0 bg-ink/50
+    var panel = drawer.children[1] || null;      // absolute ... -translate-y-6
+
+    var isOpen = false;
+    function setOpen(next) {
+      isOpen = next;
+      toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      var icon = toggle.querySelector('i');
+      if (icon) icon.className = isOpen ? 'fa-solid fa-xmark text-base' : 'fa-solid fa-bars text-base';
+
+      drawer.classList.toggle('opacity-100', isOpen);
+      drawer.classList.toggle('visible', isOpen);
+      drawer.classList.toggle('opacity-0', !isOpen);
+      drawer.classList.toggle('invisible', !isOpen);
+
+      if (panel) {
+        panel.classList.toggle('translate-y-0', isOpen);
+        panel.classList.toggle('-translate-y-6', !isOpen);
+      }
+      // React locked background scroll while the drawer was open
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    toggle.addEventListener('click', function () { setOpen(!isOpen); });
+    if (backdrop) backdrop.addEventListener('click', function () { setOpen(false); });
+
+    if (panel) {
+      // accordions: a type=button immediately followed by a max-h-0 body
+      $$('button[type="button"]', panel).forEach(function (btn) {
+        var body = btn.nextElementSibling;
+        if (!body || !body.classList.contains('max-h-0')) return;
+        var chev = btn.querySelector('i.fa-chevron-down');
+        btn.addEventListener('click', function () {
+          var opened = body.classList.contains('max-h-96');
+          body.classList.toggle('max-h-96', !opened);
+          body.classList.toggle('max-h-0', opened);
+          if (chev) chev.classList.toggle('rotate-180', !opened);
+        });
+      });
+      // any link inside the drawer closes it (React did this on route change)
+      $$('a', panel).forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen) setOpen(false);
+    });
+  }
+
+  /* ==========================================================================
+     SECTION 7 - HOME HERO CAROUSEL
+     Mirrors HeroShowcase in Home.jsx: 10 slides, 1.2s crossfade, prev/next,
+     pagination dots, live counter, caption, 5.5s autoplay paused on hover.
+
+     The captured markup already contains all 10 <img> at their FINAL motion
+     values (active slide opacity 1 / scale 1 / z 1, the rest opacity 0 /
+     scale 1.03 / z 0) because the capture drove the carousel through every
+     slide. Only the ACTIVE slide's caption is in the DOM, so the slide
+     metadata below mirrors HERO_SLIDES from src/pages/Home.jsx verbatim.
+     If those slides ever change, update both.
+     ========================================================================== */
+
+  var HERO_SLIDES = [
+    { tag: 'Kizen Campus · Sector 34-A', title: 'Vibrant Student Community & Celebrations', desc: 'Energetic, supportive learning atmosphere where aspiring commerce & finance scholars collaborate.' },
+    { tag: 'Smart Classrooms', title: 'Concept-First Faculty Lectures & Board Prep', desc: 'Structured pedagogy combining conceptual clarity with board exam rigor and professional insights.' },
+    { tag: 'Sector 34-A Center', title: 'Executive Front Desk & Admission Lounge', desc: 'Welcoming consultation spaces designed for transparent student career mapping and academic advisory.' },
+    { tag: 'Conference & Seminar Facility', title: 'Modern Commerce & ACCA Seminar Facility', desc: 'Spacious air-conditioned halls equipped for industry masterclasses, guest lectures, and student orientation.' },
+    { tag: 'Analytics & Problem Solving', title: 'Advanced Quantitative & Problem-Solving Labs', desc: 'Interactive step-by-step problem dissection for applied accounting, financial math, and taxation.' },
+    { tag: 'Collaborative Learning', title: 'Peer Discussions & Group Study Sessions', desc: 'Interactive round-table learning encouraging student debate, case studies, and cooperative exam strategies.' },
+    { tag: 'Dedicated Faculty Support', title: '1-on-1 Mentorship & Individual Doubt Resolution', desc: 'Personal faculty access outside lecture hours to resolve doubts and track individual student performance.' },
+    { tag: 'Student Milestones', title: 'Celebrating Academic Excellence & Exam Triumphs', desc: 'Recognizing student achievements in board examinations, ACCA paper clearances, and university admits.' },
+    { tag: 'Small Batch Focus', title: 'Focused Small Batches & Direct Mentorship', desc: 'Restricted batch sizes ensuring no student sits at the back unheard or unnoticed during lectures.' },
+    { tag: 'Student Services', title: 'Dedicated Academic Helpdesk & Student Support', desc: 'Full-time support for study material distribution, batch schedules, and ACCA registration guidance.' },
+  ];
+
+  function initHeroCarousel() {
+    var nextBtn = document.querySelector('button[aria-label="Next campus photo"]');
+    var prevBtn = document.querySelector('button[aria-label="Previous campus photo"]');
+    if (!nextBtn || !prevBtn) return; // not the Home page
+
+    var imgs = $$('img[alt]').filter(function (im) {
+      return /campus-|slide-/.test(im.getAttribute('src') || '');
+    });
+    var dots = $$('button[aria-label^="Go to slide "]');
+    if (!dots.length) return;
+
+    // find the caption/tag/counter nodes relative to the hero
+    var hero = nextBtn.closest('div[class*="rounded-3xl"]') || nextBtn.parentNode;
+    var caption = hero ? hero.querySelector('div.font-serif') : null;
+    var desc = caption && caption.nextElementSibling ? caption.nextElementSibling : null;
+    var tagEl = null;
+    var counterEl = null;
+    if (hero) {
+      $$('span', hero).forEach(function (s) {
+        var t = (s.textContent || '').trim();
+        if (/^\d{2}\s*\/\s*\d{2}$/.test(t)) counterEl = s;
+        else if (s.querySelector('span') && s.textContent.trim().length > 2 && !tagEl && s.className.indexOf('tracking-widest') !== -1) tagEl = s;
+      });
+    }
+
+    var index = 0;
+    var paused = false;
+    var timer = null;
+
+    // framer-motion animated these via rAF, so no CSS transition was captured.
+    imgs.forEach(function (im) {
+      im.style.transition = 'opacity 1.2s ease-in-out, transform 1.2s ease-in-out';
+    });
+
+    function render() {
+      imgs.forEach(function (im, i) {
+        var active = i === index;
+        im.style.opacity = active ? '1' : '0';
+        im.style.transform = active ? 'none' : 'scale(1.03)';
+        im.style.zIndex = active ? '1' : '0';
+      });
+      dots.forEach(function (d, i) {
+        var active = i === index;
+        d.classList.toggle('w-5', active);
+        d.classList.toggle('bg-gold', active);
+        d.classList.toggle('w-1.5', !active);
+        d.classList.toggle('bg-white/40', !active);
+        d.classList.toggle('hover:bg-white', !active);
+      });
+      var s = HERO_SLIDES[index];
+      if (s) {
+        if (caption) caption.textContent = s.title;
+        if (desc) desc.textContent = s.desc;
+        if (tagEl) tagEl.textContent = s.tag;
+      }
+      if (counterEl) {
+        counterEl.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(HERO_SLIDES.length).padStart(2, '0');
+      }
+    }
+
+    function go(i) {
+      index = (i + HERO_SLIDES.length) % HERO_SLIDES.length;
+      render();
+    }
+
+    nextBtn.addEventListener('click', function () { go(index + 1); });
+    prevBtn.addEventListener('click', function () { go(index - 1); });
+    dots.forEach(function (d, i) {
+      d.addEventListener('click', function () { go(i); });
+    });
+
+    if (hero) {
+      hero.addEventListener('mouseenter', function () { paused = true; });
+      hero.addEventListener('mouseleave', function () { paused = false; });
+    }
+
+    timer = window.setInterval(function () {
+      if (!paused) go(index + 1);
+    }, 5500);
+
+    render();
+  }
+
+  /* ==========================================================================
+     SECTION 8 - HOME STAT COUNT-UP
+     Mirrors useCountUp(): 2s easeOut from 0 to the target, triggered once when
+     the stat scrolls into view (-50px root margin, `once: true`).
+     The captured markup already holds the FINAL values (180+, 13, 95%+), which
+     is what keeps the page correct even with JS disabled - the animation is
+     pure progressive enhancement.
+     ========================================================================== */
+
+  function initStatCountUp() {
+    if (!('IntersectionObserver' in window)) return;
+
+    // mirrors the three <StatItem> calls in Home.jsx
+    var LABELS = [
+      { text: 'Countries recognise ACCA', end: 180, suffix: '+' },
+      { text: 'Papers, structured pathway', end: 13, suffix: '' },
+      { text: 'Kizen pass rate', end: 95, suffix: '%+' },
+    ];
+
+    var targets = [];
+    var labelEls = $$('div').filter(function (d) {
+      return typeof d.className === 'string' && d.className.indexOf('text-ink/60') !== -1;
+    });
+
+    labelEls.forEach(function (labelEl) {
+      var want = LABELS.filter(function (L) { return labelEl.textContent.trim() === L.text; })[0];
+      if (!want) return;
+      var valueDiv = labelEl.previousElementSibling;
+      var span = valueDiv ? valueDiv.querySelector('span') : null;
+      if (!span || !labelEl.parentNode) return;
+      targets.push({ span: span, root: labelEl.parentNode, end: want.end, suffix: want.suffix, done: false });
+    });
+
+    if (!targets.length) return;
+
+    function animate(t) {
+      if (t.done) return;
+      t.done = true;
+      var start = performance.now();
+      var DURATION = 2000;
+      var step = function (now) {
+        var p = Math.min(1, (now - start) / DURATION);
+        var eased = 1 - Math.pow(1 - p, 3); // easeOut
+        if (p < 1) {
+          t.span.textContent = Math.round(eased * t.end) + t.suffix;
+          requestAnimationFrame(step);
+        } else {
+          t.span.textContent = t.end + t.suffix;
+        }
+      };
+      requestAnimationFrame(step);
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        targets.forEach(function (t) { if (t.root === e.target) animate(t); });
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '-50px' });
+
+    targets.forEach(function (t) { io.observe(t.root); });
+  }
+
+  /* ==========================================================================
+     SECTION 9 - COURSES LEVEL FILTER
+     Mirrors the Courses.jsx filter state and tab UI. Clicking a filter tab
+     updates aria-selected on each tab and shows/hides the sections tagged with
+     the corresponding level id (school, undergrad, postgrad). The "All
+     Programmes" tab resets to show every level.
+
+     Each tab button on the live page carries an href of the form
+       /courses/#<level>
+     e.g. /courses/#school, /courses/#undergrad, /courses/#postgrad, and
+     /courses/#all for the All Programmes tab. That href is the single source
+     of truth for the mapping, so a new level can be added to Courses.jsx and
+     the static page without touching this file.
+     ========================================================================== */
+
+  function initCoursesFilter() {
+    var filterBar = document.getElementById('level-filter');
+    if (!filterBar) return;
+
+    var tablist = filterBar.querySelector('[role="tablist"]');
+    if (!tablist) return;
+
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+    if (!tabs.length) return;
+
+    // derive the level id from each tab's href (/courses/#<id>) — mirrors the
+    // id props used in Courses.jsx so the two stay in sync by construction
+    var LEVEL_IDS = tabs
+      .map(function (tab) {
+        var href = tab.getAttribute('href') || '';
+        var m = href.match(/#([^#\s]+)\s*$/);
+        return m ? m[1] : null;
+      })
+      .filter(function (id) { return id !== null; });
+
+    // sections whose id equals one of the level ids get filtered in/out
+    var levelSections = LEVEL_IDS.map(function (id) {
+      var el = document.getElementById(id);
+      return el && el.tagName === 'SECTION' ? el : null;
+    }).filter(Boolean);
+
+    var activeStyle =
+      'bg-navy text-paper border-gold/50 shadow-sm';
+    var inactiveStyle =
+      'bg-paper text-ink/70 border-ink/10 hover:border-navy/40 hover:text-ink';
+
+    function apply(tab, active) {
+      tabs.forEach(function (t) {
+        var isThis = (t === tab);
+        t.setAttribute('aria-selected', isThis ? 'true' : 'false');
+        // React ships a stable className; toggle the active/inactive flavour
+        // on top of it rather than clobbering the whole attribute.
+        if (isThis) {
+          t.classList.add(activeStyle);
+          t.classList.remove(inactiveStyle);
+        } else {
+          t.classList.add(inactiveStyle);
+          t.classList.remove(activeStyle);
+        }
+      });
+      levelSections.forEach(function (sec) {
+        sec.classList.toggle('hidden', !('data-level' in sec.dataset && sec.dataset.level !== tab.getAttribute('href').match(/#([^#\s]+)\s*$/)[1]));
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        var m = (tab.getAttribute('href') || '').match(/#([^#\s]+)\s*$/);
+        var level = m ? m[1] : 'all';
+
+        tabs.forEach(function (t) {
+          var isActive = (t === tab);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          if (isActive) {
+            t.classList.add(activeStyle);
+            t.classList.remove(inactiveStyle);
+          } else {
+            t.classList.add(inactiveStyle);
+            t.classList.remove(activeStyle);
+          }
+        });
+
+        // 'all' shows every level section; a specific id shows only that one
+        if (level === 'all' || !level) {
+          levelSections.forEach(function (sec) { sec.classList.remove('hidden'); });
+        } else {
+          levelSections.forEach(function (sec) {
+            sec.classList.toggle('hidden', sec.id !== level);
+          });
+        }
+      });
+    });
+  }
+
   /* ================================================================ BOOT */
 
   function init() {
     adoptPartials();
     wireEnquiryLinks();
     wireAllForms(document);
+    initHeader();
+    initMobileMenu();
+    initHeroCarousel();
+    initStatCountUp();
+    initCoursesFilter();
     flushRetryQueue(); // recover anything a past outage left behind
   }
 
