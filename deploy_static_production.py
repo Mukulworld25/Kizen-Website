@@ -108,6 +108,9 @@ def deploy_atomic_https(all_files):
     worker_filename = f".deployer_{secrets.token_hex(6)}.php"
 
     worker_php = f"""<?php
+@ini_set('memory_limit', '1024M');
+@set_time_limit(360);
+
 $AUTH_TOKEN = '{token}';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['token']) || $_POST['token'] !== $AUTH_TOKEN) {{
     http_response_code(403);
@@ -131,15 +134,17 @@ foreach ($data as $relPath => $b64) {{
     $full = $baseDir . '/' . $clean;
     $d = dirname($full);
     if (!is_dir($d)) {{
-        mkdir($d, 0755, true);
+        @mkdir($d, 0755, true);
     }}
     $content = base64_decode($b64);
     $w = file_put_contents($full, $content);
     $results[$clean] = ($w !== false && $w === strlen($content));
 }}
 
-// Self-destruct immediately upon execution
-@unlink(__FILE__);
+// Self-destruct only when the final batch is completed
+if (isset($_POST['done']) && $_POST['done'] === '1') {{
+    @unlink(__FILE__);
+}}
 
 header('Content-Type: application/json');
 echo json_encode(['status' => 'OK', 'count' => count($results), 'results' => $results]);
@@ -161,26 +166,58 @@ echo json_encode(['status' => 'OK', 'count' => count($results), 'results' => $re
 
     try:
         print(f"\n2. Packaging and uploading {len(all_files)} files over HTTPS...")
-        # Chunk payload into batches of 30 files if large
-        batch_size = 40
+        # Smart batching: max 12 MB or max 25 files per batch
+        MAX_BATCH_BYTES = 12 * 1024 * 1024
+        MAX_BATCH_FILES = 25
+
+        batches = []
+        cur_batch = []
+        cur_bytes = 0
+
+        for local_path, rel_path in all_files:
+            file_sz = os.path.getsize(local_path)
+            # If single file exceeds 8 MB, give it its own dedicated batch
+            if file_sz > 8 * 1024 * 1024:
+                if cur_batch:
+                    batches.append(cur_batch)
+                    cur_batch = []
+                    cur_bytes = 0
+                batches.append([(local_path, rel_path)])
+                continue
+
+            if cur_bytes + file_sz > MAX_BATCH_BYTES or len(cur_batch) >= MAX_BATCH_FILES:
+                batches.append(cur_batch)
+                cur_batch = [(local_path, rel_path)]
+                cur_bytes = file_sz
+            else:
+                cur_batch.append((local_path, rel_path))
+                cur_bytes += file_sz
+
+        if cur_batch:
+            batches.append(cur_batch)
+
+        print(f"   Grouped {len(all_files)} files into {len(batches)} optimized deployment batches.")
+
         total_success = 0
         total_bytes = 0
 
-        for i in range(0, len(all_files), batch_size):
-            batch = all_files[i:i + batch_size]
+        for b_idx, batch in enumerate(batches, 1):
+            is_last = (b_idx == len(batches))
             payload = {}
             batch_bytes = 0
+
             for local_path, rel_path in batch:
                 content = open(local_path, 'rb').read()
                 payload[rel_path] = base64.b64encode(content).decode('ascii')
                 batch_bytes += len(content)
 
             total_bytes += batch_bytes
-            print(f"   Transmitting batch {i // batch_size + 1} ({len(batch)} files, {batch_bytes:,} bytes)... ", end='', flush=True)
+            print(f"   Batch {b_idx:2d}/{len(batches)} ({len(batch):2d} files, {batch_bytes:10,d} B)... ", end='', flush=True)
 
             post_data = urllib.parse.urlencode({
                 'token': token,
-                'payload': json.dumps(payload)
+                'payload': json.dumps(payload),
+                'done': '1' if is_last else '0'
             }).encode('utf-8')
 
             req = urllib.request.Request(
@@ -189,7 +226,10 @@ echo json_encode(['status' => 'OK', 'count' => count($results), 'results' => $re
                 headers={'User-Agent': 'Kizen-Deployer/1.0'}
             )
 
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            # Timeout scaled to batch size: at least 60s, up to 180s for 24MB video
+            batch_timeout = max(60, int(batch_bytes / (100 * 1024))) # ~100KB/s min
+
+            with urllib.request.urlopen(req, timeout=batch_timeout) as resp:
                 res = json.loads(resp.read().decode('utf-8'))
                 if res.get('status') == 'OK':
                     success_count = sum(1 for v in res.get('results', {}).values() if v is True)
