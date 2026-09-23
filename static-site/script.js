@@ -591,14 +591,18 @@
     var prevBtn = document.querySelector('button[aria-label="Previous campus photo"]');
     if (!nextBtn || !prevBtn) return; // not the Home page
 
-    var imgs = $$('img[alt]').filter(function (im) {
+    // find the hero container first so queries are strictly scoped
+    var hero = nextBtn.closest('div[class*="rounded-3xl"]') || nextBtn.parentNode;
+    if (!hero) return;
+
+    // Scope carousel slide images strictly to the hero container
+    var imgs = $$('img', hero).filter(function (im) {
       return /campus-|slide-/.test(im.getAttribute('src') || '');
     });
-    var dots = $$('button[aria-label^="Go to slide "]');
-    if (!dots.length) return;
+    var dots = $$('button[aria-label^="Go to slide "]', hero);
+    if (!dots.length || !imgs.length) return;
 
     // find the caption/tag/counter nodes relative to the hero
-    var hero = nextBtn.closest('div[class*="rounded-3xl"]') || nextBtn.parentNode;
     var caption = hero ? hero.querySelector('div.font-serif') : null;
     var desc = caption && caption.nextElementSibling ? caption.nextElementSibling : null;
     var tagEl = null;
