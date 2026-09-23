@@ -72,11 +72,14 @@ def main():
 
     # Gather and categorize all local files
     all_files = []
+    html_only = '--html-only' in sys.argv
     for root, dirs, files in os.walk(LOCAL_DIR):
         rel_dir = os.path.relpath(root, LOCAL_DIR)
         if rel_dir == '.':
             rel_dir = ''
         for f in files:
+            if html_only and not f.endswith('.html'):
+                continue
             local_path = os.path.join(root, f)
             rel_path = os.path.join(rel_dir, f) if rel_dir else f
             priority = get_file_priority(rel_path)

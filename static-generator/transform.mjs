@@ -76,6 +76,8 @@ export function processHead(head) {
   // anything else still pointing into the (now absent) vite assets dir
   out = out.replace(/<link[^>]*rel="modulepreload"[^>]*>/gi, '')
   out = out.replace(/<link[^>]*rel="preload"[^>]*as="script"[^>]*>/gi, '')
+  // Fix any local dev domain references captured from GTM / Pixel during prerender
+  out = out.replace(/domain=localhost/g, 'domain=kizeneducation.com')
   // our stylesheet, placed at the end of head so it wins on equal specificity
   out += '\n<link rel="stylesheet" href="/styles.css" />'
   return out
