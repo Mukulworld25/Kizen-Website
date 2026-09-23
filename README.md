@@ -33,6 +33,22 @@ npm run build
 npm run serve
 ```
 
+## 🚀 Production Deployment (Hostinger)
+
+The live production site (`https://kizeneducation.com`) runs on pre-rendered, high-performance static HTML generated from the React application for instant page loads and 100% SEO indexability.
+
+To deploy changes to the live Hostinger server:
+
+```bash
+# Option 1: Fast HTML-only deploy (copy, SEO, or content updates in ~9s)
+npm run deploy:static:html
+
+# Option 2: Full production deploy (images, brochures, CSS, JS, HTML)
+npm run deploy:static
+```
+
+> 📖 **Full Architectural & Troubleshooting Guide:** See [DEPLOYMENT.md](DEPLOYMENT.md) for complete details on the Atomic HTTPS self-deployer, Hostinger ProFTPD diagnostic notes, and emergency rollbacks.
+
 ## 📂 Project Structure
 
 ```text
