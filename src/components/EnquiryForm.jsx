@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { supabase } from '../utils/supabase'
 
 // Shared enquiry form. variant:
 //   home     -> Compact navy-card form (Name, Phone, Interest select, Request a Call Back)
@@ -19,6 +18,8 @@ const NAVY_LABEL = 'text-[11px] font-bold text-ink uppercase tracking-wider bloc
 
 // Real institute WhatsApp number (verified across the codebase)
 const WHATSAPP_NUMBER = '917696963377'
+
+const PUBLIC_LEAD_INTAKE_URL = 'https://bumjiykhgkgmqyynwtuh.supabase.co/functions/v1/public-lead-intake'
 
 export default function EnquiryForm({ variant = 'home' }) {
   const isContact = variant === 'contact'
@@ -82,35 +83,39 @@ export default function EnquiryForm({ variant = 'home' }) {
       console.warn('[EnquiryForm] LocalStorage write failed:', localErr)
     }
 
-    // 2. Best-effort Supabase CRM insert (silent fail on visitor frontend, logs error to console)
-    if (supabase) {
-      try {
-        const insertPromise = supabase.from('leads').insert([
-          {
-            name: form.name?.trim() || '',
-            phone: form.phone?.trim() || '',
-            email: form.email?.trim() || null,
-            programme: programmeInterest,
-            source: 'website',
-          },
-        ])
+    // 2. Best-effort POST to public-lead-intake Edge Function (silent fail on visitor frontend, logs error to console)
+    const controller = window.AbortController ? new AbortController() : null
+    const timer = setTimeout(() => {
+      if (controller) controller.abort()
+    }, 4000)
 
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Supabase request timed out after 4s')), 4000)
-        )
-
-        const result = await Promise.race([insertPromise, timeoutPromise])
-
-        if (result && result.error) {
-          console.error('[EnquiryForm] Supabase insert error:', result.error)
-        } else {
-          console.log('[EnquiryForm] Successfully inserted lead into Supabase:', result?.data || 'OK')
-        }
-      } catch (err) {
-        console.error('[EnquiryForm] Failed to submit lead to Supabase (silent fallback active):', err)
+    try {
+      const payload = {
+        name: form.name?.trim() || '',
+        phone: form.phone?.trim() || '',
+        email: form.email?.trim() || null,
+        course_interest: programmeInterest,
+        message: form.message?.trim() || (variant === 'acca' && form.qualification ? `Qualification: ${form.qualification}` : null),
       }
-    } else {
-      console.warn('[EnquiryForm] Supabase client not initialized (missing environment variables)')
+
+      const res = await fetch(PUBLIC_LEAD_INTAKE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller ? controller.signal : undefined,
+      })
+
+      clearTimeout(timer)
+
+      if (!res.ok) {
+        console.error(`[EnquiryForm] Edge function error (status ${res.status}):`, await res.text().catch(() => ''))
+      } else {
+        const data = await res.json().catch(() => ({}))
+        console.log('[EnquiryForm] Successfully posted lead to public-lead-intake:', data)
+      }
+    } catch (err) {
+      clearTimeout(timer)
+      console.error('[EnquiryForm] Failed to submit lead to intake (silent fallback active):', err)
     }
 
     // 3. Always show Thank You confirmation regardless of CRM status

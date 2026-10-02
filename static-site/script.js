@@ -19,11 +19,8 @@
 
   /* ---------------------------------------------------------------- CONFIG */
 
-  // Same project + publishable key the React app used. This key is public by
-  // design (it shipped inside the browser bundle) and is protected by RLS.
-  var SUPABASE_URL = 'https://qlcuqmtpvncxbrvijnzt.supabase.co';
-  var SUPABASE_KEY = 'sb_publishable_jmJzgy2ONFm-73ULQvupRg_lVe2N27L';
-  var LEADS_ENDPOINT = SUPABASE_URL + '/rest/v1/leads';
+  // Edge Function in the kizen-crm Supabase project (public intake endpoint)
+  var PUBLIC_LEAD_INTAKE_URL = 'https://bumjiykhgkgmqyynwtuh.supabase.co/functions/v1/public-lead-intake';
 
   var WHATSAPP_NUMBER = '917696963377';
   var TEL_HREF = 'tel:+917696963377';
@@ -91,20 +88,24 @@
       if (controller) controller.abort();
     }, SUBMIT_TIMEOUT_MS);
 
-    return fetch(LEADS_ENDPOINT, {
+    var payload = {
+      name: record.name,
+      phone: record.phone,
+      email: record.email || null,
+      course_interest: record.programme || (record.qualification ? 'ACCA (' + record.qualification + ')' : null),
+      message: record.message || (record.source === 'website_callback' ? 'Requested a call back via website floating action button' : null)
+    };
+
+    return fetch(PUBLIC_LEAD_INTAKE_URL, {
       method: 'POST',
       headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: 'Bearer ' + SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        // identical to supabase-js .insert() default
-        Prefer: 'return=minimal'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify([record]),
+      body: JSON.stringify(payload),
       signal: controller ? controller.signal : undefined
     }).then(function (res) {
       clearTimeout(timer);
-      if (!res.ok) throw new Error('Supabase HTTP ' + res.status);
+      if (!res.ok) throw new Error('Edge function HTTP ' + res.status);
       return true;
     }, function (err) {
       clearTimeout(timer);

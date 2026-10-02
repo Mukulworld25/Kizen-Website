@@ -5,16 +5,19 @@ import EnquiryForm from './EnquiryForm.jsx'
 // Real institute contact details (verified across the codebase)
 const WHATSAPP_NUMBER = '917696963377'
 
+const PUBLIC_LEAD_INTAKE_URL = 'https://bumjiykhgkgmqyynwtuh.supabase.co/functions/v1/public-lead-intake'
+
 const PANEL_INPUT =
   'w-full bg-paper/10 border border-paper/20 rounded-lg px-4 py-2.5 text-base sm:text-sm text-paper placeholder:text-paper/50 focus:outline-none focus:border-gold'
 const PANEL_LABEL =
   'text-[11px] font-bold text-gold uppercase tracking-wider block mb-1.5'
 
-// Lightweight callback request — name + phone only. Submits the same way as
-// EnquiryForm: logged + handed to WhatsApp with a prefilled message.
+// Lightweight callback request — name + phone only. Submits to public-lead-intake
+// Edge Function with 4s timeout, local persistence, and fail-silent UX.
 function CallbackForm() {
   const [form, setForm] = useState({ name: '', phone: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const buildWhatsAppMessage = (formData) => {
     return `Hi Kizen Education! I'm ${formData.name || 'a prospective student'}. Please call me back at ${formData.phone}.`
@@ -29,10 +32,61 @@ function CallbackForm() {
     )
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmitting(true)
     console.log('[FloatingActions] Callback requested:', form)
-    // Do NOT auto-open WhatsApp — show inline Thank You state with action buttons
+
+    // 1. Local persistence
+    try {
+      const existingLeads = JSON.parse(localStorage.getItem('kizen_enquiries') || '[]')
+      existingLeads.push({
+        ...form,
+        programmeInterest: 'Request Callback',
+        variant: 'callback',
+        timestamp: new Date().toISOString(),
+      })
+      localStorage.setItem('kizen_enquiries', JSON.stringify(existingLeads))
+    } catch (localErr) {
+      console.warn('[FloatingActions] LocalStorage write failed:', localErr)
+    }
+
+    // 2. Best-effort POST to public-lead-intake Edge Function (4s timeout fail-silent)
+    const controller = window.AbortController ? new AbortController() : null
+    const timer = setTimeout(() => {
+      if (controller) controller.abort()
+    }, 4000)
+
+    try {
+      const payload = {
+        name: form.name?.trim() || '',
+        phone: form.phone?.trim() || '',
+        course_interest: 'Request Callback',
+        message: 'Requested a call back via website floating action button',
+      }
+
+      const res = await fetch(PUBLIC_LEAD_INTAKE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller ? controller.signal : undefined,
+      })
+
+      clearTimeout(timer)
+
+      if (!res.ok) {
+        console.error(`[FloatingActions] Edge function error (status ${res.status}):`, await res.text().catch(() => ''))
+      } else {
+        const data = await res.json().catch(() => ({}))
+        console.log('[FloatingActions] Successfully posted callback request to CRM:', data)
+      }
+    } catch (err) {
+      clearTimeout(timer)
+      console.error('[FloatingActions] Failed to submit callback request (silent fallback active):', err)
+    }
+
+    // 3. Always show inline Thank You state with action buttons
+    setSubmitting(false)
     setSubmitted(true)
   }
 
